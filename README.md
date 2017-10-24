@@ -18,7 +18,9 @@ Official Hermes Gift repository
 Category contain products (main category: root) [example](http://hermesgift.bg/index.php/categories/sklad)
 >	- **name**: Category name
 > - **value**: Category value (for links)
+> - **products**: Products in the category
 > - **parent_category**: Parent category
+> - **category_img**: Category front image
 > - **online**: true/false
 
 
