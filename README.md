@@ -1,6 +1,22 @@
 # HermesGift
 Official Hermes Gift repository
 
+## Table of Contents
+1. [Application Configurations](https://github.com/ValentinAlexandrovGeorgiev/hermes#application-configurations) 
+2. [Technology stack](https://github.com/ValentinAlexandrovGeorgiev/hermes#technology-stack) 
+3. [Routing](https://github.com/ValentinAlexandrovGeorgiev/hermes#routing) 
+4. [Data API](https://github.com/ValentinAlexandrovGeorgiev/hermes#data-api) 
+5. [Backend Endpoints](https://github.com/ValentinAlexandrovGeorgiev/hermes#backend-endpoints)
+
+## Application Configurations
+
+
+## Technology stack
+
+
+## Routing
+
+
 ## DATA API
 
 ###### Product
@@ -39,3 +55,5 @@ Texts [Example 1](http://hermesgift.bg/index.php/for-us) , [Example 2](http://he
 > - **asset_id**: Unique asset id
 > - **image_link**: Asset front image
 > - **online**: true/false
+
+## Backend Endpoints
