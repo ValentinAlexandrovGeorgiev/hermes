@@ -19,11 +19,21 @@ Main languages & libraries :
 - Babel
 - react-router
 - lodash
-- django
+- Django
 - Postgre
 
 
 ## Routing
+Route | Description | Old page
+------|-------------|---------
+/ | Home page | http://hermesgift.bg/
+/products | Products page with | http://hermesgift.bg/index.php/categories/sklad
+/products/:category | Products from category | http://hermesgift.bg/index.php/categories/sklad/mobile-accessories
+/services | Services page | http://hermesgift.bg/index.php/nashatapechatnitsa
+/service/:serviceid | Service details page | http://hermesgift.bg/index.php/nashatapechatnitsa/item/tamponen-pechat
+/for-us | For us & Contacts page | http://hermesgift.bg/index.php/for-us
+/search/products/:keyword | Search page with specific keyword | http://hermesgift.bg/index.php/component/virtuemart/search?keyword=180-01&limitstart=0&option=com_virtuemart&view=category
+/catalogs | Catalogs page | http://hermesgift.bg/index.php/catalogs
 
 
 ## DATA API
