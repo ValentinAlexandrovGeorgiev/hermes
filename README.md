@@ -275,12 +275,12 @@ Return only the configuration which you search ({config}) </br>
 
 ```
 	Steps when you want to develop a feature.
-	1. Pull **dev** branch
-	2. Create a new branch. Example **update-en-translations**
+	1. Pull dev branch
+	2. Create a new branch. Example update-en-translations
 	3. Switch to your new branch
 	4. Commit
-	5. When you are ready, **push** your changes
-	6. Go to **hermes** github repository and click **Create a pull request** button
-	7. Add title and descriptio
+	5. When you are ready, push your changes
+	6. Go to **hermes** github repository and click "Create a pull request" button
+	7. Add title and description
 	8. Wait for review approval and merge
 ```
