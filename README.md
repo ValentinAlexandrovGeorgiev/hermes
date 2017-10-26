@@ -1,4 +1,3 @@
-Test Commit 7
 # HermesGift
 Official Hermes Gift repository
 
