@@ -1,22 +1,20 @@
-import React from 'react';
-import YeomanImage from './YeomanImage';
-import './app.css';
+import React from 'react'
+import './app.scss'
 
 class AppComponent extends React.Component {
-
-  render() {
+  render () {
     return (
-      <div className="index">
-        <YeomanImage />
-        <div className="notice">
-          Please edit <code>src/components/App.js</code> to get started!
+      <div className='index'>
+        <div className='notice'>
+          {'Please edit'} <code>{'src/components/App.js'}</code>{'to get started!'}
         </div>
       </div>
-    );
+    )
   }
 }
 
 AppComponent.defaultProps = {
-};
 
-export default AppComponent;
+}
+
+export default AppComponent
