@@ -1,7 +1,7 @@
-import React from 'react'
+import React, { Component } from 'react'
 import './app.scss'
 
-class AppComponent extends React.Component {
+class App extends Component {
   render () {
     return (
       <div className='index'>
@@ -13,8 +13,8 @@ class AppComponent extends React.Component {
   }
 }
 
-AppComponent.defaultProps = {
+App.defaultProps = {
 
 }
 
-export default AppComponent
+export default App

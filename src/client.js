@@ -5,12 +5,27 @@ import { Provider } from 'react-redux'
 import App from './containers/App'
 import configureStore from './stores'
 
-const store = configureStore()
+import createHistory from 'history/createBrowserHistory'
+import { ConnectedRouter, routerMiddleware } from 'react-router-redux'
+import ScrollToTop from 'components/generics/ScrollToTop/ScrollToTop'
+
+// Create the browser history
+const history = createHistory()
+// Build the history middleware
+const middleware = routerMiddleware()
+// Create the react store and add the middleware
+const store = configureStore({}, [middleware])
+
+// Import global styles
 
 ReactDOM.render(
   <AppContainer>
     <Provider store={store}>
-      <App />
+      <ConnectedRouter history={history}>
+        <ScrollToTop>
+          <App />
+        </ScrollToTop>
+      </ConnectedRouter>
     </Provider>
   </AppContainer>,
   document.getElementById('app')
@@ -23,7 +38,9 @@ if (module.hot) {
     ReactDOM.render(
       <AppContainer>
         <Provider store={store}>
-          <NextApp />
+          <ConnectedRouter history={history}>
+            <NextApp />
+          </ConnectedRouter>
         </Provider>
       </AppContainer>,
       document.getElementById('app')

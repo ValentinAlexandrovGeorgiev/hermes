@@ -1,25 +1,45 @@
-import React, {Component} from 'react'
+import React, { Component } from 'react'
+import PropTypes from 'prop-types'
 import { bindActionCreators } from 'redux'
+import { withRouter } from 'react-router-dom'
 import { connect } from 'react-redux'
-import {} from 'actions'
-import Main from 'components/App'
+import RouteRoot from 'routes/RouteRoot'
+import * as ACTIONS from 'actions'
 
 class App extends Component {
   render () {
-    const { actions } = this.props
-    return <Main actions={actions} />
+    const {
+      actions,
+      router
+    } = this.props
+
+    return (
+      <div>
+        <RouteRoot
+          actions={actions}
+          router={router}
+        />
+      </div>
+    )
   }
 }
 
+App.propTypes = {
+  actions: PropTypes.shape({}),
+  router: PropTypes.shape({})
+}
+
 const mapStateToProps = (state) => {
-  const props = {}
+  const props = {
+    router: state.router
+  }
   return props
 }
 
 const mapDispatchToProps = (dispatch) => {
-  const actions = {}
+  const actions = ACTIONS
   const actionMap = { actions: bindActionCreators(actions, dispatch) }
   return actionMap
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(App)
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(App))
