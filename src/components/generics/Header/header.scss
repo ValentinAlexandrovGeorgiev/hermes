@@ -34,9 +34,12 @@
     line-height: 40px;
     font-size: 22px;
 
+    &:hover {
+      background: linear-gradient(to bottom, #1e5799 0%,#0c74c9 57%,#4ea1e0 100%);
+    }
+
     &.selected {
-      border: 3px solid #EDF0EB;
-      border-top: 0;
+      background: linear-gradient(to bottom, #4ea1e0 0%,#0c74c9 42%,#1e5799 100%);
     }
 
     a {
