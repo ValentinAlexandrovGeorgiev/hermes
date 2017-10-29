@@ -2,12 +2,18 @@ import React, {Component} from 'react'
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
 import {} from 'actions'
-import Main from 'components/App'
+import Header from 'components/generics/Header/Header'
+import Footer from 'components/generics/Footer/Footer'
 
 class Home extends Component {
   render () {
     const { actions } = this.props
-    return <Main actions={actions} />
+    return (
+      <div>
+        <Header />
+        <Footer />
+      </div>
+    )
   }
 }
 
