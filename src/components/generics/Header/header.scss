@@ -1,0 +1,47 @@
+.header {
+
+  &__wrapper {
+    padding-top: 30px;
+  }
+
+  &__logo {
+    padding: 0 8%;
+
+    img {
+      width: 350px;
+    }
+
+    &_message {
+      font-size: 20px;
+      margin-left: 20px;
+      line-height: 80px;
+      display: inline-block;
+      vertical-align: top;
+      color: #21518F;
+    }
+  }
+
+  &__nav {
+    margin: 10px 0;
+    background: #244678;
+  }
+
+  &__item {
+    display: inline-block;
+    text-align: center;
+    width: 25%;
+    height: 40px;
+    line-height: 40px;
+    font-size: 22px;
+
+    &.selected {
+      border: 3px solid #EDF0EB;
+      border-top: 0;
+    }
+
+    a {
+      color: #EDF0EB;
+      display: block;
+    }
+  }
+}
