@@ -5,6 +5,7 @@ import {} from 'actions'
 import Header from 'components/generics/Header/Header'
 import Footer from 'components/generics/Footer/Footer'
 import HomeCarousel from 'components/home/HomeCarousel/HomeCarousel'
+import Statistics from 'components/home/Statistics/Statistics'
 
 class Home extends Component {
   render () {
@@ -13,6 +14,7 @@ class Home extends Component {
       <div>
         <Header />
         <HomeCarousel />
+        <Statistics />
         <Footer />
       </div>
     )
