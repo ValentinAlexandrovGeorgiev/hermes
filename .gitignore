@@ -34,3 +34,7 @@ dist/
 
 # IDE/Editor data
 .idea/
+
+# PyCache
+__pycache__/
+*.pyc
