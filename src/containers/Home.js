@@ -4,6 +4,7 @@ import { connect } from 'react-redux'
 import {} from 'actions'
 import Header from 'components/generics/Header/Header'
 import Footer from 'components/generics/Footer/Footer'
+import HomeCarousel from 'components/home/HomeCarousel/HomeCarousel'
 
 class Home extends Component {
   render () {
@@ -11,6 +12,7 @@ class Home extends Component {
     return (
       <div>
         <Header />
+        <HomeCarousel />
         <Footer />
       </div>
     )
