@@ -6,6 +6,7 @@ import Header from 'components/generics/Header/Header'
 import Footer from 'components/generics/Footer/Footer'
 import HomeCarousel from 'components/home/HomeCarousel/HomeCarousel'
 import Statistics from 'components/home/Statistics/Statistics'
+import Contacts from 'components/generics/Contacts/Contacts'
 
 class Home extends Component {
   render () {
@@ -15,6 +16,7 @@ class Home extends Component {
         <Header />
         <HomeCarousel />
         <Statistics />
+        <Contacts />
         <Footer />
       </div>
     )

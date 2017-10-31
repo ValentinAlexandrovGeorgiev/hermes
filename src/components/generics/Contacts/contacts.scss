@@ -1,0 +1,23 @@
+.contacts {
+
+  &__wrapper {
+    background: #FAF7F8;
+    margin: 40px 0;
+    padding-top: 20px;
+
+    ul {
+      list-style: none;
+    }
+  }
+
+  &__column {
+    padding: 10px 20px;
+    vertical-align: top;
+  }
+
+  &__label {
+    font-size: 18px;
+    color: #21518F;
+
+  }
+}

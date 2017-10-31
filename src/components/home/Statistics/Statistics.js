@@ -7,6 +7,7 @@ class Statistics extends Component {
   render() {
     return (
       <div className='statistics__wrapper'>
+        <h1>{'Хермес Гифт'}</h1>
         <div className='statistics__item col col-xs-100 col-md-33'>
           <Link className='statistics__link' to='/products'>
             <div className='statistics__number'>

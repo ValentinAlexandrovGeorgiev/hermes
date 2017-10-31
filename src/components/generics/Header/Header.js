@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { Link, withRouter } from 'react-router-dom'
+import SearchInput from '../SearchInput/SearchInput'
 import './header.scss'
 
 const PAGES = {
@@ -45,6 +46,7 @@ class Header extends Component {
           <p className='header__logo_message'>
             {'- Лидерът в предметната реклама!'}
           </p>
+          <SearchInput />
         </div>
         <div className='header__nav'>
           <div className={`header__item ${selected === PAGES.products ? 'selected' : ''}`}>
