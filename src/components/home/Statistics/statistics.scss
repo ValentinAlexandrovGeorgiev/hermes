@@ -15,21 +15,44 @@
 
   &__number {
     display: inline-block;
-    height: 90px;
-    width: 90px;
-    border-radius: 50%;
-    border: 6px solid #3064CD;
     text-align: center;
-    line-height: 80px;
+    line-height: 70px;
     font-size: 25px;
     font-weight: 700;
     color: #14141C;
   }
 
+  &__outer {
+    box-shadow: 0 0 50px 7px #2B7ABA;
+    border: 10px solid #FAF7F8;
+    background: linear-gradient(to bottom, #ffffff 0%, #E6FFFF 100%);
+    width: 90px;
+    height: 90px;
+    border-radius: 50%;
+    border-top-color: #21518F;
+    animation: round_circle 5s infinite;
+    position: relative;
+    opacity: 0.8;
+
+    &:hover {
+      box-shadow: 0 0 100px 12px #2B7ABA;
+    }
+  }
+
   &__label {
     display: inline-block;
-    margin-left: 10px;
+    margin-left: 20px;
     font-size: 18px;
     color: #244678;
+  }
+}
+
+@keyframes round_circle {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(360deg);
   }
 }
