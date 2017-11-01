@@ -11,6 +11,7 @@ class Products extends Component {
     return (
       <div>
         <Header />
+        <ProductList />
         <Footer />
       </div>
     )
