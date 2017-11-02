@@ -2,12 +2,16 @@ import React, {Component} from 'react'
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
 import {} from 'actions'
+import Header from 'components/generics/Header/Header'
+import Footer from 'components/generics/Footer/Footer'
 
-class Test extends Component {
+class Services extends Component {
   render () {
+    const { actions } = this.props
     return (
       <div>
-        {'Test routing'}
+        <Header />
+        <Footer />
       </div>
     )
   }
@@ -24,4 +28,4 @@ const mapDispatchToProps = (dispatch) => {
   return actionMap
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(Test)
+export default connect(mapStateToProps, mapDispatchToProps)(Services)

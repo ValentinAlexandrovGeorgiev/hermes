@@ -1,16 +1,20 @@
 import React, { Component } from 'react'
 import { Route } from 'react-router'
 import Home from 'containers/Home'
-import Test from 'containers/Test'
+import Forus from 'containers/Forus'
+import Products from 'containers/Products'
+import Services from 'containers/Services'
+import Catalogs from 'containers/Catalogs'
 
 class RouteList extends Component {
   render () {
-    return (
-      <div>
-        <Route exact path='/' component={Home} />
-        <Route exact path='/test' component={Test} />
-      </div>
-    )
+    return [
+      <Route key='/' exact path='/' component={Home} />,
+      <Route key='/products' exact path='/products' component={Products} />,
+      <Route key='/services' exact path='/services' component={Services} />,
+      <Route key='/catalogs' exact path='/catalogs' component={Catalogs} />,
+      <Route key='/for-us' exact path='/for-us' component={Forus} />
+    ]
   }
 }
 

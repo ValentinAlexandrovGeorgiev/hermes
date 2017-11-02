@@ -4,19 +4,14 @@ import { connect } from 'react-redux'
 import {} from 'actions'
 import Header from 'components/generics/Header/Header'
 import Footer from 'components/generics/Footer/Footer'
-import HomeCarousel from 'components/home/HomeCarousel/HomeCarousel'
-import Statistics from 'components/home/Statistics/Statistics'
-import Contacts from 'components/generics/Contacts/Contacts'
 
-class Home extends Component {
+class Products extends Component {
   render () {
     const { actions } = this.props
     return (
       <div>
         <Header />
-        <HomeCarousel />
-        <Statistics />
-        <Contacts />
+        <ProductList />
         <Footer />
       </div>
     )
@@ -34,4 +29,4 @@ const mapDispatchToProps = (dispatch) => {
   return actionMap
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(Home)
+export default connect(mapStateToProps, mapDispatchToProps)(Products)

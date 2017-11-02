@@ -17,6 +17,7 @@ const middleware = routerMiddleware()
 const store = configureStore({}, [middleware])
 
 // Import global styles
+import './styles/index.scss'
 
 ReactDOM.render(
   <AppContainer>
