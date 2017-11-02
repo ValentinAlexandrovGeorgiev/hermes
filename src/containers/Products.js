@@ -4,6 +4,7 @@ import { connect } from 'react-redux'
 import {} from 'actions'
 import Header from 'components/generics/Header/Header'
 import Footer from 'components/generics/Footer/Footer'
+import ProductList from 'components/plp/ProductList/ProductList'
 
 class Products extends Component {
   render () {
