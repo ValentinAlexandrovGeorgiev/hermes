@@ -5,6 +5,7 @@ import {} from 'actions'
 import Header from 'components/generics/Header/Header'
 import Footer from 'components/generics/Footer/Footer'
 import ProductList from 'components/plp/ProductList/ProductList'
+import Sorting from 'components/plp/Sorting/Sorting'
 
 class Products extends Component {
   render () {
@@ -12,6 +13,7 @@ class Products extends Component {
     return (
       <div>
         <Header />
+        <Sorting />
         <ProductList />
         <Footer />
       </div>

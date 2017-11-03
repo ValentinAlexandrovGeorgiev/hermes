@@ -3,7 +3,7 @@ import ProductTile from '../ProductTile/ProductTile'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import './productlist.scss'
-import mock_data from './mock_data.js'
+import mockData from './mock_data.js'
 
 class ProductList extends Component {
 
@@ -16,11 +16,7 @@ class ProductList extends Component {
   }
 
   renderProducts () {
-    const {
-      products
-    } = this.props
-
-    return mock_data.map((product, index) => {
+    return mockData.map((product, index) => {
       return (
         <div key={`${product.name}_${index}`} className='col col-xs-100 col-md-50 col-lg-33 col-big-25'>
           <ProductTile {...product} />

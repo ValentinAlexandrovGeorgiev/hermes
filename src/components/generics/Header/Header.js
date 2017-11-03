@@ -24,14 +24,13 @@ class Header extends Component {
       location
     } = this.props
 
-    switch(location.pathname) {
+    switch (location.pathname) {
       case '/products': return PAGES.products
       case '/services': return PAGES.services
       case '/catalogs': return PAGES.catalogs
       case '/for-us': return PAGES.forus
       default: return ''
     }
-
   }
 
   render () {
