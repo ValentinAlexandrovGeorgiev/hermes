@@ -6,7 +6,6 @@ import './productlist.scss'
 import mockData from './mock_data.js'
 
 class ProductList extends Component {
-
   render () {
     return (
       <div className='product_list__wrapper'>

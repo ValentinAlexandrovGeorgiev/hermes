@@ -1,8 +1,15 @@
 import React, { Component } from 'react'
+import { Link } from 'react-router-dom'
+import _ from 'lodash'
 import './producttile.scss'
 
-class ProductTile extends Component {
+const CURRENCIES = {
+  'USD': '$',
+  'EUR': '€',
+  'leva': 'лв'
+}
 
+class ProductTile extends Component {
   render () {
     const {
       name,
@@ -12,22 +19,24 @@ class ProductTile extends Component {
       image_link
     } = this.props
 
-    return (
-      <div className='tile__wrapper'>
-        <span>
-          <img className='tile__image' src={image_link || 'images/default.png'} />
-        </span>
-        <div>
-          <span>{name}</span>
-          <div>
-            <span>{product_id}</span>
+    const currencySymbol = currency ? CURRENCIES[currency] : CURRENCIES.leva
 
-            <div>
-              <span>{price}</span>
+    return (
+      <Link to={`/product/${_.kebabCase(name)}/${product_id}`}>
+        <div className='tile__wrapper'>
+          <img className='tile__image' src={image_link || 'images/default.png'} />
+          <div className='tile__info'>
+            <span className='name'>{name}</span>
+            <div className='price_id'>
+              <span className='product_id'>{`ID: ${product_id}`}</span>
+              <span className='product_price'>
+                {price}
+                <span className='product_currency'>{currencySymbol}</span>
+              </span>
             </div>
           </div>
         </div>
-      </div>
+      </Link>
     )
   }
 }

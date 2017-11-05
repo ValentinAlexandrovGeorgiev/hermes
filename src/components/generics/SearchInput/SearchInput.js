@@ -6,7 +6,7 @@ class SearchInput extends Component {
     return (
       <div className='search__wrapper'>
         <input type='text' placeholder='Търси..' />
-        <img className='magnifier' src='static/magnifier.svg' />
+        <img className='magnifier' src='/static/magnifier.svg' />
       </div>
     )
   }

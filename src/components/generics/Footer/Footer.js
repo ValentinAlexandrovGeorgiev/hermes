@@ -30,7 +30,7 @@ class Footer extends Component {
           </div>
         </div>
         <div className='col col-xs-100 col-md-33 footer__fb_plugin'>
-          <iframe src='https://www.facebook.com/plugins/page.php?href=https%3A%2F%2Fwww.facebook.com%2Fhermesgift&width=340&height=250&small_header=false&adapt_container_width=true&hide_cover=false&show_facepile=true&appId=1723121821304727' style={FB_STYLE} scrolling='no' frameBorder='0' allowTransparency='true'/>
+          <iframe src='https://www.facebook.com/plugins/page.php?href=https%3A%2F%2Fwww.facebook.com%2Fhermesgift&width=340&height=250&small_header=false&adapt_container_width=true&hide_cover=false&show_facepile=true&appId=1723121821304727' style={FB_STYLE} scrolling='no' frameBorder='0' allowTransparency='true' />
         </div>
         <p className='footer__rights'>
           {'© 2014-2017 Hermesgift. Всички права са запазени!'}

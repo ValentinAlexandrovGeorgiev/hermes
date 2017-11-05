@@ -1,6 +1,6 @@
 const MOCKUP = [
   {
-    name: 'Test1',
+    name: 'Пластмасова химикалка пишеща червено',
     product_id: '111-11',
     price: '23.42',
     currency: 'USD',

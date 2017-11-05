@@ -25,10 +25,8 @@ class Sorting extends Component {
   }
 
   componentDidMount () {
-
     document.onclick = (event) => {
-      if (event.target.className !== 'sorting__choosen_one') {
-
+      if (event.target.className !== 'sorting__choosen_one' && this.state.open) {
         this.setState({
           open: false
         })
@@ -37,7 +35,6 @@ class Sorting extends Component {
   }
 
   changeLabel (label) {
-
     this.setState({
       label: label,
       open: false
@@ -61,7 +58,7 @@ class Sorting extends Component {
       <div className='sorting__wrapper'>
         <div className='sorting__dropdown'>
           <span className='sorting__choosen_one' onClick={this.openDropdown}>{label}</span>
-          <Dropdown items={items} open={open} wrapperClass={'custom_dropdown'} change={(label) => this.changeLabel(label)}/>
+          <Dropdown items={items} open={open} wrapperClass={'custom_dropdown'} change={label => this.changeLabel(label)} />
         </div>
       </div>
     )
