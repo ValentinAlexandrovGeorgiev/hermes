@@ -261,7 +261,7 @@ Example response: </br>
 error response: </br>
 ```
 {
-	status_code: 404,
+    status_code: 404,
     "detail": "Not Found"
 }
 ```
