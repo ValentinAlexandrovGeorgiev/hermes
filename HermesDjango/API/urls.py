@@ -1,7 +1,7 @@
 from django.conf.urls import url
 from rest_framework import renderers
 from API.views import AssetViewSet, CatalogViewSet, CategoryViewSet,\
-    ProdcutViewSet, SiteViewSet, ProductByCategory, SiteConfig
+    ProductViewSet, SiteViewSet, ProductByCategory, SiteConfig
 
 
 category_list = CategoryViewSet.as_view({
@@ -12,11 +12,11 @@ category_detail = CategoryViewSet.as_view({
     'get': 'retrieve'
 })
 
-product_list = ProdcutViewSet.as_view({
+product_list = ProductViewSet.as_view({
     'get': 'list'
 })
 
-product_detail = ProdcutViewSet.as_view({
+product_detail = ProductViewSet.as_view({
     'get': 'retrieve'
 })
 

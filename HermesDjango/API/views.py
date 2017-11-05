@@ -6,6 +6,7 @@ from rest_framework.response import Response
 from API.models import Asset, Catalog, Category, Product, Site
 from API.serializers import AssetSerializer, CatalogSerializer,\
     CategorySerializer, ProductSerializer, SiteSerializer
+from API.utils import convert_products_currencies
 
 
 class CategoryViewSet(viewsets.ReadOnlyModelViewSet):
@@ -13,7 +14,7 @@ class CategoryViewSet(viewsets.ReadOnlyModelViewSet):
     serializer_class = CategorySerializer
 
 
-class ProdcutViewSet(viewsets.ReadOnlyModelViewSet):
+class ProductViewSet(viewsets.ReadOnlyModelViewSet):
     queryset = Product.objects.all()
     serializer_class = ProductSerializer
 
@@ -35,26 +36,23 @@ class AssetViewSet(viewsets.ReadOnlyModelViewSet):
 
 class ProductByCategory(APIView):
 
-    def get_category(self, name):
-        try:
-            return Category.objects.get(name=name)
-        except Category.DoesNotExist:
-            raise Http404
-
     def get(self, request, category_name):
-        category = self.get_category(category_name)
-        category_products = Product.objects.filter(category=category)
+        category_products = Product.objects.filter(category__name=category_name)
         if category_products:
-            serialized_products = ProductSerializer(category_products)
+            serialized_products = ProductSerializer(category_products,
+                                                    many=True)
+            #convert_products_currencies(serialized_products.data)
             return Response(serialized_products.data)
         raise Http404
 
 
 class SiteConfig(APIView):
 
+    # TODO: clarify how will multiple site configs work;
+    #       once clear, update Asset model;
     def get(self, request, config_name):
         site = Site.objects.get(pk=1)
-        serialized_assets = AssetSerializer(site.asset_set.all())
+        serialized_assets = AssetSerializer(site.asset_set.all(), many=True)
         if serialized_assets:
             return Response(serialized_assets.data)
         raise Http404

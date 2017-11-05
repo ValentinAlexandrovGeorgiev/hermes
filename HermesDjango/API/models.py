@@ -2,13 +2,13 @@ from django.db import models
 from cloudinary.models import CloudinaryField
 from django.core.validators import URLValidator
 import uuid
-from .config import CURRENCY_CHOICES
+from .constants import CURRENCY_CHOICES
 
 
 class Category(models.Model):
     name = models.CharField(max_length=128)
     category_id = models.AutoField(primary_key=True)
-    parent_category = models.ForeignKey('Category')
+    parent_category = models.ForeignKey('Category', blank=True, null=True)
     image_link = CloudinaryField(blank=True, null=True)
     online = models.BooleanField(default=True)
 

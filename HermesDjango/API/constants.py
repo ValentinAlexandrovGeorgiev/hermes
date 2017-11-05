@@ -3,3 +3,5 @@ CURRENCY_CHOICES = (
     ('USD', 'Dollar'),
     ('BGN', 'Leva')
 )
+
+DEFAULT_CURRENCY = 'BGN'
