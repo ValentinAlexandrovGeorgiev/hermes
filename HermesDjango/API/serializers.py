@@ -2,8 +2,10 @@ from rest_framework import serializers
 from API.models import Asset, Catalog, Category, Product, Site
 from currency_converter import CurrencyConverter
 from API.constants import DEFAULT_CURRENCY
+from API.decorators import assign_image_url_getter
 
 
+@assign_image_url_getter
 class CategorySerializer(serializers.ModelSerializer):
 
     image_link = serializers.SerializerMethodField('get_image_url')
@@ -12,26 +14,18 @@ class CategorySerializer(serializers.ModelSerializer):
         model = Category
         fields = '__all__'
 
-    def get_image_url(self, obj):
-        if hasattr(obj.image_link, 'url'):
-            return obj.image_link.url
-        return None
 
-
+@assign_image_url_getter
 class ProductSerializer(serializers.ModelSerializer):
 
     image_link = serializers.SerializerMethodField('get_image_url')
     price = serializers.SerializerMethodField('convert_price')
     currency = serializers.SerializerMethodField('set_default_currency')
+    category = serializers.SerializerMethodField('get_category_name')
 
     class Meta:
         model = Product
         fields = '__all__'
-
-    def get_image_url(self, obj):
-        if hasattr(obj.image_link, 'url'):
-            return obj.image_link.url
-        return None
 
     def convert_price(self, obj):
         conv = CurrencyConverter()
@@ -42,7 +36,13 @@ class ProductSerializer(serializers.ModelSerializer):
     def set_default_currency(self, obj):
         return DEFAULT_CURRENCY
 
+    def get_category_name(self, obj):
+        if hasattr(obj.category, 'name'):
+            return obj.category.name
+        return None
 
+
+@assign_image_url_getter
 class CatalogSerializer(serializers.ModelSerializer):
 
     image_link = serializers.SerializerMethodField('get_image_url')
@@ -50,11 +50,6 @@ class CatalogSerializer(serializers.ModelSerializer):
     class Meta:
         model = Catalog
         fields = '__all__'
-
-    def get_image_url(self, obj):
-        if hasattr(obj.image_link, 'url'):
-            return obj.image_link.url
-        return None
 
 
 class SiteSerializer(serializers.ModelSerializer):
@@ -64,6 +59,7 @@ class SiteSerializer(serializers.ModelSerializer):
         fields = '__all__'
 
 
+@assign_image_url_getter
 class AssetSerializer(serializers.ModelSerializer):
 
     image_link = serializers.SerializerMethodField('get_image_url')
@@ -71,8 +67,3 @@ class AssetSerializer(serializers.ModelSerializer):
     class Meta:
         model = Asset
         fields = '__all__'
-
-    def get_image_url(self, obj):
-        if hasattr(obj.image_link, 'url'):
-            return obj.image_link.url
-        return None

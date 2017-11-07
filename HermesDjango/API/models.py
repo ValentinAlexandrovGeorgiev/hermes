@@ -18,7 +18,7 @@ class Product(models.Model):
     product_id = models.AutoField(primary_key=True)
     description = models.TextField()
     client_id = models.CharField(max_length=128, unique=True,
-                                 default=uuid.uuid4())
+                                 default=uuid.uuid4)
     category = models.ForeignKey(Category)
     price = models.DecimalField(max_digits=6, decimal_places=2)
     currency = models.CharField(max_length=5, choices=CURRENCY_CHOICES)

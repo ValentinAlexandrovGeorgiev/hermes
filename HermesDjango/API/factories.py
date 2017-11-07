@@ -1,4 +1,5 @@
 import uuid
+import cloudinary
 import factory
 import factory.fuzzy
 from API.constants import CURRENCY_CHOICES
@@ -22,10 +23,13 @@ class ProductFactory(factory.django.DjangoModelFactory):
     name = factory.Sequence(lambda n: "Product %d" % n)
     product_id = factory.Sequence(lambda n: n)
     description = factory.fuzzy.FuzzyText(length=56)
-    client_id = uuid.uuid4()
+    client_id = factory.Sequence(lambda n: uuid.uuid4())
     category = factory.SubFactory(CategoryFactory)
     price = factory.fuzzy.FuzzyDecimal(0.5, 58.2)
-    currency = factory.fuzzy.FuzzyChoice([curr[0] for curr in CURRENCY_CHOICES])
+    currency = factory.fuzzy.FuzzyChoice([curr[0] for curr
+                                          in CURRENCY_CHOICES])
+    image_link = factory.Sequence(lambda n:
+                                  cloudinary.CloudinaryResource('sample.jpg'))
     online = factory.fuzzy.FuzzyChoice([True, False])
     views = factory.fuzzy.FuzzyInteger(78)
 
