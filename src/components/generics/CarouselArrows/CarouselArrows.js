@@ -1,8 +1,7 @@
 import React, { PureComponent } from 'react'
 
 export class NextArrow extends PureComponent {
-
-  render() {
+  render () {
     const {
       className,
       style,
@@ -14,14 +13,13 @@ export class NextArrow extends PureComponent {
         className={className}
         style={{...style}}
         onClick={onClick}
-      ></div>
+      />
     )
   }
 }
 
 export class PrevArrow extends PureComponent {
-
-  render() {
+  render () {
     const {
       className,
       style,
@@ -33,7 +31,7 @@ export class PrevArrow extends PureComponent {
         className={className}
         style={{...style}}
         onClick={onClick}
-      ></div>
+      />
     )
   }
 }

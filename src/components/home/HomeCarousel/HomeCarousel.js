@@ -21,8 +21,7 @@ const CAROUSEL_SETTINGS = {
 }
 
 class HomeCarousel extends Component {
-  render() {
-
+  render () {
     return (
       <div className='home-carousel__container'>
         <div className='home-carousel__wrapper'>
@@ -44,4 +43,3 @@ class HomeCarousel extends Component {
 }
 
 export default HomeCarousel
-

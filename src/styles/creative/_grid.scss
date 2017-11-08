@@ -87,3 +87,12 @@
     }
   }
 }
+
+@media screen and (min-width: 1240px) {
+  .col-big {
+
+    &-25 {
+      width: 24.9%
+    }
+  }
+}

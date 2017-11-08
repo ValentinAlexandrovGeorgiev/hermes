@@ -24,14 +24,13 @@ class Header extends Component {
       location
     } = this.props
 
-    switch(location.pathname) {
+    switch (location.pathname) {
       case '/products': return PAGES.products
       case '/services': return PAGES.services
       case '/catalogs': return PAGES.catalogs
       case '/for-us': return PAGES.forus
       default: return ''
     }
-
   }
 
   render () {
@@ -41,7 +40,7 @@ class Header extends Component {
       <div className='header__wrapper'>
         <div className='header__logo'>
           <Link to='/'>
-            <img src='images/hermes-logo.png' />
+            <img src='/images/hermes-logo.png' />
           </Link>
           <p className='header__logo_message'>
             {'- Лидерът в предметната реклама!'}

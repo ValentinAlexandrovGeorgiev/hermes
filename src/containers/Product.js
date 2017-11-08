@@ -4,17 +4,15 @@ import { connect } from 'react-redux'
 import {} from 'actions'
 import Header from 'components/generics/Header/Header'
 import Footer from 'components/generics/Footer/Footer'
-import ProductList from 'components/plp/ProductList/ProductList'
-import Sorting from 'components/plp/Sorting/Sorting'
 
-class Products extends Component {
+class Product extends Component {
   render () {
     const { actions } = this.props
+
     return (
       <div>
         <Header />
-        <Sorting />
-        <ProductList />
+
         <Footer />
       </div>
     )
@@ -32,4 +30,4 @@ const mapDispatchToProps = (dispatch) => {
   return actionMap
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(Products)
+export default connect(mapStateToProps, mapDispatchToProps)(Product)
