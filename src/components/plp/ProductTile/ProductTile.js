@@ -6,7 +6,7 @@ import './producttile.scss'
 const CURRENCIES = {
   'USD': '$',
   'EUR': '€',
-  'leva': 'лв'
+  'BGN': 'лв'
 }
 
 class ProductTile extends Component {
@@ -19,7 +19,7 @@ class ProductTile extends Component {
       image_link
     } = this.props
 
-    const currencySymbol = currency ? CURRENCIES[currency] : CURRENCIES.leva
+    const currencySymbol = currency ? CURRENCIES[currency] : CURRENCIES.BGN
 
     return (
       <Link to={`/product/${_.kebabCase(name)}/${product_id}`}>

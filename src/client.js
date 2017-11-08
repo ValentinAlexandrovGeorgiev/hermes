@@ -16,6 +16,10 @@ const middleware = routerMiddleware()
 // Create the react store and add the middleware
 const store = configureStore({}, [middleware])
 
+if ('serviceWorker' in navigator) {
+  navigator.serviceWorker.register('./service-worker.js')
+}
+
 // Import global styles
 import './styles/index.scss'
 
