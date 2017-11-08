@@ -3,8 +3,7 @@ import { Link } from 'react-router-dom'
 import './statistics.scss'
 
 class Statistics extends Component {
-
-  render() {
+  render () {
     return (
       <div className='statistics__wrapper'>
         <h1>{'Хермес Гифт'}</h1>
@@ -44,4 +43,3 @@ class Statistics extends Component {
 }
 
 export default Statistics
-

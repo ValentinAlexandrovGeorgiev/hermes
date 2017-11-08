@@ -1,0 +1,39 @@
+.sorting {
+
+  &__wrapper {
+    margin: 20px 27px;
+    width: 220px;
+  }
+
+  &__dropdown {
+    position: relative;
+
+    .custom_dropdown {
+      top: 40px;
+      width: 100%;
+    }
+  }
+
+  &__choosen_one {
+    font-size: 19px;
+    line-height: 40px;
+    width: 100%;
+    height: 40px;
+    display: inline-block;
+    cursor: pointer;
+    border: 1px solid #7A7F7D;
+    padding: 0 6px;
+
+    &:after {
+      position: absolute;
+      top: 17px;
+      right: 5px;
+      content: '';
+      width: 0;
+      height: 0;
+      border-left: 7px solid transparent;
+      border-right: 7px solid transparent;
+      border-top: 7px solid #14141C;
+    }
+  }
+}

@@ -2,7 +2,6 @@ import React, { PureComponent } from 'react'
 import './contacts.scss'
 
 class Contacts extends PureComponent {
-
   render () {
     return (
       <div className='contacts__wrapper'>
