@@ -6,7 +6,7 @@ let filesToCache = [
   '/static/favicon.ico',
   '/static/magnifier.svg',
   '/images/default.png',
-  '/images/hermes-logo.png'
+  '/images/hermes-logo.webp'
 ]
 
 self.addEventListener('install', function(e) {

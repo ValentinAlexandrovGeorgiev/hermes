@@ -5,8 +5,10 @@ class SearchInput extends Component {
   render () {
     return (
       <div className='search__wrapper'>
-        <input type='text' placeholder='Търси..' />
-        <img className='magnifier' src='/static/magnifier.svg' />
+        <label htmlFor='hermes-search'>
+          <input id='hermes-search' type='text' placeholder='Търси..' />
+        </label>
+        <img className='magnifier' src='/static/magnifier.svg' alt='hermes gift search icon' />
       </div>
     )
   }

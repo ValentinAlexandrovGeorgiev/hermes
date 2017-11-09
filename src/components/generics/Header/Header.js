@@ -40,7 +40,7 @@ class Header extends Component {
       <div className='header__wrapper'>
         <div className='header__logo'>
           <Link to='/'>
-            <img src='/images/hermes-logo.png' />
+            <img src='/images/hermes-logo.webp' alt='hermes gift logo' />
           </Link>
           <p className='header__logo_message'>
             {'- Лидерът в предметната реклама!'}
