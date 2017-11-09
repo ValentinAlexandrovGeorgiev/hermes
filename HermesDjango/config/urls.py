@@ -18,5 +18,7 @@ from django.contrib import admin
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
-    url(r'^api/', include('API.urls', namespace='API'))
+    url(r'^api/', include('hermes_apps.API.urls', namespace='API')),
+    url(r'^', include('hermes_apps.html_provider.urls',
+                      namespace='html_provider')),
 ]

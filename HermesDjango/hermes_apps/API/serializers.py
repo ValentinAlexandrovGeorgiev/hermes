@@ -1,8 +1,8 @@
 from rest_framework import serializers
-from API.models import Asset, Catalog, Category, Product, Site
+from .models import Asset, Catalog, Category, Product, Site
 from currency_converter import CurrencyConverter
-from API.constants import DEFAULT_CURRENCY
-from API.decorators import assign_image_url_getter
+from .constants import DEFAULT_CURRENCY
+from .decorators import assign_image_url_getter
 
 
 @assign_image_url_getter

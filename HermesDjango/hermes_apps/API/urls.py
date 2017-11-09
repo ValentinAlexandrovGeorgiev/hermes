@@ -1,6 +1,6 @@
 from django.conf.urls import url
 from rest_framework import renderers
-from API.views import AssetViewSet, CatalogViewSet, CategoryViewSet,\
+from .views import AssetViewSet, CatalogViewSet, CategoryViewSet,\
     ProductViewSet, SiteViewSet, ProductByCategory, SiteConfig
 
 
@@ -52,6 +52,5 @@ urlpatterns = ([
     url(r'^catalogs/$', catalog_list, name='catalog-list'),
     url(r'^asset/(?P<pk>[0-9]+)/$', asset_detail, name='asset_detail'),
     url(r'^assets/(?P<config_name>[\w\- ]+)/$', SiteConfig.as_view(),
-        name='site-config')
-
+        name='site-config'),
 ])

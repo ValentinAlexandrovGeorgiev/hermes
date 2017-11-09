@@ -3,10 +3,10 @@ from django.http import Http404
 from rest_framework import viewsets
 from rest_framework.views import APIView
 from rest_framework.response import Response
-from API.models import Asset, Catalog, Category, Product, Site
-from API.serializers import AssetSerializer, CatalogSerializer,\
+from .models import Asset, Catalog, Category, Product, Site
+from .serializers import AssetSerializer, CatalogSerializer,\
     CategorySerializer, ProductSerializer, SiteSerializer
-from API.utils import convert_products_currencies
+from .utils import convert_products_currencies
 
 
 class CategoryViewSet(viewsets.ReadOnlyModelViewSet):

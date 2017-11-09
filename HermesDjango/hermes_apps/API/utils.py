@@ -1,5 +1,5 @@
 from currency_converter import CurrencyConverter
-from API.constants import DEFAULT_CURRENCY
+from .constants import DEFAULT_CURRENCY
 
 
 def convert_products_currencies(products):
