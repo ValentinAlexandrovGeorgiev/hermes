@@ -2,8 +2,8 @@ import uuid
 import cloudinary
 import factory
 import factory.fuzzy
-from API.constants import CURRENCY_CHOICES
-from API.models import Asset, Catalog, Category, Product, Site
+from .constants import CURRENCY_CHOICES
+from .models import Asset, Catalog, Category, Product, Site
 
 
 class CategoryFactory(factory.django.DjangoModelFactory):
@@ -12,7 +12,8 @@ class CategoryFactory(factory.django.DjangoModelFactory):
 
     name = factory.Sequence(lambda n: "Category %d" % n)
     category_id = factory.Sequence(lambda n: n)
-    parent_category = factory.SubFactory('API.factories.CategoryFactory')
+    parent_category = factory.SubFactory('hermes_apps.API.'
+                                         'factories.CategoryFactory')
     online = factory.fuzzy.FuzzyChoice([True, False])
 
 
