@@ -2,11 +2,12 @@
 Official Hermes Gift repository
 
 ## Table of Contents
-1. [Application Configurations](https://github.com/ValentinAlexandrovGeorgiev/hermes#application-configurations) 
-2. [Technology stack](https://github.com/ValentinAlexandrovGeorgiev/hermes#technology-stack) 
-3. [Routing](https://github.com/ValentinAlexandrovGeorgiev/hermes#routing) 
-4. [Data API](https://github.com/ValentinAlexandrovGeorgiev/hermes#data-api) 
+1. [Application Configurations](https://github.com/ValentinAlexandrovGeorgiev/hermes#application-configurations)
+2. [Technology stack](https://github.com/ValentinAlexandrovGeorgiev/hermes#technology-stack)
+3. [Routing](https://github.com/ValentinAlexandrovGeorgiev/hermes#routing)
+4. [Data API](https://github.com/ValentinAlexandrovGeorgiev/hermes#data-api)
 5. [Backend Endpoints](https://github.com/ValentinAlexandrovGeorgiev/hermes#backend-endpoints)
+6. [Git Flow](https://github.com/ValentinAlexandrovGeorgiev/hermes#git-flow)
 
 ## Application Configurations
 
@@ -51,13 +52,13 @@ Route | Description | Old page
 > - **views**: Number of views
 
 
-###### Category 					
+###### Category
 Category contain products [example](http://hermesgift.bg/index.php/categories/sklad)
 >	- **name**: Category name
 > - **value**: Category value (for links)
 > - **products**: Products in the category
 > - **parent_category**: Parent category
-> - **category_img**: Category front image
+> - **image_link**: Category front image
 > - **online**: true/false
 
 
@@ -157,7 +158,7 @@ Return only online products </br>
 </br>
 
 **Category:** </br>
- 
+
 **Get categories:** </br>
 
 method: **GET** </br>
@@ -190,7 +191,7 @@ Returns only online categories </br>
 **Get catalogs:** </br>
 
 method: **GET** </br>
-endpoint: **/api/catalogs** </br> 
+endpoint: **/api/catalogs** </br>
 response: </br>
 ```
 {
@@ -264,3 +265,22 @@ error response: </br>
 description: </br>
 Return only online assets </br>
 Return only the configuration which you search ({config}) </br>
+
+
+## Git Flow
+
+> - **master** - main branch, used only for production builds
+> - **dev** - dev branch, used to contains all ready features
+> - **local-branch** - dev branch, used to contains a separated feature
+
+```
+	Steps when you want to develop a feature.
+	1. Pull dev branch
+	2. Create a new branch. Example update-en-translations
+	3. Switch to your new branch
+	4. Commit
+	5. When you are ready, push your changes
+	6. Go to **hermes** github repository and click "Create a pull request" button
+	7. Add title and description
+	8. Wait for review approval and merge
+```
