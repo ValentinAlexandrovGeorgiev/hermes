@@ -105,7 +105,8 @@ response: </br>
 error response:
 ```
 {
-	status_code: "NOT_FOUND"
+    status_code: 404,
+    "detail": "Not Found"
 }
 ```
 
@@ -142,7 +143,8 @@ response: </br>
 error response: </br>
 ```
 {
-	status_code: "NOT_FOUND"
+    status_code: 404,
+    "detail": "Not Found"
 }
 ```
 
@@ -231,7 +233,8 @@ response: </br>
 error response: </br>
 ```
 {
-	status_code: "NOT_FOUND"
+    status_code: 404,
+    "detail": "Not Found"
 }
 ```
 
@@ -258,7 +261,8 @@ Example response: </br>
 error response: </br>
 ```
 {
-	status_code: "NOT_FOUND"
+    status_code: 404,
+    "detail": "Not Found"
 }
 ```
 
