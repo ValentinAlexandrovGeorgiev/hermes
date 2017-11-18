@@ -1,3 +1,9 @@
-const actions = {};
+import {
+  getProduct
+} from './product'
 
-module.exports = actions;
+const actions = {
+  getProduct
+}
+
+module.exports = actions

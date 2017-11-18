@@ -66,6 +66,7 @@ class WebpackBaseConfig {
     return {
       context: this.srcPathAbsolute,
       devtool: 'eval',
+      watch: true,
       entry: './index.js',
       module: {
         rules: [

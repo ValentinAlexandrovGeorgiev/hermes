@@ -1,4 +1,4 @@
-import fetch from 'node-fetch'
+import fetch from 'isomorphic-fetch'
 
 class HTTP {
   post(url, body) {
@@ -37,15 +37,18 @@ class HTTP {
 
   get(url) {
     return fetch(url, {
-      method: 'GET',
+      method: 'get',
+      credentials: "same-origin",
       headers: {
-        'Content-Type': 'application/json'
+        'Content-Type': 'application/json',
+        Authorization: 'Basic YWRtaW46YWRtaW4xMjM0NTY3ODk='
       }
-    }).then((res) => {
-      return {
-        json: res.json(),
-        ok: res.ok
-      }
+    }).then(res => {
+      return res.json()
+    }).then((json) => {
+      return json
+    }).catch(err => {
+      return err
     })
   }
 
