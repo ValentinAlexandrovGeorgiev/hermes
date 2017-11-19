@@ -39,3 +39,4 @@ dist/
 migrations/__pycache__/
 __pycache__/
 *.pyc
+static_root/
