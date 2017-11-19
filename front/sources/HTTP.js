@@ -48,7 +48,9 @@ class HTTP {
     }).then((json) => {
       return json
     }).catch(err => {
-      return err
+      return {
+        errorObject: err
+      }
     })
   }
 

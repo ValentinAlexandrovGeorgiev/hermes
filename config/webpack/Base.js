@@ -75,7 +75,7 @@ class WebpackBaseConfig {
             test: /\.js?$/,
             include: this.srcPathAbsolute,
             loader: 'babel-loader',
-            exclude: /node_modules(?!\/webpack-dev-server)/,
+            exclude: /node_modules/,
             query: {
               presets: ['es2015', 'es2016', 'es2017']
             }

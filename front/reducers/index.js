@@ -4,7 +4,7 @@ import product from './product'
 
 const reducers = {
   router: routerReducer,
-  product
+  product_information: product
 }
 
 const combined = combineReducers(reducers)

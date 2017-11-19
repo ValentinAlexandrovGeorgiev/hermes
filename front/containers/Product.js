@@ -6,26 +6,14 @@ import Header from 'components/generics/Header/Header'
 import Footer from 'components/generics/Footer/Footer'
 
 class Product extends Component {
-  render () {
+
+  componentWillMount () {
     const { actions } = this.props
     actions.getProduct('1')
-    
-  //   new Promise((resolve, reject) => {
-  //     fetch(`https://localhost:8080/api/product/${id}/`, {
-  //         method: 'GET',
-  //         credentials: 'same-origin',
-  //         headers: headers
-  //     }).then(res => {
-  //       return res.json()
-  //     }).then((json) => {
-  //       console.log(json)
-  //       resolve(json);
-  //     }).catch(err => {
-  //       console.log('error', err)
-  //       reject(err)
-  //     })
-  // });
+  }
 
+  render () {
+    console.log(this.props.product)
     return (
       <div>
         <Header />
@@ -37,7 +25,9 @@ class Product extends Component {
 }
 
 const mapStateToProps = (state) => {
-  const props = {}
+  const props = {
+    product: state.product_information.product
+  }
   return props
 }
 

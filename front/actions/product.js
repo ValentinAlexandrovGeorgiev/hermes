@@ -7,7 +7,6 @@ export function getProduct (id = '', state) {
   return (dispatch) => {
 
     return Hermes.Product.getByID(id).then((json) => {
-      console.log('-===========')
       dispatch({
         payload: json,
         type: GET_PRODUCT
