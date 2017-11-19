@@ -1,14 +1,19 @@
 import React, {Component} from 'react'
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
-import {} from 'actions'
+import * as ACTIONS from 'actions'
 import Header from 'components/generics/Header/Header'
 import Footer from 'components/generics/Footer/Footer'
 
 class Product extends Component {
-  render () {
-    const { actions } = this.props
 
+  componentWillMount () {
+    const { actions } = this.props
+    actions.getProduct('1')
+  }
+
+  render () {
+    console.log(this.props.product)
     return (
       <div>
         <Header />
@@ -20,12 +25,14 @@ class Product extends Component {
 }
 
 const mapStateToProps = (state) => {
-  const props = {}
+  const props = {
+    product: state.product_information.product
+  }
   return props
 }
 
 const mapDispatchToProps = (dispatch) => {
-  const actions = {}
+  const actions = ACTIONS
   const actionMap = { actions: bindActionCreators(actions, dispatch) }
   return actionMap
 }

@@ -7,7 +7,8 @@
     "lint": "eslint ./front",
     "start": "python manage.py runsslserver 8080 --settings=config.settings.development",
     "start:prod": "python manage.py runsslserver 8080 --settings=config.settings.production",
-    "build": "webpack --progress --bail --env prod -p"
+    "build": "webpack --progress --bail --env dev -p",
+    "build:prod": "webpack --progress --bail --env prod -p"
   },
   "repository": "https://github.com/ValentinAlexandrovGeorgiev/hermes",
   "keywords": [
@@ -58,8 +59,8 @@
   },
   "dependencies": {
     "cross-env": "^5.1.1",
+    "isomorphic-fetch": "^2.2.1",
     "lodash": "^4.17.4",
-    "node-fetch": "^1.7.3",
     "prop-types": "^15.6.0",
     "react": "^16.0.0",
     "react-dom": "^16.0.0",

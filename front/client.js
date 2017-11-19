@@ -1,6 +1,5 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
-import { AppContainer } from 'react-hot-loader'
 import { Provider } from 'react-redux'
 import App from './containers/App'
 import configureStore from './stores'
@@ -24,31 +23,12 @@ if ('serviceWorker' in navigator) {
 import './styles/index.scss'
 
 ReactDOM.render(
-  <AppContainer>
-    <Provider store={store}>
-      <ConnectedRouter history={history}>
-        <ScrollToTop>
-          <App />
-        </ScrollToTop>
-      </ConnectedRouter>
-    </Provider>
-  </AppContainer>,
+  <Provider store={store}>
+    <ConnectedRouter history={history}>
+      <ScrollToTop>
+        <App />
+      </ScrollToTop>
+    </ConnectedRouter>
+  </Provider>,
   document.getElementById('app')
 )
-
-if (module.hot) {
-  module.hot.accept('./containers/App', () => {
-    const NextApp = require('./containers/App').default // eslint-disable-line global-require
-
-    ReactDOM.render(
-      <AppContainer>
-        <Provider store={store}>
-          <ConnectedRouter history={history}>
-            <NextApp />
-          </ConnectedRouter>
-        </Provider>
-      </AppContainer>,
-      document.getElementById('app')
-    )
-  })
-}

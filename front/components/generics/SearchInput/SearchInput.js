@@ -8,7 +8,7 @@ class SearchInput extends Component {
         <label htmlFor='hermes-search'>
           <input id='hermes-search' type='text' placeholder='Търси..' />
         </label>
-        <img className='magnifier' src='static/icons/magnifier.svg' alt='hermes gift search icon' />
+        <img className='magnifier' src='/static/icons/magnifier.svg' alt='hermes gift search icon' />
       </div>
     )
   }
