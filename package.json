@@ -7,7 +7,7 @@
     "lint": "eslint ./front",
     "start": "python manage.py runsslserver 8080 --settings=config.settings.development",
     "start:prod": "python manage.py runsslserver 8080 --settings=config.settings.production",
-    "build": "webpack --progress --bail --env dev -p",
+    "build": "webpack --progress --bail --env dev",
     "build:prod": "webpack --progress --bail --env prod -p"
   },
   "repository": "https://github.com/ValentinAlexandrovGeorgiev/hermes",
