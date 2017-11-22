@@ -1,8 +1,8 @@
 from django.db import models
-from cloudinary.models import CloudinaryField
 from django.core.validators import URLValidator
 from django.contrib.postgres.fields import ArrayField
 import uuid
+from cloudinary.models import CloudinaryField
 from .constants import CURRENCY_CHOICES
 
 
@@ -22,8 +22,7 @@ class Product(models.Model):
     name = models.CharField(max_length=128)
     product_id = models.CharField(max_length=32, null=True, blank=True)
     description = models.TextField()
-    client_id = models.CharField(max_length=128, unique=True,
-                                 default=uuid.uuid4)
+    client_id = models.CharField(max_length=128, default=uuid.uuid4)
     category = models.ForeignKey(Category)
     price = models.DecimalField(max_digits=6, decimal_places=2)
     currency = models.CharField(max_length=5, choices=CURRENCY_CHOICES)
@@ -36,7 +35,8 @@ class Product(models.Model):
 
     def save(self, *args, **kwargs):
         if not self.product_id:
-            self.product_id = '{}-{}'.format(self.category.id, self.id)
+            self.product_id = '{}-{}'.format(self.category.category_id,
+                                             self.id)
         super().save(*args, **kwargs)
 
 
