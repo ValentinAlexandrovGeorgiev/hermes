@@ -1,7 +1,7 @@
 from django.conf.urls import url
 from rest_framework import renderers
 from .views import AssetViewSet, CatalogViewSet, CategoryViewSet,\
-    ProductViewSet, SiteViewSet, ProductByCategory, SiteConfig
+    ProductViewSet, SiteViewSet, ProductByCategory, SiteConfig, AssetsBulk
 
 
 category_list = CategoryViewSet.as_view({
@@ -53,4 +53,5 @@ urlpatterns = ([
     url(r'^asset/(?P<pk>[0-9]+)/$', asset_detail, name='asset_detail'),
     url(r'^assets/(?P<config_name>[\w\- ]+)/$', SiteConfig.as_view(),
         name='site-config'),
+    url(r'^assets-bulk/$', AssetsBulk.as_view(), name='asset_bulk'),
 ])
