@@ -8,8 +8,12 @@ DEBUG = True
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': 'postgres'
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': 'hermes',
+        'USER': 'ivo',
+        'PASSWORD': '1234',
+        'HOST': 'localhost',
+        'PORT': '5433',
     }
 }
 

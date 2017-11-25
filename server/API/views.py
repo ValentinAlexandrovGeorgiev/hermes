@@ -1,5 +1,8 @@
 from django.shortcuts import render
 from django.http import Http404
+import rest_framework
+from rest_framework import mixins
+from rest_framework import generics
 from rest_framework import viewsets
 from rest_framework.views import APIView
 from rest_framework.response import Response
@@ -7,6 +10,8 @@ from .models import Asset, Catalog, Category, Product, Site
 from .serializers import AssetSerializer, CatalogSerializer,\
     CategorySerializer, ProductSerializer, SiteSerializer
 from .utils import convert_products_currencies
+from .paginators import CustomizedLimitOffsetPagination
+from rest_framework.pagination import LimitOffsetPagination
 
 
 class CategoryViewSet(viewsets.ReadOnlyModelViewSet):
@@ -34,25 +39,52 @@ class AssetViewSet(viewsets.ReadOnlyModelViewSet):
     serializer_class = AssetSerializer
 
 
-class ProductByCategory(APIView):
+class ProductByCategory(generics.GenericAPIView):
 
-    def get(self, request, category_name):
-        category_products = Product.objects.filter(category__name=category_name)
-        if category_products:
-            serialized_products = ProductSerializer(category_products,
-                                                    many=True)
-            #convert_products_currencies(serialized_products.data)
-            return Response(serialized_products.data)
-        raise Http404
+    serializer_class = ProductSerializer
+    pagination_class = CustomizedLimitOffsetPagination
+
+    def get_queryset(self):
+        return Product.objects.filter(
+            category__name=self.kwargs['category_name'])
+
+    def get(self, request, *args, **kwargs):
+        queryset = self.get_queryset()
+        if not queryset:
+            raise Http404
+        page = self.paginate_queryset(queryset)
+        to_be_populated = page if page is not None else queryset
+        serializer = self.get_serializer(to_be_populated, many=True)
+
+        return Response(serializer.data)
 
 
 class SiteConfig(APIView):
 
-    # TODO: clarify how will multiple site configs work;
-    #       once clear, update Asset model;
     def get(self, request, config_name):
-        site = Site.objects.get(pk=1)
-        serialized_assets = AssetSerializer(site.asset_set.all(), many=True)
-        if serialized_assets:
-            return Response(serialized_assets.data)
+        sites = Site.objects.filter(config_name=config_name)
+        serialized_sites = SiteSerializer(sites, many=True)
+        if serialized_sites:
+            return Response(serialized_sites.data)
         raise Http404
+
+
+class AssetsBulk(generics.GenericAPIView):
+
+    serializer_class = AssetSerializer
+
+    def get_queryset(self):
+        queryset = Asset.objects.all()
+        asset_params = self.request.query_params.get('many', None)
+        if asset_params:
+            actual_asset_params = asset_params.split(',')
+            print(actual_asset_params)
+            queryset = queryset.filter(query_field__in=actual_asset_params)
+        return queryset
+
+    def get(self, request, *args, **kwargs):
+        queryset = self.get_queryset()
+        if not queryset:
+            raise Http404
+        serialized_assets = self.get_serializer(queryset, many=True)
+        return Response(serialized_assets.data)
