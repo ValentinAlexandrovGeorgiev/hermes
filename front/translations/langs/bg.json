@@ -1,0 +1,17 @@
+{
+	"header.products": "Продукти",
+	"header.services": "Печатница",
+	"header.catalogs": "Каталози",
+	"header.forus": "За нас",
+	"header.logo": "- Лидерът в предметната реклама!",
+	"hermes.gift": "Хермес Гифт",
+	"footer.rights": "© 2014-2018 Hermesgift. Всички права са запазени!",
+	"statistics.products": "Продукти на склад",
+	"statistics.from.europe": "Продукти, внос от Европа",
+	"statistics.services": "Печатни услуги",
+	"search.placeholder": "Търси...",
+	"pdp.more.products": "Още продукти от {0}",
+	"pdp.description": "Описание:",
+	"pdp.id": "ID: ",
+	"pdp.price": "Цена: "
+}

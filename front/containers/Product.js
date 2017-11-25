@@ -10,6 +10,7 @@ import ProductDescription from 'components/pdp/ProductDescription/ProductDescrip
 import ProductPrice from 'components/pdp/ProductPrice/ProductPrice'
 import ProductMainImage from 'components/pdp/ProductMainImage/ProductMainImage'
 import ProductId from 'components/pdp/ProductId/ProductId'
+import MoreCategoryProducts from 'components/pdp/MoreCategoryProducts/MoreCategoryProducts'
 
 class Product extends Component {
 
@@ -18,9 +19,18 @@ class Product extends Component {
     actions.getProduct('1')
   }
 
+  componentWillReceiveProps (nextProps) {
+    const { actions } = this.props
+
+    if (nextProps.products.length === 0) {
+      actions.getCategoryProducts(nextProps.product.category, 10)
+    }
+  }
+
   render () {
     const {
-      product
+      product,
+      products
     } = this.props
 
     const {
@@ -28,8 +38,9 @@ class Product extends Component {
       description,
       price,
       currency,
-      image,
-      product_id
+      image_link,
+      product_id,
+      category
     } = product
 
     if (product.detail === 'Not found.') {
@@ -41,18 +52,21 @@ class Product extends Component {
         </div>
       )
     }
-
-    return (
-      <div>
-        <Header />
+    
+    return [
+      <Header key='Header' />,
+      <div key='pdp' className='pdp'>
         <ProductTitle name={name} />
-        <ProductMainImage name={name} image={image} />
-        <ProductId productId={product_id} />
-        <ProductPrice price={price} currency={currency} />
+        <ProductMainImage name={name} image={image_link} />
+        <div className='pdp__price-wrapper'>
+          <ProductPrice price={price} currency={currency} />
+          <ProductId productId={product_id} />
+        </div>
         <ProductDescription description={description} />
-        <Footer />
-      </div>
-    )
+        <MoreCategoryProducts products={products} category={category} />
+      </div>,
+      <Footer key='Footer' />
+    ]
   }
 }
 
@@ -63,8 +77,10 @@ Product.defaultProps = {
     price: '',
     image: null,
     currency: 'BGN',
-    product_id: ''
-  }
+    product_id: 0,
+    category: ''
+  },
+  products: []
 }
 
 Product.propTypes = {
@@ -74,14 +90,17 @@ Product.propTypes = {
     price: PropTypes.string,
     image: PropTypes.string,
     currency: PropTypes.string,
-    product_id: PropTypes.string,
-    detail: PropTypes.string
-  })
+    product_id: PropTypes.number,
+    detail: PropTypes.string,
+    category: PropTypes.string
+  }),
+  products: PropTypes.array
 }
 
 const mapStateToProps = (state) => {
   const props = {
-    product: state.product_information.product
+    product: state.product_information.product,
+    products: state.product_information.products
   }
   return props
 }

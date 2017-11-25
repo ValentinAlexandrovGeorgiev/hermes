@@ -1,4 +1,5 @@
 import React from 'react'
+import translate from 'translations'
 import './productprice.scss'
 
 const CURRENCIES = {
@@ -13,10 +14,10 @@ export default function ProductPrice ({ price, currency }) {
   }
 
   return (
-    <div>
-      <span>Цена: </span>
-      <span>{price}</span>
-      <span>{CURRENCIES[currency]}</span>
+    <div className='price-inner-wrapper'>
+      <span className='price-label'>{translate('pdp.price')}</span>
+      <span className='price-value'>{price}</span>
+      <span className='price-currency'>{CURRENCIES[currency]}</span>
     </div>
   )
 }

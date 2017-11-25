@@ -1,5 +1,5 @@
 const SERVER_HTTP_URL = 'https://localhost:8080'
 
 export const GET_PRODUCT_BY_ID = `${SERVER_HTTP_URL}/api/product/`
-
-//python manage.py createsuperuser --settings=config.settings.development
+export const GET_CATEGORY_PRODUCTS = `${SERVER_HTTP_URL}/api/products/`
+export const GET_ASSET = `${SERVER_HTTP_URL}/api/asset/`

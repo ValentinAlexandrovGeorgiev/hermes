@@ -1,9 +1,21 @@
+.hermes-logo {
+  height: 250px;
+}
+
 .contacts {
+  
+  &-container {
+    vertical-align: top;
+  }
 
   &__wrapper {
     background: #FAF7F8;
     margin: 40px 0;
     padding-top: 20px;
+
+    .col-md-20 {
+      padding-top: 30px;
+    }
 
     ul {
       list-style: none;

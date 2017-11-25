@@ -6,13 +6,18 @@ class Dropdown extends Component {
     const {
       items,
       itemClass,
-      change
+      change,
+      option
     } = this.props
 
     return items.map((item, index) => {
       return (
         <div key={`${item}-${index}`} className={`dropdown__item ${itemClass}`}>
-          <span onClick={() => change(item)}>{item}</span>
+          {
+            option === 'img' ?
+            <img src={`/static/icons/${item}.svg`} alt={item} />
+            : <span onClick={() => change(item)}>{item}</span>
+          }
         </div>
       )
     })

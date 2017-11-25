@@ -2,9 +2,14 @@ import React from 'react'
 import './producttitle.scss'
 
 export default function ProductTitle ({ name }) {
+
+  if (!name) {
+    return null
+  }
+
   return (
-    <div>
-      <h1>{name}</h1>
+    <div className='pdp__product-title'>
+      <h1 className='title'>{name}</h1>
     </div>
   )
 }
