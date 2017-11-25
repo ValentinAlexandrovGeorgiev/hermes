@@ -63,6 +63,8 @@ class Site(models.Model):
 class Asset(models.Model):
     title = models.CharField(max_length=128)
     asset_id = models.AutoField(primary_key=True)
+    query_field = models.CharField(max_length=128, blank=False,
+                                   null=False, unique=True)
     body = models.TextField()
     image_link = CloudinaryField(blank=True, null=True)
     online = models.BooleanField(default=True)

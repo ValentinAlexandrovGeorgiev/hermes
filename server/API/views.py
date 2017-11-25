@@ -42,12 +42,14 @@ class AssetViewSet(viewsets.ReadOnlyModelViewSet):
 class ProductByCategory(generics.GenericAPIView):
 
     serializer_class = ProductSerializer
-    queryset = Product.objects.all()
     pagination_class = CustomizedLimitOffsetPagination
 
+    def get_queryset(self):
+        return Product.objects.filter(
+            category__name=self.kwargs['category_name'])
+
     def get(self, request, *args, **kwargs):
-        queryset = self.get_queryset()\
-                       .filter(category__name=kwargs['category_name'])
+        queryset = self.get_queryset()
         if not queryset:
             raise Http404
         page = self.paginate_queryset(queryset)
@@ -65,3 +67,24 @@ class SiteConfig(APIView):
         if serialized_sites:
             return Response(serialized_sites.data)
         raise Http404
+
+
+class AssetsBulk(generics.GenericAPIView):
+
+    serializer_class = AssetSerializer
+
+    def get_queryset(self):
+        queryset = Asset.objects.all()
+        asset_params = self.request.query_params.get('many', None)
+        if asset_params:
+            actual_asset_params = asset_params.split(',')
+            print(actual_asset_params)
+            queryset = queryset.filter(query_field__in=actual_asset_params)
+        return queryset
+
+    def get(self, request, *args, **kwargs):
+        queryset = self.get_queryset()
+        if not queryset:
+            raise Http404
+        serialized_assets = self.get_serializer(queryset, many=True)
+        return Response(serialized_assets.data)
