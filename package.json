@@ -5,9 +5,13 @@
   "description": "HermesGift Online store",
   "scripts": {
     "lint": "eslint ./front",
-    "start": "python manage.py runsslserver 8080 --settings=config.settings.development",
-    "start:prod": "python manage.py runsslserver 8080 --settings=config.settings.production",
+    "start": "python manage.py runsslserver 8081 --settings=config.settings.development",
+    "create:user": "python manage.py createsuperuser --settings=config.settings.development",
+    "migrate": "python manage.py migrate --settings=config.settings.development",
     "build": "webpack --progress --bail --env dev",
+    "start:prod": "python manage.py runsslserver 8081 --settings=config.settings.production",
+    "create:user:prod": "python manage.py createsuperuser --settings=config.settings.production",
+    "migrate:prod": "python manage.py migrate --settings=config.settings.production",
     "build:prod": "webpack --progress --bail --env prod -p"
   },
   "repository": "https://github.com/ValentinAlexandrovGeorgiev/hermes",
