@@ -1,6 +1,5 @@
 from django.shortcuts import render
 from django.http import Http404
-import rest_framework
 from rest_framework import mixins
 from rest_framework import generics
 from rest_framework import viewsets
@@ -15,17 +14,17 @@ from rest_framework.pagination import LimitOffsetPagination
 
 
 class CategoryViewSet(viewsets.ReadOnlyModelViewSet):
-    queryset = Category.objects.all()
+    queryset = Category.objects.filter(online=True)
     serializer_class = CategorySerializer
 
 
 class ProductViewSet(viewsets.ReadOnlyModelViewSet):
-    queryset = Product.objects.all()
+    queryset = Product.objects.filter(online=True)
     serializer_class = ProductSerializer
 
 
 class CatalogViewSet(viewsets.ReadOnlyModelViewSet):
-    queryset = Catalog.objects.all()
+    queryset = Catalog.objects.filter(online=True)
     serializer_class = CatalogSerializer
 
 
@@ -35,7 +34,7 @@ class SiteViewSet(viewsets.ReadOnlyModelViewSet):
 
 
 class AssetViewSet(viewsets.ReadOnlyModelViewSet):
-    queryset = Asset.objects.all()
+    queryset = Asset.objects.filter(online=True)
     serializer_class = AssetSerializer
 
 
@@ -46,7 +45,7 @@ class ProductByCategory(generics.GenericAPIView):
 
     def get_queryset(self):
         return Product.objects.filter(
-            category__name=self.kwargs['category_name'])
+            category__name=self.kwargs['category_name'], online=True)
 
     def get(self, request, *args, **kwargs):
         queryset = self.get_queryset()
@@ -74,7 +73,7 @@ class AssetsBulk(generics.GenericAPIView):
     serializer_class = AssetSerializer
 
     def get_queryset(self):
-        queryset = Asset.objects.all()
+        queryset = Asset.objects.filter(online=True)
         asset_params = self.request.query_params.get('many', None)
         if asset_params:
             actual_asset_params = asset_params.split(',')
