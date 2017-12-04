@@ -1,10 +1,10 @@
-import { GET_ASSET } from '../links'
+import { GET_ASSETS } from '../links'
 import HTTP from '../HTTP'
 
 class Asset {
-  getByID (id) {
+  getByIDs (ids) {
     return new Promise((resolve, reject) => {
-      HTTP.get(`${GET_ASSET}${id}`).then((json) => {
+      HTTP.get(HTTP.addParameters(GET_ASSETS, {many: ids.join(',')})).then((json) => {
         if (!json.errorObject) {
           resolve(json)
         } else {

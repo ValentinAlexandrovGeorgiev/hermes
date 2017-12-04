@@ -1,15 +1,15 @@
 import {
-  GET_ASSETS
+  GET_CATEGORIES
 } from 'actions/const'
 
 module.exports = function (state = {}, action) {
   let nextState = Object.assign({}, state)
 
   switch (action.type) {
-    case GET_ASSETS: {
+    case GET_CATEGORIES: {
       return {
         ...nextState,
-        assets: action.payload
+        categories: action.payload
       }
     }
     default: {

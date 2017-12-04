@@ -4,6 +4,10 @@ import {
 } from './product'
 
 import {
+  getCategories
+} from './catalog'
+
+import {
   getAsset
 } from './asset'
 
@@ -15,6 +19,7 @@ const actions = {
   getProduct,
   getCategoryProducts,
   getAsset,
+  getCategories,
   setLanguage
 }
 

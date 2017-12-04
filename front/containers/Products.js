@@ -4,6 +4,7 @@ import { connect } from 'react-redux'
 import {} from 'actions'
 import Header from 'components/generics/Header/Header'
 import Footer from 'components/generics/Footer/Footer'
+import Categories from 'components/generics/Categories/Categories'
 import ProductList from 'components/plp/ProductList/ProductList'
 import Sorting from 'components/plp/Sorting/Sorting'
 
@@ -14,6 +15,7 @@ class Products extends Component {
       <div>
         <Header />
         <Sorting />
+        <Categories />
         <ProductList />
         <Footer />
       </div>

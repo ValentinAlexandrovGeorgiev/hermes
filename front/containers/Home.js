@@ -18,8 +18,8 @@ class Home extends Component {
       assets
     } = this.props
 
-    if (!assets[2]) {
-      actions.getAsset(2)
+    if (!assets['contacts']) {
+      actions.getAsset('contacts')
     }
   }
 
@@ -27,8 +27,8 @@ class Home extends Component {
     const {
       assets
     } = this.props
-
-    const contactsAsset = assets[2]
+    console.log(assets)
+    const contactsAsset = assets['contacts']
 
     return (
       <div className='home-page'>
@@ -36,7 +36,7 @@ class Home extends Component {
         <HomeCarousel />
         <Statistics />
         <div className='contacts__wrapper'>
-          <div className='col col-md-20'>
+          <div className='logo__container col col-md-20'>
             <img className='hermes-logo' src='/static/images/hermes.png' alt='Hermes Gift' />  
           </div>
           <div className='contacts-container col col-md-80'>

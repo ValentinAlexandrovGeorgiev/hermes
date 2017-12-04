@@ -17,12 +17,12 @@ class Forus extends Component {
     } = this.props
 
     // actions.getAsset('for-us')
-    if (!assets[1]) {
-      actions.getAsset(1)
+    if (!assets['for-us']) {
+      actions.getAsset('for-us')
     }
 
-    if (!assets[2]) {
-      actions.getAsset(2)
+    if (!assets['contacts']) {
+      actions.getAsset('contacts')
     }
   }
 
@@ -30,9 +30,9 @@ class Forus extends Component {
     const {
       assets
     } = this.props
-
-    const forUsAsset = assets[1]
-    const contactsAsset = assets[2]
+    console.log(assets)
+    const forUsAsset = assets['for-us']
+    const contactsAsset = assets['contacts']
 
     return (
       <div>
@@ -40,7 +40,7 @@ class Forus extends Component {
         <div className='for-us-container col-xs-100 col-md-70'>
           <Asset asset={forUsAsset} />
         </div>
-        <div className='for-us-container offset-30 col-xs-100 col-md-70'>
+        <div className='contacts-container offset-30 col-xs-100 col-md-70'>
           <Asset asset={contactsAsset} />
         </div>
         <Footer />

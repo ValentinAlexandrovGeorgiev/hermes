@@ -1,7 +1,28 @@
 .for-us-container {
   padding: 20px 40px;
-  background: rgba(0, 0, 0, .1);
+  background: #FAF7F8;
   margin: 20px 0;
   border-top-right-radius: 5px;
   border-bottom-right-radius: 5px;
+
+  h4 {
+  	font-size: 30px;
+  }
+}
+
+.contacts-container {
+  padding: 20px 40px;
+  background: #FAF7F8;
+  margin: 20px 0;
+  border-top-left-radius: 5px;
+  border-bottom-left-radius: 5px;
+
+  h4 {
+  	font-size: 30px;
+  }
+}
+
+.for-us {
+  line-height: 30px;
+  font-size: 18px;
 }

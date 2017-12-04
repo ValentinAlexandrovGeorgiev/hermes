@@ -1,5 +1,10 @@
+.logo__container {
+  text-align: center;
+}
+
 .hermes-logo {
-  height: 250px;
+  height: 180px;
+  width: 134px;
 }
 
 .contacts {
@@ -16,10 +21,6 @@
     .col-md-20 {
       padding-top: 30px;
     }
-
-    ul {
-      list-style: none;
-    }
   }
 
   &__column {
@@ -30,6 +31,5 @@
   &__label {
     font-size: 18px;
     color: #21518F;
-
   }
 }

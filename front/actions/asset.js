@@ -1,19 +1,20 @@
 import Hermes from 'sources'
-import _ from 'lodash'
 import {
-  GET_ASSET
+  GET_ASSETS
 } from './const'
 
-export function getAsset (id = '') {
+export function getAsset (ids = []) {
   return (dispatch, nextState) => {
-    return Hermes.Asset.getByID(id).then((json) => {
+    return Hermes.Asset.getByIDs([ids]).then((json) => {
       let assets = nextState().asset_information
-      const assetID = json.asset_id
-      assets[assetID] = json
+      json.map((asset) => {
+        const assetID = asset.query_field
+        assets[assetID] = asset
+      })
       
       dispatch({
         payload: assets,
-        type: GET_ASSET
+        type: GET_ASSETS
       })
     }).catch((error) => {
       console.error(error)
