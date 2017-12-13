@@ -3,6 +3,7 @@ import routerReducer from './routerReducer'
 import product from './product'
 import catalog from './catalog'
 import asset from './asset'
+import breadcrumbs from './breadcrumbs'
 import utils from './utils'
 
 const reducers = {
@@ -10,6 +11,7 @@ const reducers = {
   product_information: product,
   asset_information: asset,
   catalog_information: catalog,
+  breadcrumbs_information: breadcrumbs,
   language: utils
 }
 

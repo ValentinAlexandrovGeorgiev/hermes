@@ -13,5 +13,6 @@
 	"pdp.more.products": "Още продукти от {0}",
 	"pdp.description": "Описание:",
 	"pdp.id": "ID: ",
-	"pdp.price": "Цена: "
+	"pdp.price": "Цена: ",
+	"plp.home": "Начало"
 }

@@ -12,6 +12,10 @@ import {
 } from './asset'
 
 import {
+  addToBreadcrumbs
+} from './breadcrumbs'
+
+import {
   setLanguage
 } from './utils'
 
@@ -20,6 +24,7 @@ const actions = {
   getCategoryProducts,
   getAsset,
   getCategories,
+  addToBreadcrumbs,
   setLanguage
 }
 

@@ -1,0 +1,9 @@
+.categories {
+  &__wrapper {
+  	overflow: auto;
+	-webkit-overflow-scrolling: touch;
+    white-space: nowrap;
+    padding: 0 10px;
+    margin-top: 10px;
+  }
+}

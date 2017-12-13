@@ -12,6 +12,7 @@ class RouteList extends Component {
     return [
       <Route key='/' exact path='/' component={Home} />,
       <Route key='/products' exact path='/products' component={Products} />,
+      <Route key='/products/:category' exact path='/products/:category' component={Products} />,
       <Route key='/product/:name/:id' path='/product/:name/:id' component={Product} />,
       <Route key='/services' exact path='/services' component={Services} />,
       <Route key='/catalogs' exact path='/catalogs' component={Catalogs} />,

@@ -20,15 +20,15 @@ class Footer extends Component {
   }
 
   componentDidMount () {
-    const fbPopup = (
-      <div className='col col-xs-100 col-md-33 footer__fb_plugin'>
-        <iframe src='https://www.facebook.com/plugins/page.php?href=https%3A%2F%2Fwww.facebook.com%2Fhermesgift&width=340&height=250&small_header=false&adapt_container_width=true&hide_cover=false&show_facepile=true&appId=1723121821304727' style={FB_STYLE} scrolling='no' frameBorder='0' allowtransparency='true' title='hermes gift facebook page' />
-      </div>
-    )
+    // const fbPopup = (
+    //   <div className='col col-xs-100 col-md-33 footer__fb_plugin'>
+    //     <iframe src='https://www.facebook.com/plugins/page.php?href=https%3A%2F%2Fwww.facebook.com%2Fhermesgift&width=340&height=250&small_header=false&adapt_container_width=true&hide_cover=false&show_facepile=true&appId=1723121821304727' style={FB_STYLE} scrolling='no' frameBorder='0' allowtransparency='true' title='hermes gift facebook page' />
+    //   </div>
+    // )
 
-    this.setState({
-      fbPopup
-    })
+    // this.setState({
+    //   fbPopup
+    // })
   }
 
   render () {

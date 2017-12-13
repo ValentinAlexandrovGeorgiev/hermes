@@ -12,5 +12,6 @@
 	"search.placeholder": "Search...",
 	"pdp.more.products": "More products from {0}",
 	"pdp.description": "Description:",
-	"pdp.id": "ID: "
+	"pdp.id": "ID: ",
+	"plp.home": "Home"
 }

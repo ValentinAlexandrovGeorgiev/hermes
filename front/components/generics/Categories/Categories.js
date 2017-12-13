@@ -1,59 +1,28 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
+import Category from '../Category/Category'
 import _ from 'lodash'
 
+import './categories.scss'
+
 class Categories extends Component {
-  renderCategories (categories) {
+  renderCategories (categories, selectedCategory) {
     const keys = Object.keys(categories)
 
     return keys.map((key) => {
       let category = categories[key]
-      
+      const selected = selectedCategory === category.name
+
       return (
-        <div key={category.category_id}>
-          { this.renderChildPlus(category.category_id) }
-          {category.name}
-          { this.renderChildrenCategories(category.category_id) }
-        </div>
+        <Category key={category.category_id} category={category} selected={selected} />
       )
     })
-  }
-
-  renderChildrenCategories (parentID) {
-    const {
-      childCategories
-    } = this.props
-
-    if (!childCategories[parentID]) {
-      return null
-    }
-
-    return childCategories[parentID].map((category) => {
-      return (
-        <div key={category.category_id}>
-          {category.name}
-        </div>
-      )
-    })
-  }
-
-  renderChildPlus (parentID) {
-    const {
-      childCategories
-    } = this.props
-
-    if (!childCategories[parentID]) {
-      return null
-    }
-
-    return (
-      <span>+</span>
-    )
   }
 
   render () {
     const {
-      categories
+      categories,
+      selectedCategory
     } = this.props
 
     if (_.isEmpty(categories)) {
@@ -62,7 +31,7 @@ class Categories extends Component {
 
     return (
       <div className='categories__wrapper'>
-        {this.renderCategories(categories)}
+        {this.renderCategories(categories, selectedCategory)}
       </div>
     )
   }
@@ -70,12 +39,12 @@ class Categories extends Component {
 
 Categories.defaultProps = {
   categories: {},
-  childCategories: {}
+  selectedCategory: ''
 }
 
 Categories.propTypes = {
   categories: PropTypes.shape({}),
-  childCategories: PropTypes.shape({})
+  selectedCategory: PropTypes.string
 }
 
 export default Categories
