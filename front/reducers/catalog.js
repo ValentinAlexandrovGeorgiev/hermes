@@ -1,5 +1,6 @@
 import {
-  GET_CATEGORIES
+  GET_CATEGORIES,
+  GET_CATALOGS
 } from 'actions/const'
 
 module.exports = function (state = {}, action) {
@@ -10,6 +11,12 @@ module.exports = function (state = {}, action) {
       return {
         ...nextState,
         categories: action.payload
+      }
+    }
+    case GET_CATALOGS: {
+      return {
+        ...nextState,
+        catalogs: action.payload
       }
     }
     default: {

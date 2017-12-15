@@ -1,6 +1,7 @@
 import Hermes from 'sources'
 import {
-  GET_CATEGORIES
+  GET_CATEGORIES,
+  GET_CATALOGS
 } from './const'
 
 export function getCategories () {
@@ -27,6 +28,19 @@ export function getCategories () {
       })
     }).catch((error) => {
       console.error(error)
+    })
+  }
+}
+
+export function getCatalogs () {
+  return (dispatch, nextState) => {
+    return Hermes.Catalog.getCatalogs().then((json) => {
+      console.log(json)
+
+      dispatch({
+        payload: {},
+        type: GET_CATALOGS
+      })
     })
   }
 }

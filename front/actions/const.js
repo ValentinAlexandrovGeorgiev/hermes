@@ -7,5 +7,6 @@ export const GET_ASSETS = 'GET_ASSETS'
 export const ADD_TO_BREADCRUMBS = 'ADD_TO_BREADCRUMBS'
 
 export const GET_CATEGORIES = 'GET_CATEGORIES'
+export const GET_CATALOGS = 'GET_CATALOGS'
 
 export const SET_LANGUAGE = 'SET_LANGUAGE'
