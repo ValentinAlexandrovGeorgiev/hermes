@@ -3,6 +3,7 @@ from rest_framework import renderers
 from .views import AssetViewSet, CatalogViewSet, CategoryViewSet,\
     ProductViewSet, SiteViewSet, ProductByCategory, SiteConfig, AssetsBulk
 
+app_name = 'API'
 
 category_list = CategoryViewSet.as_view({
     'get': 'list'
