@@ -16,7 +16,7 @@ import cloudinary
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = Path(__file__).resolve().parent.parent.parent
 
-MEDIA_ROOT = str(BASE_DIR / 'media')
+MEDIA_ROOT = str(BASE_DIR / 'media_root')
 
 STATIC_ROOT = str(BASE_DIR / 'static_root')
 
@@ -35,6 +35,8 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    'ckeditor',
+    'cloudinary',
     'import_export',
     'rest_framework',
     'server.API',
@@ -113,6 +115,7 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/1.11/howto/static-files/
 
 STATIC_URL = '/static/'
+MEDIA_URL = '/media/'
 
 REST_FRAMEWORK = {
     # Use Django's standard `django.contrib.auth` permissions,

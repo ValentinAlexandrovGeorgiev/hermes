@@ -1,16 +1,42 @@
 from django.db import models
 from django.core.validators import URLValidator
+from django.core.exceptions import ValidationError
+from django.utils.translation import gettext_lazy as _
 from django.contrib.postgres.fields import ArrayField
+from django.utils.deconstruct import deconstructible
 import uuid
 from cloudinary.models import CloudinaryField
 from .constants import CURRENCY_CHOICES
 
 
+@deconstructible
+class ValidateFileType:
+
+    def __init__(self, *types):
+        self.types = types
+
+    def __call__(self, val):
+        if not any(val.name.endswith(file_type) for file_type in self.types):
+            raise ValidationError(
+                _('%(value)s is not of valid type'),
+                params={'value': val},
+            )
+
+
+IMAGE_VALIDATOR = ValidateFileType('jpg', 'jpeg', 'png', 'bmp', 'gif')
+PDF_VALIDATOR = ValidateFileType('pdf')
+
+
 class Category(models.Model):
+
+    class Meta:
+        verbose_name_plural = 'Categories'
+
     name = models.CharField(max_length=128)
     category_id = models.AutoField(primary_key=True)
     parent_category = models.ForeignKey('Category', blank=True, null=True)
-    image_link = CloudinaryField(blank=True, null=True)
+    image_link = CloudinaryField(blank=True, null=True,
+                                 validators=[IMAGE_VALIDATOR])
     online = models.BooleanField(default=True)
 
     def __str__(self):
@@ -26,7 +52,8 @@ class Product(models.Model):
     category = models.ForeignKey(Category)
     price = models.DecimalField(max_digits=6, decimal_places=2)
     currency = models.CharField(max_length=5, choices=CURRENCY_CHOICES)
-    image_link = CloudinaryField(blank=True, null=True)
+    image_link = CloudinaryField(blank=True, null=True,
+                                 validators=[IMAGE_VALIDATOR])
     online = models.BooleanField(default=True)
     views = models.IntegerField(default=0)
 
@@ -43,8 +70,10 @@ class Product(models.Model):
 class Catalog(models.Model):
     name = models.CharField(max_length=128)
     catalog_id = models.AutoField(primary_key=True)
-    image_link = CloudinaryField(blank=True, null=True)
-    link = models.TextField(validators=[URLValidator()])
+    image_link = CloudinaryField(blank=True, null=True,
+                                 validators=[IMAGE_VALIDATOR])
+    pdf = models.FileField(null=True, blank=True,
+                           validators=[PDF_VALIDATOR])
     online = models.BooleanField(default=True)
 
     def __str__(self):
@@ -66,7 +95,8 @@ class Asset(models.Model):
     query_field = models.CharField(max_length=128, blank=False,
                                    null=False, unique=True)
     body = models.TextField()
-    image_link = CloudinaryField(blank=True, null=True)
+    image_link = CloudinaryField(blank=True, null=True,
+                                 validators=[IMAGE_VALIDATOR])
     online = models.BooleanField(default=True)
 
     def __str__(self):

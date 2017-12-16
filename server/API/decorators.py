@@ -17,7 +17,7 @@ def assign_image_url_getter(cls):
 
         def get_image_url(self, obj):
             if hasattr(obj.image_link, 'url'):
-                return obj.image_link.url
+                return obj.image_link.url.replace('http', 'https')
             return None
 
     return DecoratedCls
