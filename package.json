@@ -7,7 +7,7 @@
     "lint": "eslint ./front",
     "start": "python manage.py runsslserver 8081 --settings=config.settings.development",
     "create:user": "python manage.py createsuperuser --settings=config.settings.development",
-    "migrate": "python manage.py migrate --settings=config.settings.development",
+    "migrate": "python manage.py makemigrations --settings=config.settings.development && python manage.py migrate --settings=config.settings.development",
     "build": "webpack --progress --bail --env dev",
     "start:prod": "python manage.py runsslserver 8081 --settings=config.settings.production",
     "create:user:prod": "python manage.py createsuperuser --settings=config.settings.production",

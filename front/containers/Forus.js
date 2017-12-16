@@ -16,7 +16,6 @@ class Forus extends Component {
       assets
     } = this.props
 
-    // actions.getAsset('for-us')
     if (!assets['for-us']) {
       actions.getAsset('for-us')
     }
@@ -58,8 +57,6 @@ Forus.propTypes = {
 }
 
 const mapStateToProps = (state) => {
-  // console.log('mapStateToProps')
-  // console.log(state)
   const props = {
     assets: state.asset_information.assets
   }
