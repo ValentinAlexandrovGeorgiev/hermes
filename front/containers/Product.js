@@ -3,6 +3,8 @@ import { bindActionCreators } from 'redux'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import * as ACTIONS from 'actions'
+import translate from 'translations'
+import MetaTags from 'components/generics/MetaTags/MetaTags'
 import Header from 'components/generics/Header/Header'
 import Footer from 'components/generics/Footer/Footer'
 import ProductTitle from 'components/pdp/ProductTitle/ProductTitle'
@@ -44,16 +46,28 @@ class Product extends Component {
     } = product
 
     if (product.detail === 'Not found.') {
+      const meta = {
+        title: `${translate('project.name')} - ${translate('meta.product.not.found')}`,
+        location: window.location.href
+      }
+
       return (
         <div>
+          <MetaTags {...meta} />
           <Header />
           <h3>Съжаляваме, нямаме такъв продукт. Моля проверете линка, който сте отворили!</h3>
           <Footer />
         </div>
       )
     }
+
+    const meta = {
+      title: `${translate('project.name')} - ${product.name}`,
+      location: window.location.href
+    }
     
     return [
+      <MetaTags key='MetaTags' {...meta} />,
       <Header key='Header' />,
       <div key='pdp' className='pdp'>
         <ProductTitle name={name} />

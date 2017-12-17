@@ -3,6 +3,7 @@ import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
 import * as ACTIONS from 'actions'
 import translate from 'translations'
+import MetaTags from 'components/generics/MetaTags/MetaTags'
 import Header from 'components/generics/Header/Header'
 import Footer from 'components/generics/Footer/Footer'
 import ServicesGrid from 'components/services/ServicesGrid/ServicesGrid'
@@ -35,8 +36,14 @@ class Services extends Component {
       assets
     } = this.props
 
+    const meta = {
+      title: `${translate('project.name')} - ${translate('services.title')}`,
+      location: window.location.href
+    }
+
     return (
       <div>
+        <MetaTags {...meta} />
         <Header />
         <h1 className='services-title'>{translate('services.title')}</h1>
         { assets ?

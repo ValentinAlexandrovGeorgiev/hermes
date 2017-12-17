@@ -3,6 +3,8 @@ import { bindActionCreators } from 'redux'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import * as ACTIONS from 'actions'
+import translate from 'translations'
+import MetaTags from 'components/generics/MetaTags/MetaTags'
 import Header from 'components/generics/Header/Header'
 import Footer from 'components/generics/Footer/Footer'
 import HomeCarousel from 'components/home/HomeCarousel/HomeCarousel'
@@ -27,11 +29,16 @@ class Home extends Component {
     const {
       assets
     } = this.props
+    const meta = {
+      title: `${translate('project.name')}`,
+      location: window.location.href
+    }
     console.log(assets)
     const contactsAsset = assets['contacts']
 
     return (
       <div className='home-page'>
+        <MetaTags {...meta} />
         <Header />
         <HomeCarousel />
         <Statistics />

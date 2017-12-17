@@ -1,7 +1,9 @@
 import React, {Component} from 'react'
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
+import translate from 'translations'
 import * as ACTIONS from 'actions'
+import MetaTags from 'components/generics/MetaTags/MetaTags'
 import Header from 'components/generics/Header/Header'
 import CatalogGrid from 'components/cats/CatalogGrid/CatalogGrid'
 import Footer from 'components/generics/Footer/Footer'
@@ -15,11 +17,18 @@ class Catalogs extends Component {
     console.log('getCatalogs')
     actions.getCatalogs()
   }
+
   render () {
+    const meta = {
+      title: `${translate('project.name')} - ${translate('catalogs.title')}`,
+      location: window.location.href
+    }
+
     return (
       <div>
+        <MetaTags {...meta} />
         <Header />
-        <h1>Рекламни Каталози 2017</h1>
+        <h1>{translate('catalogs.title')}</h1>
         <CatalogGrid />
         <Footer />
       </div>

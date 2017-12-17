@@ -1,4 +1,5 @@
 {
+	"project.name": "Hermes Gift",
 	"header.products": "Products",
 	"header.services": "Services",
 	"header.catalogs": "Catalogs",
@@ -13,6 +14,12 @@
 	"pdp.more.products": "More products from {0}",
 	"pdp.description": "Description:",
 	"pdp.id": "ID: ",
+	"pdp.price": "Price: ",
 	"plp.home": "Home",
-	"services.title": "Our services"
+	"services.title": "Our services",
+	"catalogs.title": "Catalogs 2017",
+	"meta.contacts": "Contacts",
+	"meta.for.us": "For us",
+	"meta.products": "Products",
+	"meta.product.not.found": "No product"
 }

@@ -1,4 +1,5 @@
 {
+	"project.name": "Хермес Гифт",
 	"header.products": "Продукти",
 	"header.services": "Печатница",
 	"header.catalogs": "Каталози",
@@ -15,5 +16,10 @@
 	"pdp.id": "ID: ",
 	"pdp.price": "Цена: ",
 	"plp.home": "Начало",
-	"services.title": "Нашата печатница"
+	"services.title": "Нашата печатница",
+	"catalogs.title": "Рекламни каталози 2017",
+	"meta.contacts": "Контакти",
+	"meta.for.us": "За нас",
+	"meta.products": "Продукти",
+	"meta.product.not.found": "Ненамерен продукт"
 }

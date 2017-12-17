@@ -12,7 +12,7 @@ class ServicesGrid extends Component {
   	console.log(services)
   	return services.map((service) => {
   	  return (
-  	  	<Link to={`/service/${service.query_field}`} key={service.query_field} className='col col-xs-100 col-md-50'>
+  	  	<Link to={`/service/${service.query_field}`} key={service.query_field} className='col col-xs-100 col-md-100 col-lg-50'>
   	  	  <ServiceTile service={service} />
   	  	</Link>
   	  )

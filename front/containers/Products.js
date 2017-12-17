@@ -3,6 +3,8 @@ import { bindActionCreators } from 'redux'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import * as ACTIONS from 'actions'
+import translate from 'translations'
+import MetaTags from 'components/generics/MetaTags/MetaTags'
 import Header from 'components/generics/Header/Header'
 import Footer from 'components/generics/Footer/Footer'
 import Categories from 'components/generics/Categories/Categories'
@@ -62,11 +64,15 @@ class Products extends Component {
 
     const selectedCategory = match.params.category || null
 
-    console.log('real products: ')
-    console.log(products)
+    const metaTitle = selectedCategory || translate('meta.products')
+    const meta = {
+      title: `${translate('project.name')} - ${metaTitle}`,
+      location: window.location.href
+    }
 
     return (
       <div>
+        <MetaTags {...meta} />
         <Header />
         <Categories categories={categories} childCategories={childCategories} selectedCategory={selectedCategory} />
         <div className='col col-xs-100'>

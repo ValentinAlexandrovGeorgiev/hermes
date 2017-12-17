@@ -12,10 +12,12 @@ class ServiceTile extends Component {
 
     return (
       <div className='service-tile__wrapper'>
-        <img src={image_link} alt={title} />
-        <div className='service-tile__description'>
-          <h3>{title}</h3>
-          <div dangerouslySetInnerHTML={{__html: body.substring(0, 70)}} />
+        <div className='service-tile__container'>
+          <img src={image_link} alt={title} />
+          <div className='service-tile__description'>
+            <h3>{title}</h3>
+            <div dangerouslySetInnerHTML={{__html: `${body.substring(0, 70)}...`}} />
+          </div>
         </div>
       </div>
     )
