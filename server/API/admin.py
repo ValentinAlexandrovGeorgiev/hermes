@@ -130,6 +130,7 @@ admin.site.register(Product, ProductAdmin)
 admin.site.register(Catalog)
 admin.site.register(Asset)
 admin.site.register(Site)
-
+#admin.site.register(Site, SiteAdmin)
+#SiteAdmin uses different TextArea field for items propery, but still not good enough
 admin.site.site_header = 'Hermes Administration'
 admin.site.site_title = 'Hermes Administration'
