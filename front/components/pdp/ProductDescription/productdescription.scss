@@ -1,0 +1,17 @@
+.pdp__product-description {
+  margin: 20px 0;
+  padding-top: 15px;
+  border-top: 1px solid #edf0eb;
+
+  .description-label {
+  	font-size: 25px;
+  	display: block;
+  	padding-left: 20px;
+  	margin-bottom: 10px;
+  }
+
+  .description-value {
+  	font-size: 21px;
+  	padding: 0 30px;
+  }
+}

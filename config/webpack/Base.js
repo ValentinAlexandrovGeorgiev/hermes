@@ -124,7 +124,8 @@ class WebpackBaseConfig {
           stores: `${this.srcPathAbsolute}/stores/`,
           styles: `${this.srcPathAbsolute}/styles/`,
           reducers: `${this.srcPathAbsolute}/reducers/`,
-          routes: `${this.srcPathAbsolute}/routes/`
+          routes: `${this.srcPathAbsolute}/routes/`,
+          translations: `${this.srcPathAbsolute}/translations/`
         },
         extensions: ['.js'],
         modules: [

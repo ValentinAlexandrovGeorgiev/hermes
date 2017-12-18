@@ -5,6 +5,7 @@ import { withRouter } from 'react-router-dom'
 import { connect } from 'react-redux'
 import RouteRoot from 'routes/RouteRoot'
 import * as ACTIONS from 'actions'
+import Language from 'components/generics/Language/Language'
 
 class App extends Component {
   render () {
@@ -15,10 +16,12 @@ class App extends Component {
 
     return (
       <div>
-        <RouteRoot
-          actions={actions}
-          router={router}
-        />
+        <Language>
+          <RouteRoot
+            actions={actions}
+            router={router}
+          />
+        </Language>
       </div>
     )
   }

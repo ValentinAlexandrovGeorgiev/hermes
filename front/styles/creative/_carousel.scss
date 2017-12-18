@@ -21,7 +21,7 @@
       &.slick-active {
 
         button {
-          background-color: #14141C;
+          background-color: $black;
         }
       }
 
@@ -29,7 +29,7 @@
         border: 0;
         outline: none;
         background-color: transparent;
-        border: 1px solid #14141C;
+        border: 1px solid $black;
         width: 10px;
         height: 15px;
         border-radius: 50%;

@@ -1,24 +1,11 @@
-import { TEST_LINK } from '../links'
+import { GET_ASSETS } from '../links'
 import HTTP from '../HTTP'
 
 class Asset {
-  getByID (id) {
+  getByIDs (ids) {
     return new Promise((resolve, reject) => {
-      HTTP.get(HTTP.addParameters(TEST_LINK, id)).then(({ json, ok }) => {
-        if (ok) {
-          resolve(json)
-        } else {
-          reject(json)
-        }
-      })
-    })
-  }
-
-  getAssetsByID (ids) {
-    return new Promise((resolve, reject) => {
-      const idsParam = ids.join(',')
-      HTTP.get(HTTP.addParameters(TEST_LINK, {ids: `(${idsParam})`})).then(({ json, ok }) => {
-        if (ok) {
+      HTTP.get(HTTP.addParameters(GET_ASSETS, {many: ids.join(',')})).then((json) => {
+        if (!json.errorObject) {
           resolve(json)
         } else {
           reject(json)

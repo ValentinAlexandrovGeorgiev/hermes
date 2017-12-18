@@ -7,7 +7,7 @@
   border: 1px solid silver;
   text-align: center;
   background: white;
-  color: #14141C;
+  color: $black;
   box-sizing: border-box;
   cursor: pointer;
   outline: none;
@@ -31,8 +31,8 @@
 .btn-white {
   background-color: #FAF2FA;
   background-image: linear-gradient(#FAF2FA, #E3E6E3);
-  color: #14141C;
-  border: 1px solid #14141C;
+  color: $black;
+  border: 1px solid $black;
   margin: 10px 0;
 }
 
@@ -40,15 +40,15 @@
   background-color: #34B3DE;
   background-image: linear-gradient(#34B3DE, #428CC7);
   color: #FAF2FA;
-  border: 1px solid #21518F;
+  border: 1px solid $blueBlack;
   margin: 10px 0;
 }
 
 .btn-dark-blue {
-  background: #21518F;
-  background-image: linear-gradient(#21518F, #191B38);
+  background: $blueBlack;
+  background-image: linear-gradient($blueBlack, #191B38);
   color: #FAF2FA;
-  border: 1px solid #14141C;
+  border: 1px solid $black;
   margin: 10px 0;
 }
 
@@ -60,7 +60,7 @@
 
   .btn-dark-blue:hover {
     background: #191B38;
-    background-image: linear-gradient(#191B38, #21518F);
+    background-image: linear-gradient(#191B38, $blueBlack);
   }
 
   .btn-blue:hover {
