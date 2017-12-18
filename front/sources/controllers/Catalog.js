@@ -1,11 +1,26 @@
-import { TEST_LINK } from '../links'
+import { 
+  GET_CATEGORIES,
+  GET_CATALOGS
+} from '../links'
 import HTTP from '../HTTP'
 
 class Catalog {
-  getAllOnline () {
+  getCategories (ids) {
     return new Promise((resolve, reject) => {
-      HTTP.get(TEST_LINK).then(({ json, ok }) => {
-        if (ok) {
+      HTTP.get(GET_CATEGORIES).then((json) => {
+        if (!json.errorObject) {
+          resolve(json)
+        } else {
+          reject(json)
+        }
+      })
+    })
+  }
+
+  getCatalogs (ids) {
+    return new Promise((resolve, reject) => {
+      HTTP.get(GET_CATALOGS).then((json) => {
+        if (!json.errorObject) {
           resolve(json)
         } else {
           reject(json)

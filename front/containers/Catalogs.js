@@ -1,16 +1,35 @@
 import React, {Component} from 'react'
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
-import {} from 'actions'
+import translate from 'translations'
+import * as ACTIONS from 'actions'
+import MetaTags from 'components/generics/MetaTags/MetaTags'
 import Header from 'components/generics/Header/Header'
+import CatalogGrid from 'components/cats/CatalogGrid/CatalogGrid'
 import Footer from 'components/generics/Footer/Footer'
 
 class Catalogs extends Component {
+
+  componentWillMount () {
+    const { 
+      actions
+    } = this.props
+    console.log('getCatalogs')
+    actions.getCatalogs()
+  }
+
   render () {
-    const { actions } = this.props
+    const meta = {
+      title: `${translate('project.name')} - ${translate('catalogs.title')}`,
+      location: window.location.href
+    }
+
     return (
       <div>
+        <MetaTags {...meta} />
         <Header />
+        <h1>{translate('catalogs.title')}</h1>
+        <CatalogGrid />
         <Footer />
       </div>
     )
@@ -23,7 +42,7 @@ const mapStateToProps = (state) => {
 }
 
 const mapDispatchToProps = (dispatch) => {
-  const actions = {}
+  const actions = ACTIONS
   const actionMap = { actions: bindActionCreators(actions, dispatch) }
   return actionMap
 }

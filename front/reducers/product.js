@@ -1,5 +1,6 @@
 import {
-  GET_PRODUCT
+  GET_PRODUCT,
+  GET_CATEGORY_PRODUCTS
 } from 'actions/const'
 
 
@@ -11,6 +12,12 @@ module.exports = function (state = {}, action) {
       return {
         product: action.payload,
         ...nextState
+      }
+    }
+    case GET_CATEGORY_PRODUCTS: {
+      return {
+      	products: action.payload,
+      	...nextState
       }
     }
     default: {

@@ -1,6 +1,8 @@
 import React, { Component } from 'react'
 import { Link, withRouter } from 'react-router-dom'
 import SearchInput from '../SearchInput/SearchInput'
+import LanguageSelector from '../LanguageSelector/LanguageSelector'
+import translate from 'translations'
 import './header.scss'
 
 const PAGES = {
@@ -43,22 +45,23 @@ class Header extends Component {
             <img src='/static/images/hermes-logo.webp' alt='hermes gift logo' />
           </Link>
           <p className='header__logo_message'>
-            {'- Лидерът в предметната реклама!'}
+            {translate('header.logo')}
           </p>
           <SearchInput />
+          <LanguageSelector />
         </div>
         <div className='header__nav'>
           <div className={`header__item ${selected === PAGES.products ? 'selected' : ''}`}>
-            <Link to='/products'>{'Продукти'}</Link>
+            <Link to='/products'>{translate('header.products')}</Link>
           </div>
           <div className={`header__item ${selected === PAGES.services ? 'selected' : ''}`}>
-            <Link to='/services'>{'Печатница'}</Link>
+            <Link to='/services'>{translate('header.services')}</Link>
           </div>
           <div className={`header__item ${selected === PAGES.catalogs ? 'selected' : ''}`}>
-            <Link to='/catalogs'>{'Каталози'}</Link>
+            <Link to='/catalogs'>{translate('header.catalogs')}</Link>
           </div>
           <div className={`header__item ${selected === PAGES.forus ? 'selected' : ''}`}>
-            <Link to='/for-us'>{'За нас'}</Link>
+            <Link to='/for-us'>{translate('header.forus')}</Link>
           </div>
         </div>
       </div>
