@@ -33,7 +33,10 @@ class Forus extends Component {
     } = this.props
     const meta = {
       title: `${translate('project.name')} - ${translate('meta.contacts')} & ${translate('meta.for.us')}`,
-      location: window.location.href
+      location: window.location.href,
+      index: true,
+      keywords: `${translate('project.keywords')}, ${translate('meta.forus.keywords')}`,
+      description: `${translate('project.description')} - ${translate('meta.forus.description')}`
     }
 
     console.log(assets)

@@ -67,7 +67,10 @@ class Products extends Component {
     const metaTitle = selectedCategory || translate('meta.products')
     const meta = {
       title: `${translate('project.name')} - ${metaTitle}`,
-      location: window.location.href
+      location: window.location.href,
+      index: true,
+      keywords: `${translate('project.keywords')},${selectedCategory}`,
+      description: `${translate('project.description')} - ${selectedCategory} - ${translate('meta.products.description')}`
     }
 
     return (

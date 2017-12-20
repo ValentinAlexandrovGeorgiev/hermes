@@ -21,7 +21,10 @@ class Catalogs extends Component {
   render () {
     const meta = {
       title: `${translate('project.name')} - ${translate('catalogs.title')}`,
-      location: window.location.href
+      location: window.location.href,
+      index: true,
+      keywords: `${translate('project.keywords')}, ${translate('meta.catalogs.keywords')}`,
+      description: `${translate('project.description')} - ${translate('meta.catalogs.description')}`
     }
 
     return (

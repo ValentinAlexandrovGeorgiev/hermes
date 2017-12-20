@@ -48,7 +48,8 @@ class Product extends Component {
     if (product.detail === 'Not found.') {
       const meta = {
         title: `${translate('project.name')} - ${translate('meta.product.not.found')}`,
-        location: window.location.href
+        location: window.location.href,
+        index: false
       }
 
       return (
@@ -63,7 +64,10 @@ class Product extends Component {
 
     const meta = {
       title: `${translate('project.name')} - ${product.name}`,
-      location: window.location.href
+      location: window.location.href,
+      index: true,
+      keywords: `${translate('project.keywords')},${translate('meta.pdp.keywords', `${product.name}`)}`,
+      description: `${translate('project.description')} - ${translate('meta.pdp.description', `${product.name} - ${product.description}`)}`
     }
     
     return [

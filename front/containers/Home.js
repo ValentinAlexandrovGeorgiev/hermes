@@ -31,7 +31,10 @@ class Home extends Component {
     } = this.props
     const meta = {
       title: `${translate('project.name')}`,
-      location: window.location.href
+      location: window.location.href,
+      index: true,
+      keywords: `${translate('project.keywords')}`,
+      description: `${translate('project.description')}`
     }
     console.log(assets)
     const contactsAsset = assets['contacts']

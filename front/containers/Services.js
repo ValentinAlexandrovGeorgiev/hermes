@@ -38,7 +38,10 @@ class Services extends Component {
 
     const meta = {
       title: `${translate('project.name')} - ${translate('services.title')}`,
-      location: window.location.href
+      location: window.location.href,
+      index: true,
+      keywords: `${translate('project.keywords')}, ${translate('meta.services.keywords')}`,
+      description: `${translate('project.description')} - ${translate('meta.services.description')}`
     }
 
     return (
