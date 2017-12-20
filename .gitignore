@@ -40,7 +40,9 @@ migrations/__pycache__/
 __pycache__/
 *.pyc
 static_root/
+media_root/
 
 # app.js
 static/app.js
 static/app.js.map
+
