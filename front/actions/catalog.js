@@ -38,7 +38,7 @@ export function getCatalogs () {
       console.log(json)
 
       dispatch({
-        payload: {},
+        payload: json,
         type: GET_CATALOGS
       })
     })
