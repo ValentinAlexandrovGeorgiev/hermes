@@ -9,7 +9,7 @@ module.exports = function (state = {}, action) {
     case GET_ASSETS: {
       return {
         ...nextState,
-        assets: action.payload
+        ...action.payload
       }
     }
     default: {

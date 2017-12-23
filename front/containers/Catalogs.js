@@ -14,7 +14,7 @@ class Catalogs extends Component {
     const { 
       actions
     } = this.props
-    console.log('getCatalogs')
+
     actions.getCatalogs()
   }
 
@@ -31,13 +31,11 @@ class Catalogs extends Component {
       description: `${translate('project.description')} - ${translate('meta.catalogs.description')}`
     }
 
-    console.log(catalogs)
-
     return (
       <div>
         <MetaTags {...meta} />
         <Header />
-        <h1>{translate('catalogs.title')}</h1>
+        <h1 className='catalogs__title'>{translate('catalogs.title')}</h1>
         <CatalogGrid catalogs={catalogs} />
         <Footer />
       </div>

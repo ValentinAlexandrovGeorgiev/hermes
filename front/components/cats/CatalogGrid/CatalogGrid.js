@@ -15,11 +15,14 @@ class CatalogGrid extends Component {
   }
 
   render () {
-    return (
-      <div className='col col-xs-100'>
+    return [
+      <div key='1' className='col col-xs-100 col-lg-70'>
         {this.renderChildren()}
+      </div>,
+      <div key='2' className='col col-lg-30'>
+      	Best Products
       </div>
-    )
+    ]
   }
 }
 

@@ -35,8 +35,6 @@ export function getCategories () {
 export function getCatalogs () {
   return (dispatch, nextState) => {
     return Hermes.Catalog.getCatalogs().then((json) => {
-      console.log(json)
-
       dispatch({
         payload: json,
         type: GET_CATALOGS

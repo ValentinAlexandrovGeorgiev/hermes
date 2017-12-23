@@ -28,7 +28,6 @@ export function getCategoryProducts (category = '', count = 0, pagination = fals
           type: GET_CATEGORY_PRODUCTS_WITH_PAGINATION
         })
       } else {
-        console.log(json, 'json')
         dispatch({
           payload: json,
           type: GET_CATEGORY_PRODUCTS

@@ -36,7 +36,7 @@ class Home extends Component {
       keywords: `${translate('project.keywords')}`,
       description: `${translate('project.description')}`
     }
-    console.log(assets)
+
     const contactsAsset = assets['contacts']
 
     return (
@@ -69,7 +69,7 @@ Home.propTypes = {
 
 const mapStateToProps = (state) => {
   const props = {
-    assets: state.asset_information.assets
+    assets: state.asset_information
   }
   return props
 }

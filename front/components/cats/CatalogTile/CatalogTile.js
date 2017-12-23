@@ -12,10 +12,10 @@ class CatalogTile extends Component {
     } = this.props.catalog
 
     return (
-      <div className='catalog-tile__wrapper'>
-        <a href={pdf}>
-          <img src={image_link} alt={name} />
-          <span>{name}</span>
+      <div className='catalog-tile__wrapper col col-xs-50 col-md-33'>
+        <a className='catalog-tile__link' href={pdf} target='_blank'>
+          <img className='catalog-tile__image' src={image_link} alt={name} />
+          <span className='catalog-tile__name'>{name}</span>
         </a>
       </div>
     )

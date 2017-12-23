@@ -15,14 +15,12 @@ class App extends Component {
     } = this.props
 
     return (
-      <div>
-        <Language>
-          <RouteRoot
-            actions={actions}
-            router={router}
-          />
-        </Language>
-      </div>
+      <Language>
+        <RouteRoot
+          actions={actions}
+          router={router}
+        />
+      </Language>
     )
   }
 }

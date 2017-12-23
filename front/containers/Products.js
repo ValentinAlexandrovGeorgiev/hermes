@@ -20,7 +20,6 @@ class Products extends Component {
       categories
     } = this.props
 
-    console.log('componentWillMount')
     const categoryParam = match.params.category
 
     if (!categories) {
@@ -42,7 +41,6 @@ class Products extends Component {
     } = nextProps
 
     const categoryParam = match.params.category
-    console.log('componentWillReceiveProps')
 
     if (!categories) {
       actions.getCategories()
@@ -104,8 +102,6 @@ Products.propTypes = {
 }
 
 const mapStateToProps = (state) => {
-  console.log('mapStateToProps')
-  console.log(state.product_information)
   const props = {
     categories: state.catalog_information.categories,
     childCategories: state.catalog_information.childCategories,

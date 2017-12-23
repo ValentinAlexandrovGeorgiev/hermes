@@ -32,5 +32,6 @@
 	"meta.pdp.description": "Product: {0}",
 	"meta.pdp.keywords": "Product, {0}",
 	"meta.services.description": "Our services",
-	"meta.services.keywords": "Services"
+	"meta.services.keywords": "Services",
+	"service.description": "Description: "
 }

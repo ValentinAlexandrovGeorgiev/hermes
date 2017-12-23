@@ -9,7 +9,7 @@ class ServicesGrid extends Component {
   	const {
   	  services
   	} = this.props
-  	console.log(services)
+
   	return services.map((service) => {
   	  return (
   	  	<Link to={`/service/${service.query_field}`} key={service.query_field} className='col col-xs-100 col-md-100 col-lg-50'>

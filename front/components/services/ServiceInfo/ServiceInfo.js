@@ -1,5 +1,6 @@
 import React, {Component} from 'react'
 import PropTypes from 'prop-types'
+import translate from 'translations'
 import './serviceinfo.scss'
 
 class ServiceInfo extends Component {
@@ -12,9 +13,14 @@ class ServiceInfo extends Component {
 
     return (
       <div className='service__wrapper'>
-        <h3>{title}</h3>
-        <img src={image_link} alt={title} />
-        <div dangerouslySetInnerHTML={{__html: body}} />
+        <h3 className='service__title'>{title}</h3>
+        <div className='col col-xs-100 col-md-40'>
+          <img className='service__image' src={image_link} alt={title} />
+        </div>
+        <div className='col col-xs-100 col-md-60 service__body'>
+          <span className='service__description'>{translate('service.description')}</span>
+          <div dangerouslySetInnerHTML={{__html: body}} />
+        </div>
       </div>
     )
   }

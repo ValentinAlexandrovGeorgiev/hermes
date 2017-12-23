@@ -39,7 +39,6 @@ class Forus extends Component {
       description: `${translate('project.description')} - ${translate('meta.forus.description')}`
     }
 
-    console.log(assets)
     const forUsAsset = assets['for-us']
     const contactsAsset = assets['contacts']
 
@@ -69,7 +68,7 @@ Forus.propTypes = {
 
 const mapStateToProps = (state) => {
   const props = {
-    assets: state.asset_information.assets
+    assets: state.asset_information
   }
   return props
 }

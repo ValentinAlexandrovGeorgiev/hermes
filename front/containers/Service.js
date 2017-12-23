@@ -53,7 +53,6 @@ class Service extends Component {
 }
 
 const mapStateToProps = (state) => {
-  console.log(state)
   const props = {
     assets: state.asset_information.assets
   }
