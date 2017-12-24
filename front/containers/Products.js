@@ -28,7 +28,7 @@ class Products extends Component {
 
     actions.addToBreadcrumbs(categoryParam)
     if (categoryParam) {
-      actions.getCategoryProducts(categoryParam, 0, false)
+      actions.getCategoryProducts(categoryParam, 12, false)
     }
   }
 
@@ -46,9 +46,9 @@ class Products extends Component {
       actions.getCategories()
     }
 
-    if (categoryParam) {
-      actions.getCategoryProducts(categoryParam, 0, false)
-    }
+    // if (categoryParam) {
+    //   actions.getCategoryProducts(categoryParam, 12, false)
+    // }
   }
 
   render () {

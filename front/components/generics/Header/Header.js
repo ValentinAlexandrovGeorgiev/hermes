@@ -40,29 +40,33 @@ class Header extends Component {
 
     return (
       <div className='header__wrapper'>
-        <div className='header__logo'>
-          <Link to='/'>
-            <img src='/static/images/hermes-logo.webp' alt='hermes gift logo' />
-          </Link>
-          <p className='header__logo_message'>
-            {translate('header.logo')}
-          </p>
-          <SearchInput />
-          <LanguageSelector />
-        </div>
-        <div className='header__nav'>
-          <div className={`header__item ${selected === PAGES.products ? 'selected' : ''}`}>
-            <Link to='/products'>{translate('header.products')}</Link>
-          </div>
+        <div className='header__nav col-xs-100'>
           <div className={`header__item ${selected === PAGES.services ? 'selected' : ''}`}>
             <Link to='/services'>{translate('header.services')}</Link>
           </div>
           <div className={`header__item ${selected === PAGES.catalogs ? 'selected' : ''}`}>
-            <Link to='/catalogs'>{translate('header.catalogs')}</Link>
+            <Link to='/catalogs' className='middle'>{translate('header.catalogs')}</Link>
           </div>
           <div className={`header__item ${selected === PAGES.forus ? 'selected' : ''}`}>
-            <Link to='/for-us'>{translate('header.forus')}</Link>
+            <Link to='/for-us' className='last'>{translate('header.forus')}</Link>
           </div>
+        </div>
+        <div className='header__logo col-xs-100 col-md-100 col-lg-30'>
+          <Link to='/'>
+            <img src='/static/images/hermes-logo.webp' alt='hermes gift logo' />
+            <p className='header__logo_message'>
+              {translate('header.logo')}
+            </p>
+          </Link>
+          <SearchInput />
+          <LanguageSelector />
+        </div>
+        <div className='header__nav-links col-xs-100 col-md-100 col-lg-70'>
+          <Link to='/products/Химикалки'>Химикалки</Link>
+          <Link to='/products/Запалки'>Запалки</Link>
+          <Link to='/products/Шапки'>Шапки</Link>
+          <Link to='/products/Промоции'>Промоции</Link>
+          <Link to='/products/Други'>Други</Link>
         </div>
       </div>
     )
