@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { Link, withRouter } from 'react-router-dom'
 import SearchInput from '../SearchInput/SearchInput'
+import { connect } from 'react-redux'
 import LanguageSelector from '../LanguageSelector/LanguageSelector'
 import translate from 'translations'
 import './header.scss'
@@ -35,7 +36,26 @@ class Header extends Component {
     }
   }
 
+  renderCategories (categories) {
+    if (!categories) {
+      return null
+    }
+
+    const keys = Object.keys(categories)
+    console.log(categories)
+
+    return keys.map((key) => {
+      const category = categories[key]
+      return (
+        <Link key={key} to={`/products/${category.name}`}>{category.name}</Link>
+      )
+    })
+  }
+
   render () {
+    const {
+      categories
+    } = this.props
     const selected = this.returnSelectedClass()
 
     return (
@@ -62,15 +82,19 @@ class Header extends Component {
           <LanguageSelector />
         </div>
         <div className='header__nav-links col-xs-100 col-md-100 col-lg-70'>
-          <Link to='/products/Химикалки'>Химикалки</Link>
-          <Link to='/products/Запалки'>Запалки</Link>
-          <Link to='/products/Шапки'>Шапки</Link>
-          <Link to='/products/Промоции'>Промоции</Link>
-          <Link to='/products/Други'>Други</Link>
+          {this.renderCategories(categories)}
         </div>
       </div>
     )
   }
 }
 
-export default withRouter(Header)
+
+const mapStateToProps = (state) => {
+  const props = {
+    categories: state.catalog_information.categories,
+  }
+  return props
+}
+
+export default withRouter(connect(mapStateToProps)(Header))

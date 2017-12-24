@@ -8,6 +8,17 @@ import * as ACTIONS from 'actions'
 import Language from 'components/generics/Language/Language'
 
 class App extends Component {
+  componentWillMount () {
+    const {
+      actions,
+      categories
+    } = this.props
+
+    if (!categories) {
+      actions.getCategories()
+    }
+  }
+
   render () {
     const {
       actions,
@@ -32,7 +43,8 @@ App.propTypes = {
 
 const mapStateToProps = (state) => {
   const props = {
-    router: state.router
+    router: state.router,
+    categories: state.catalog_information.categories
   }
   return props
 }

@@ -16,12 +16,12 @@ $grey: #EDF0EB;
     display: inline-block;
     vertical-align: top;
     line-height: 100px;
-    padding-left: 20px;
+    padding-left: 10px;
     border-top: 1px solid $grey;
 
     a {
       padding: 35px 10px;
-      font-size: 26px;
+      font-size: 23px;
       text-decoration: underline;
     }
   }
@@ -40,10 +40,6 @@ $grey: #EDF0EB;
       font-size: 20px;
       color: #21518F;
     }
-  }
-
-  &__nav {
-
   }
 
   &__item {
@@ -73,6 +69,5 @@ $grey: #EDF0EB;
         border-right: 1px solid $grey;
       }
     }
-
   }
 }

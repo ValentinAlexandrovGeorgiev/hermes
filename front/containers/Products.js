@@ -16,17 +16,12 @@ class Products extends Component {
   componentWillMount () {
     const {
       actions,
-      match,
-      categories
+      match
     } = this.props
 
     const categoryParam = match.params.category
 
-    if (!categories) {
-      actions.getCategories()
-    }
-
-    actions.addToBreadcrumbs(categoryParam)
+    // actions.addToBreadcrumbs(categoryParam)
     if (categoryParam) {
       actions.getCategoryProducts(categoryParam, 12, false)
     }
@@ -36,15 +31,10 @@ class Products extends Component {
     const {
       actions,
       match,
-      categories,
       products
     } = nextProps
 
     const categoryParam = match.params.category
-
-    if (!categories) {
-      actions.getCategories()
-    }
 
     // if (categoryParam) {
     //   actions.getCategoryProducts(categoryParam, 12, false)
@@ -78,7 +68,7 @@ class Products extends Component {
         <Categories categories={categories} childCategories={childCategories} selectedCategory={selectedCategory} />
         <div className='col col-xs-100'>
           <div className='col col-xs-100 col-md-70'>
-            <Breadcrumbs breadcrumbs={breadcrumbs} />
+            {false ? <Breadcrumbs breadcrumbs={breadcrumbs} /> : null}
           </div>
           <div className='col col-xs-100 col-md-30'>
             <Sorting />
