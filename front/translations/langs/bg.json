@@ -33,5 +33,8 @@
 	"meta.pdp.keywords": "Продукт, {0}",
 	"meta.services.description": "Нашата печатница",
 	"meta.services.keywords": "Нашата печатница",
-	"service.description": "Описание: "
+	"meta.notfound": "Грешка",
+	"service.description": "Описание: ",
+	"error.title": "404 Грешна страница",
+	"error.description": "Съжалявамe, но не можем да намерим страницата, която потърсихте. Моля проверете линка или се свържете с нас! Благодарим за търпението."
 }

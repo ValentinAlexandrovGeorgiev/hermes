@@ -10,14 +10,14 @@ module.exports = function (state = {}, action) {
   switch (action.type) {
     case GET_PRODUCT: {
       return {
-        product: action.payload,
-        ...nextState
+        ...nextState,
+        product: action.payload
       }
     }
     case GET_CATEGORY_PRODUCTS: {
       return {
-      	products: action.payload,
-      	...nextState
+        ...nextState,
+      	products: action.payload
       }
     }
     default: {

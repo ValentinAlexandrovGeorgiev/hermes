@@ -20,11 +20,11 @@ class ProductTile extends Component {
     } = this.props
 
     const currencySymbol = currency ? CURRENCIES[currency] : CURRENCIES.BGN
-    // image_link || '/static/images/default.png'
+
     return (
       <Link to={`/product/${_.kebabCase(name)}/${product_id}`}>
         <div className='tile__wrapper'>
-          <img className='tile__image' src={'/static/images/default.png'} />
+          <img className='tile__image' src={image_link || '/static/images/default.png'} />
           <div className='tile__info'>
             <span className='name'>{name}</span>
             <div className='price_id'>

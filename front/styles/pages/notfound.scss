@@ -1,0 +1,36 @@
+.error {
+  &-page {
+  	background: #244678;
+  	padding: 20px 0;
+
+  	h1 {
+  	  color: #EDF0EB;
+  	  text-align: center;
+  	}
+  }
+
+  &-description {
+  	margin: 20px 30px;
+  	background: #EDF0EB;
+  	border-radius: 10px;
+
+  	h4 {
+  	  margin-bottom: 0;
+  	}
+
+  	.col {
+  	  margin-top: 0;
+  	}
+
+  	div.col-xs-100.col {
+  	    display: inline-block;
+  	    vertical-align: top;
+  	    margin-top: 30px;
+
+	  p {
+   	    font-size: 23px;
+        color: #14141C;
+	  }
+  	}
+  }
+}

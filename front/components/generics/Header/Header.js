@@ -42,7 +42,6 @@ class Header extends Component {
     }
 
     const keys = Object.keys(categories)
-    console.log(categories)
 
     return keys.map((key) => {
       const category = categories[key]

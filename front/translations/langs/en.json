@@ -33,5 +33,8 @@
 	"meta.pdp.keywords": "Product, {0}",
 	"meta.services.description": "Our services",
 	"meta.services.keywords": "Services",
-	"service.description": "Description: "
+	"meta.notfound": "Not found",
+	"service.description": "Description: ",
+	"error.title": "404 Not found page",
+	"error.description": "Sorry, we can't find the requested page. Please, check the url or contact us! Thank you for your patience."
 }

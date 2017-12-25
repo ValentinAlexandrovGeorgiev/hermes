@@ -1,11 +1,56 @@
 import React, { Component } from 'react'
+import { bindActionCreators } from 'redux'
+import * as ACTIONS from 'actions'
 import ProductTile from '../ProductTile/ProductTile'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import './productlist.scss'
 
 class ProductList extends Component {
+  constructor () {
+    super()
+
+    this.state = {
+      loading: true
+    }
+  }
+
+  componentWillMount () {
+    const {
+      actions,
+      category
+    } = this.props
+
+    if (category) {
+      actions.getCategoryProducts(category, 12, false)
+    }
+  }
+
+  componentWillReceiveProps (nextProps) {
+    const {
+      actions,
+      category
+    } = nextProps
+
+    if (category && this.props.category !== nextProps.category) {
+      actions.getCategoryProducts(category, 12, false)
+    }
+  }
+
   render() {
+    const {
+      products
+    } = this.props
+    const { loading } = this.state
+
+    if (products.length === 0) {
+      return (
+        <div className='loader'>
+          Loading...
+        </div>
+      )
+    }
+
     return (
       <div className="product_list__wrapper">
         {this.renderProducts()}
@@ -17,7 +62,7 @@ class ProductList extends Component {
     const {
       products
     } = this.props
-    console.log(products)
+
     return products.map((product, index) => {
       return (
         <div key={`${product.name}_${index}`} className="col col-xs-100 col-md-50 col-lg-33 col-big-25">
@@ -38,9 +83,15 @@ ProductList.propTypes = {
 
 const mapStateToProps = state => {
   const props = {
-    products: state.products
+    products: state.product_information.products
   }
   return props
 }
 
-export default connect(mapStateToProps)(ProductList)
+const mapDispatchToProps = (dispatch) => {
+  const actions = ACTIONS
+  const actionMap = { actions: bindActionCreators(actions, dispatch) }
+  return actionMap
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(ProductList)

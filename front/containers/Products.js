@@ -1,7 +1,7 @@
 import React, {Component} from 'react'
-import { bindActionCreators } from 'redux'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
+import { bindActionCreators } from 'redux'
 import * as ACTIONS from 'actions'
 import translate from 'translations'
 import MetaTags from 'components/generics/MetaTags/MetaTags'
@@ -22,9 +22,9 @@ class Products extends Component {
     const categoryParam = match.params.category
 
     // actions.addToBreadcrumbs(categoryParam)
-    if (categoryParam) {
-      actions.getCategoryProducts(categoryParam, 12, false)
-    }
+    // if (categoryParam) {
+    //   actions.getCategoryProducts(categoryParam, 12, false)
+    // }
   }
 
   componentWillReceiveProps (nextProps) {
@@ -35,10 +35,6 @@ class Products extends Component {
     } = nextProps
 
     const categoryParam = match.params.category
-
-    // if (categoryParam) {
-    //   actions.getCategoryProducts(categoryParam, 12, false)
-    // }
   }
 
   render () {
@@ -68,13 +64,13 @@ class Products extends Component {
         <Categories categories={categories} childCategories={childCategories} selectedCategory={selectedCategory} />
         <div className='col col-xs-100'>
           <div className='col col-xs-100 col-md-70'>
-            {false ? <Breadcrumbs breadcrumbs={breadcrumbs} /> : null}
+            <Breadcrumbs breadcrumbs={[selectedCategory]} />
           </div>
           <div className='col col-xs-100 col-md-30'>
             <Sorting />
           </div>
         </div>
-        <ProductList />
+        <ProductList category={selectedCategory} />
         <Footer />
       </div>
     )

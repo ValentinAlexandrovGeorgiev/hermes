@@ -21,7 +21,6 @@ export function getProduct (id = '', state) {
 export function getCategoryProducts (category = '', count = 0, pagination = false) {
   return (dispatch) => {
     return Hermes.Product.getCategoryProducts(category, count).then((json) => {
-      console.log(json)
       if (pagination) {
         dispatch({
           payload: json,
