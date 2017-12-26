@@ -17,7 +17,6 @@ DATABASES = {
     }
 }
 
-
 INSTALLED_APPS += [
     'sslserver',
     'corsheaders',

@@ -31,7 +31,10 @@ class ProductSerializer(serializers.ModelSerializer):
         conv = CurrencyConverter()
         price = float(obj.price)
         currency = obj.currency
-        return str(conv.convert(price, currency, DEFAULT_CURRENCY))
+        res = str(round(conv.convert(price, currency, DEFAULT_CURRENCY), 2))
+        if len(res.split('.')[1]) == 1:
+            res += '0'
+        return res
 
     def set_default_currency(self, obj):
         return DEFAULT_CURRENCY
