@@ -3,23 +3,28 @@ import { Link, withRouter } from 'react-router-dom'
 import SearchInput from '../SearchInput/SearchInput'
 import { connect } from 'react-redux'
 import LanguageSelector from '../LanguageSelector/LanguageSelector'
+import MobileMenu from '../MobileMenu/MobileMenu'
 import translate from 'translations'
 import './header.scss'
 
 const PAGES = {
-  products: 'products',
   services: 'services',
   catalogs: 'catalogs',
   forus: 'forus'
 }
+
 
 class Header extends Component {
   constructor () {
     super()
 
     this.state = {
-      selected: false
+      selected: false,
+      openMobileMenu: false
     }
+
+    this.openMobileMenu = this.openMobileMenu.bind(this)
+    this.closeMobileMenu = this.closeMobileMenu.bind(this)
   }
 
   returnSelectedClass () {
@@ -28,7 +33,6 @@ class Header extends Component {
     } = this.props
 
     switch (location.pathname) {
-      case '/products': return PAGES.products
       case '/services': return PAGES.services
       case '/catalogs': return PAGES.catalogs
       case '/for-us': return PAGES.forus
@@ -51,14 +55,30 @@ class Header extends Component {
     })
   }
 
+  openMobileMenu () {
+    this.setState({
+      openMobileMenu: true
+    })
+  }
+
+  closeMobileMenu () {
+    this.setState({
+      openMobileMenu: false
+    })
+  }
+
   render () {
     const {
-      categories
+      categories,
+      childCategories
     } = this.props
+    const { openMobileMenu } = this.state
     const selected = this.returnSelectedClass()
 
     return (
       <div className='header__wrapper'>
+        <img onClick={this.openMobileMenu} className='header__mobile-menu' alt='mobile menu hermes gift' src='/static/icons/menu.svg' />
+        { openMobileMenu ? <MobileMenu categories={categories} childCategories={childCategories} closeMobileMenu={this.closeMobileMenu} /> : null }
         <div className='header__nav col-xs-100'>
           <div className={`header__item ${selected === PAGES.services ? 'selected' : ''}`}>
             <Link to='/services'>{translate('header.services')}</Link>
@@ -92,6 +112,7 @@ class Header extends Component {
 const mapStateToProps = (state) => {
   const props = {
     categories: state.catalog_information.categories,
+    childCategories: state.catalog_information.childCategories
   }
   return props
 }

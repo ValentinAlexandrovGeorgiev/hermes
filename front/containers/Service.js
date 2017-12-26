@@ -15,7 +15,7 @@ class Service extends Component {
       match,
       assets
     } = this.props
-    
+
     if (!assets || !assets[match.params.name]) {
       actions.getAsset([match.params.name])
     }
@@ -26,7 +26,7 @@ class Service extends Component {
       assets,
       match
     } = this.props
-
+    
     if (!assets) {
       return null
     }
@@ -54,7 +54,7 @@ class Service extends Component {
 
 const mapStateToProps = (state) => {
   const props = {
-    assets: state.asset_information.assets
+    assets: state.asset_information
   }
   return props
 }

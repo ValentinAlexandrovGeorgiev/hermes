@@ -23,7 +23,8 @@ const CAROUSEL_SETTINGS = {
 }
 
 export default function MoreCategoryProducts ({ products, category }) {
-  
+  console.log('carousel products')  
+  console.log(products)  
   return (
     <div className='pdp__more-products'>
       <h3 className='more-products-label'>{translate('pdp.more.products', category)}</h3>
@@ -38,6 +39,10 @@ export default function MoreCategoryProducts ({ products, category }) {
 
 function loadCarousel (products) {
   return products.map((p) => {
-  	return <ProductTile key={p.client_id} {...p} />
+  	return (
+      <div key={p.client_id} className='carousel-item'>
+        <ProductTile {...p} />
+      </div>
+    )
   })
 }

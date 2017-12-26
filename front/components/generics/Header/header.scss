@@ -1,6 +1,11 @@
 $grey: #EDF0EB;
 
 .header {
+  
+  &__mobile-menu {
+    display: none;
+  }
+
   &__wrapper {
     position: fixed;
     background: #fff;

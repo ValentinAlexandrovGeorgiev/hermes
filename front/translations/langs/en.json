@@ -36,5 +36,6 @@
 	"meta.notfound": "Not found",
 	"service.description": "Description: ",
 	"error.title": "404 Not found page",
-	"error.description": "Sorry, we can't find the requested page. Please, check the url or contact us! Thank you for your patience."
+	"error.description": "Sorry, we can't find the requested page. Please, check the url or contact us! Thank you for your patience.",
+	"close": "Close"
 }
