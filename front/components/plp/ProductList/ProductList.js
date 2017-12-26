@@ -43,10 +43,18 @@ class ProductList extends Component {
     } = this.props
     const { loading } = this.state
 
-    if (products.length === 0) {
+    if (products === null) {
       return (
         <div className='loader'>
           Loading...
+        </div>
+      )
+    }
+
+    if (products.length === 0) {
+      return (
+        <div className='no-products'>
+          Sorry, there are no products
         </div>
       )
     }
@@ -74,7 +82,7 @@ class ProductList extends Component {
 }
 
 ProductList.defaultProps = {
-  products: []
+  products: null
 }
 
 ProductList.propTypes = {

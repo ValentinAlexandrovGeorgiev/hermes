@@ -11,31 +11,9 @@ import Categories from 'components/generics/Categories/Categories'
 import ProductList from 'components/plp/ProductList/ProductList'
 import Breadcrumbs from 'components/plp/Breadcrumbs/Breadcrumbs'
 import Sorting from 'components/plp/Sorting/Sorting'
+import Pagination from 'components/plp/Pagination/Pagination'
 
 class Products extends Component {
-  componentWillMount () {
-    const {
-      actions,
-      match
-    } = this.props
-
-    const categoryParam = match.params.category
-
-    // actions.addToBreadcrumbs(categoryParam)
-    // if (categoryParam) {
-    //   actions.getCategoryProducts(categoryParam, 12, false)
-    // }
-  }
-
-  componentWillReceiveProps (nextProps) {
-    const {
-      actions,
-      match,
-      products
-    } = nextProps
-
-    const categoryParam = match.params.category
-  }
 
   render () {
     const { 
@@ -70,7 +48,9 @@ class Products extends Component {
             <Sorting />
           </div>
         </div>
-        <ProductList category={selectedCategory} />
+        <Pagination pagination={true}>
+          <ProductList category={selectedCategory} />
+        </Pagination>
         <Footer />
       </div>
     )
