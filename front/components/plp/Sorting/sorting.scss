@@ -166,6 +166,14 @@
   }
 }
 
+@media only screen and (max-width: 560px) {
+  .header__logo {
+    a {
+      display: none;
+    }
+  }
+}
+
 @media only screen and (max-width: 460px) {
   .catalog-tile__wrapper.col-xs-50 {
     width: 100%;

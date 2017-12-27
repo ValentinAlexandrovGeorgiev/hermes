@@ -23,8 +23,6 @@ const CAROUSEL_SETTINGS = {
 }
 
 export default function MoreCategoryProducts ({ products, category }) {
-  console.log('carousel products')  
-  console.log(products)  
   return (
     <div className='pdp__more-products'>
       <h3 className='more-products-label'>{translate('pdp.more.products', category)}</h3>
