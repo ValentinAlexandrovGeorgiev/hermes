@@ -6,7 +6,13 @@ class Asset {
     return new Promise((resolve, reject) => {
       HTTP.get(HTTP.addParameters(GET_ASSETS, {many: ids.join(',')})).then((json) => {
         if (!json.errorObject) {
-          resolve(json)
+          let assets = {}
+          json.map((asset) => {
+            const assetID = asset.query_field
+            assets[assetID] = asset
+          })
+
+          resolve(assets)
         } else {
           reject(json)
         }

@@ -8,6 +8,10 @@ html, body {
   margin: 0;
 }
 
+body {
+  padding-top: 153px;
+}
+
 * {
   font-family: $font;
   box-sizing: border-box;

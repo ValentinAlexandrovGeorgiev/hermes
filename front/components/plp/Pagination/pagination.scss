@@ -1,0 +1,48 @@
+.pagination {
+  &__wrapper {
+  	text-align: center;
+  	
+  	span {
+  	  cursor: pointer;
+  	  display: inline-block;
+	  height: 45px;
+	  width: 45px;
+	  line-height: 40px;
+	  border: 1px solid #244678;
+	  color: #244678;
+	  text-align: center;
+	  font-size: 21px;
+	  margin: 5px;
+
+	  i {
+	  	border: solid #244678;
+	    border-width: 0 3px 3px 0;
+	    display: inline-block;
+	    padding: 4px;
+	  }
+  	}
+  }
+
+  &__next {
+  	padding-right: 4px;
+
+  	i {
+      transform: rotate(-45deg);
+  	}
+  }
+  &__previous, &__first {
+  	padding-left: 4px;
+
+  	i {
+      transform: rotate(135deg);
+  	}
+  }
+
+  &__last {
+  	padding-right: 5px;
+  
+  	i {
+      transform: rotate(-45deg);
+  	}
+  }
+}

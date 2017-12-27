@@ -1,26 +1,21 @@
-import React, {Component} from 'react'
+import React, { Component } from 'react'
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
-import PropTypes from 'prop-types'
 import * as ACTIONS from 'actions'
 import translate from 'translations'
 import MetaTags from 'components/generics/MetaTags/MetaTags'
 import Header from 'components/generics/Header/Header'
-import Footer from 'components/generics/Footer/Footer'
 import Asset from 'components/generics/Asset/Asset'
+import Footer from 'components/generics/Footer/Footer'
 
-import 'styles/pages/forus.scss'
+import 'styles/pages/notfound.scss'
 
-class Forus extends Component {
+class NotFound extends Component {
   componentWillMount () {
     const { 
       actions,
       assets
     } = this.props
-
-    if (!assets['for-us']) {
-      actions.getAsset('for-us')
-    }
 
     if (!assets['contacts']) {
       actions.getAsset('contacts')
@@ -32,25 +27,25 @@ class Forus extends Component {
       assets
     } = this.props
     const meta = {
-      title: `${translate('project.name')} - ${translate('meta.contacts')} & ${translate('meta.for.us')}`,
+      title: `${translate('project.name')} - ${translate('meta.notfound')}`,
       location: window.location.href,
-      index: true,
-      keywords: `${translate('project.keywords')}, ${translate('meta.forus.keywords')}`,
-      description: `${translate('project.description')} - ${translate('meta.forus.description')}`
+      index: false
     }
-
-    const forUsAsset = assets['for-us']
     const contactsAsset = assets['contacts']
 
     return (
       <div>
         <MetaTags {...meta} />
         <Header />
-        <div className='for-us-container col-xs-100 col-md-70'>
-          <Asset asset={forUsAsset} />
-        </div>
-        <div className='contacts-container offset-30 col-xs-100 col-md-70'>
-          <Asset asset={contactsAsset} />
+        <div className='error-page col col-xs-100'>
+          <h1>{translate('error.title')}</h1>
+          <div className='error-description'>
+            <img className='col col-xs-100 col-md-30' src='/static/images/hermes.png' alt='hermesgift' />
+            <div className='col col-xs-100 col-md-70'>
+              <p>{translate('error.description')}</p>
+              <Asset asset={contactsAsset} />
+            </div>
+          </div>
         </div>
         <Footer />
       </div>
@@ -58,12 +53,8 @@ class Forus extends Component {
   }
 }
 
-Forus.defaultProps = {
+NotFound.defaultProps = {
   assets: {}
-}
-
-Forus.propTypes = {
-  assets: PropTypes.shape({})
 }
 
 const mapStateToProps = (state) => {
@@ -79,4 +70,4 @@ const mapDispatchToProps = (dispatch) => {
   return actionMap
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(Forus)
+export default connect(mapStateToProps, mapDispatchToProps)(NotFound)

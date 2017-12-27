@@ -7,13 +7,9 @@ import {
 export function getAsset (ids = []) {
   return (dispatch, nextState) => {
     const arrayIDs = _.isArray(ids) ? ids : [ids]
-    return Hermes.Asset.getByIDs(arrayIDs).then((json) => {
-      let assets = nextState().asset_information
-      json.map((asset) => {
-        const assetID = asset.query_field
-        assets[assetID] = asset
-      })
-      
+    const state = nextState()
+
+    return Hermes.Asset.getByIDs(arrayIDs).then((assets) => {  
       dispatch({
         payload: assets,
         type: GET_ASSETS

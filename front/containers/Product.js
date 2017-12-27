@@ -17,8 +17,12 @@ import MoreCategoryProducts from 'components/pdp/MoreCategoryProducts/MoreCatego
 class Product extends Component {
 
   componentWillMount () {
-    const { actions } = this.props
-    actions.getProduct('1')
+    const { 
+      actions,
+      match
+    } = this.props
+
+    actions.getProduct(match.params.id)
   }
 
   componentWillReceiveProps (nextProps) {
@@ -48,7 +52,8 @@ class Product extends Component {
     if (product.detail === 'Not found.') {
       const meta = {
         title: `${translate('project.name')} - ${translate('meta.product.not.found')}`,
-        location: window.location.href
+        location: window.location.href,
+        index: false
       }
 
       return (
@@ -63,7 +68,10 @@ class Product extends Component {
 
     const meta = {
       title: `${translate('project.name')} - ${product.name}`,
-      location: window.location.href
+      location: window.location.href,
+      index: true,
+      keywords: `${translate('project.keywords')},${translate('meta.pdp.keywords', `${product.name}`)}`,
+      description: `${translate('project.description')} - ${translate('meta.pdp.description', `${product.name} - ${product.description}`)}`
     }
     
     return [
@@ -91,7 +99,7 @@ Product.defaultProps = {
     price: '',
     image: null,
     currency: 'BGN',
-    product_id: 0,
+    product_id: '0',
     category: ''
   },
   products: []
@@ -104,7 +112,7 @@ Product.propTypes = {
     price: PropTypes.string,
     image: PropTypes.string,
     currency: PropTypes.string,
-    product_id: PropTypes.number,
+    product_id: PropTypes.string,
     detail: PropTypes.string,
     category: PropTypes.string
   }),

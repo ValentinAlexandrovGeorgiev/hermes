@@ -1,7 +1,7 @@
 import React, {Component} from 'react'
-import { bindActionCreators } from 'redux'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
+import { bindActionCreators } from 'redux'
 import * as ACTIONS from 'actions'
 import translate from 'translations'
 import MetaTags from 'components/generics/MetaTags/MetaTags'
@@ -11,47 +11,9 @@ import Categories from 'components/generics/Categories/Categories'
 import ProductList from 'components/plp/ProductList/ProductList'
 import Breadcrumbs from 'components/plp/Breadcrumbs/Breadcrumbs'
 import Sorting from 'components/plp/Sorting/Sorting'
+import Pagination from 'components/plp/Pagination/Pagination'
 
 class Products extends Component {
-  componentWillMount () {
-    const {
-      actions,
-      match,
-      categories
-    } = this.props
-
-    console.log('componentWillMount')
-    const categoryParam = match.params.category
-
-    if (!categories) {
-      actions.getCategories()
-    }
-
-    actions.addToBreadcrumbs(categoryParam)
-    if (categoryParam) {
-      actions.getCategoryProducts(categoryParam, 0, false)
-    }
-  }
-
-  componentWillReceiveProps (nextProps) {
-    const {
-      actions,
-      match,
-      categories,
-      products
-    } = nextProps
-
-    const categoryParam = match.params.category
-    console.log('componentWillReceiveProps')
-
-    if (!categories) {
-      actions.getCategories()
-    }
-
-    if (categoryParam) {
-      actions.getCategoryProducts(categoryParam, 0, false)
-    }
-  }
 
   render () {
     const { 
@@ -67,7 +29,10 @@ class Products extends Component {
     const metaTitle = selectedCategory || translate('meta.products')
     const meta = {
       title: `${translate('project.name')} - ${metaTitle}`,
-      location: window.location.href
+      location: window.location.href,
+      index: true,
+      keywords: `${translate('project.keywords')},${selectedCategory}`,
+      description: `${translate('project.description')} - ${selectedCategory} - ${translate('meta.products.description')}`
     }
 
     return (
@@ -77,13 +42,15 @@ class Products extends Component {
         <Categories categories={categories} childCategories={childCategories} selectedCategory={selectedCategory} />
         <div className='col col-xs-100'>
           <div className='col col-xs-100 col-md-70'>
-            <Breadcrumbs breadcrumbs={breadcrumbs} />
+            <Breadcrumbs breadcrumbs={[selectedCategory]} />
           </div>
           <div className='col col-xs-100 col-md-30'>
             <Sorting />
           </div>
         </div>
-        <ProductList />
+        <Pagination pagination={true}>
+          <ProductList category={selectedCategory} />
+        </Pagination>
         <Footer />
       </div>
     )
@@ -101,8 +68,6 @@ Products.propTypes = {
 }
 
 const mapStateToProps = (state) => {
-  console.log('mapStateToProps')
-  console.log(state.product_information)
   const props = {
     categories: state.catalog_information.categories,
     childCategories: state.catalog_information.childCategories,

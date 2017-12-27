@@ -1,0 +1,27 @@
+.service {
+  &__wrapper {
+  	padding: 20px 35px;
+  }
+
+  &__image {
+    box-shadow: 0px 0px 28px 2px rgba(36,69,120,1);
+    border-radius: 7px;
+  }
+
+  &__title {
+  	font-size: 34px;
+  	margin-bottom: 40px;
+  }
+
+  &__body {
+  	vertical-align: top;
+    padding: 20px 30px 0;
+  }
+
+  &__description {
+  	font-size: 19px;
+  	margin-bottom: 20px;
+  	display: inline-block;
+  	text-decoration: underline;
+  }
+}

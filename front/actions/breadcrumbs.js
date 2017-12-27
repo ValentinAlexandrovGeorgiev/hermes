@@ -5,8 +5,6 @@ import {
 
 export function addToBreadcrumbs (category) {
   return (dispatch, nextState) => {
-  	console.log('kakvo segaaa')
-  	console.log(category)
   	const defaultBreadcrumbs = category ? [translate('plp.home')] : []
   	let breadcrumbs = nextState().breadcrumbs_information.breadcrumbs 
   	breadcrumbs = breadcrumbs && breadcrumbs.length > 0 ? breadcrumbs : defaultBreadcrumbs
