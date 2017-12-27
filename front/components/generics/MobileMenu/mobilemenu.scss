@@ -1,0 +1,51 @@
+.mobile-menu {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: #EDF0EB;
+  z-index: 99999;
+  padding: 10px 20px;
+
+  h1 {
+    color: #14141C;
+    margin-bottom: 10px;
+  }
+
+  p {
+    color: #14141C;
+  }
+
+  &__quit {
+    position: absolute;
+    top: 5px;
+    font-size: 20px;
+    right: 16px;
+    color: #244678;
+    cursor: pointer;
+  }
+
+  ul {
+    padding: 0;
+  }
+
+  li {
+    height: 40px;
+    line-height: 40px;
+    font-size: 21px;
+    border-bottom: 1px solid #244678;
+
+    a {
+      display: block;
+    }
+
+    &.last {
+      margin-bottom: 10px;
+    }
+  }
+
+  &__child-category {
+    padding-left: 20px;
+  }
+}

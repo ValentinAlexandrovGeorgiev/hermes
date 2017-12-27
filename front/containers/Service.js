@@ -1,42 +1,51 @@
 import React, {Component} from 'react'
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
-import translate from 'translations'
 import * as ACTIONS from 'actions'
+import translate from 'translations'
 import MetaTags from 'components/generics/MetaTags/MetaTags'
 import Header from 'components/generics/Header/Header'
-import CatalogGrid from 'components/cats/CatalogGrid/CatalogGrid'
 import Footer from 'components/generics/Footer/Footer'
+import ServiceInfo from 'components/services/ServiceInfo/ServiceInfo'
 
-class Catalogs extends Component {
-
+class Service extends Component {
   componentWillMount () {
-    const { 
-      actions
+    const {
+      actions,
+      match,
+      assets
     } = this.props
 
-    actions.getCatalogs()
+    if (!assets || !assets[match.params.name]) {
+      actions.getAsset([match.params.name])
+    }
   }
 
   render () {
     const {
-      catalogs
+      assets,
+      match
     } = this.props
+    
+    if (!assets) {
+      return null
+    }
+
+    const asset = assets[match.params.name]
 
     const meta = {
-      title: `${translate('project.name')} - ${translate('catalogs.title')}`,
+      title: `${translate('project.name')} - ${translate('services.title')}`,
       location: window.location.href,
       index: true,
-      keywords: `${translate('project.keywords')}, ${translate('meta.catalogs.keywords')}`,
-      description: `${translate('project.description')} - ${translate('meta.catalogs.description')}`
+      keywords: `${translate('project.keywords')}, ${translate('meta.services.keywords')}`,
+      description: `${translate('project.description')} - ${translate('meta.services.description')}`
     }
 
     return (
       <div>
         <MetaTags {...meta} />
         <Header />
-        <h1 className='catalogs__title'>{translate('catalogs.title')}</h1>
-        <CatalogGrid catalogs={catalogs} />
+        <ServiceInfo service={asset} /> 
         <Footer />
       </div>
     )
@@ -45,7 +54,7 @@ class Catalogs extends Component {
 
 const mapStateToProps = (state) => {
   const props = {
-    catalogs: state.catalog_information.catalogs
+    assets: state.asset_information
   }
   return props
 }
@@ -56,4 +65,4 @@ const mapDispatchToProps = (dispatch) => {
   return actionMap
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(Catalogs)
+export default connect(mapStateToProps, mapDispatchToProps)(Service)

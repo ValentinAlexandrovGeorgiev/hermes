@@ -8,6 +8,17 @@ import * as ACTIONS from 'actions'
 import Language from 'components/generics/Language/Language'
 
 class App extends Component {
+  componentWillMount () {
+    const {
+      actions,
+      categories
+    } = this.props
+
+    if (!categories) {
+      actions.getCategories()
+    }
+  }
+
   render () {
     const {
       actions,
@@ -15,14 +26,12 @@ class App extends Component {
     } = this.props
 
     return (
-      <div>
-        <Language>
-          <RouteRoot
-            actions={actions}
-            router={router}
-          />
-        </Language>
-      </div>
+      <Language>
+        <RouteRoot
+          actions={actions}
+          router={router}
+        />
+      </Language>
     )
   }
 }
@@ -34,7 +43,8 @@ App.propTypes = {
 
 const mapStateToProps = (state) => {
   const props = {
-    router: state.router
+    router: state.router,
+    categories: state.catalog_information.categories
   }
   return props
 }

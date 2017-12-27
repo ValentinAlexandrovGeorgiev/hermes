@@ -6,11 +6,21 @@ import _ from 'lodash'
 import './categories.scss'
 
 class Categories extends Component {
-  renderCategories (categories, selectedCategory) {
+  renderCategories (categories, childCategories, selectedCategory) {
     const keys = Object.keys(categories)
 
-    return keys.map((key) => {
-      let category = categories[key]
+    let selectedCategoryID = null
+    keys.forEach((key) => {
+      if (categories[key].name === selectedCategory) {
+        selectedCategoryID = key
+      }
+    })
+
+    if (!childCategories[selectedCategoryID]) {
+      return null
+    }
+
+    return childCategories[selectedCategoryID].map((category) => {
       const selected = selectedCategory === category.name
 
       return (
@@ -22,6 +32,7 @@ class Categories extends Component {
   render () {
     const {
       categories,
+      childCategories,
       selectedCategory
     } = this.props
 
@@ -31,7 +42,7 @@ class Categories extends Component {
 
     return (
       <div className='categories__wrapper'>
-        {this.renderCategories(categories, selectedCategory)}
+        {this.renderCategories(categories, childCategories, selectedCategory)}
       </div>
     )
   }
@@ -39,11 +50,13 @@ class Categories extends Component {
 
 Categories.defaultProps = {
   categories: {},
+  childCategories: {},
   selectedCategory: ''
 }
 
 Categories.propTypes = {
   categories: PropTypes.shape({}),
+  childCategories: PropTypes.shape({}),
   selectedCategory: PropTypes.string
 }
 

@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Link } from 'react-router-dom'
+import { Link, withRouter } from 'react-router-dom'
 import { bindActionCreators } from 'redux'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
@@ -11,10 +11,12 @@ class Category extends Component {
   selectCategory (event, category) {
     event.preventDefault()
     const {
-      actions
+      actions,
+      history
     } = this.props
 
     actions.addToBreadcrumbs(category)
+    history.push(`/products/${category}`)
   }
 
   render () {
@@ -50,4 +52,4 @@ const mapDispatchToProps = (dispatch) => {
   return actionMap
 }
 
-export default connect(null, mapDispatchToProps)(Category)
+export default withRouter(connect(null, mapDispatchToProps)(Category))
