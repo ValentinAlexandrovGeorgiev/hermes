@@ -1,8 +1,6 @@
-from django.shortcuts import render
+from django.shortcuts import get_object_or_404
 from django.http import Http404
-from rest_framework import mixins
-from rest_framework import generics
-from rest_framework import viewsets
+from rest_framework import generics, viewsets, filters
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from .models import Asset, Catalog, Category, Product, Site
@@ -21,6 +19,14 @@ class CategoryViewSet(viewsets.ReadOnlyModelViewSet):
 class ProductViewSet(viewsets.ReadOnlyModelViewSet):
     queryset = Product.objects.filter(online=True)
     serializer_class = ProductSerializer
+    filter_backends = (filters.SearchFilter,)
+    search_fields = ('name', 'product_id')
+
+    def retrieve(self, request, *args, **kwargs):
+        queryset = self.get_queryset()
+        obj = get_object_or_404(queryset, name=self.kwargs['product_id'])
+        serializer = self.get_serializer(obj)
+        return Response(serializer.data)
 
 
 class CatalogViewSet(viewsets.ReadOnlyModelViewSet):
@@ -32,6 +38,13 @@ class SiteViewSet(viewsets.ReadOnlyModelViewSet):
     queryset = Site.objects.all()
     serializer_class = SiteSerializer
 
+    def retrieve(self, request, *args, **kwargs):
+        queryset = self.get_queryset()
+        obj = get_object_or_404(queryset,
+                                config_name=self.kwargs['config_name'])
+        serializer = self.get_serializer(obj)
+        return Response(serializer.data)
+
 
 class AssetViewSet(viewsets.ReadOnlyModelViewSet):
     queryset = Asset.objects.filter(online=True)
@@ -39,7 +52,6 @@ class AssetViewSet(viewsets.ReadOnlyModelViewSet):
 
 
 class ProductByCategory(generics.GenericAPIView):
-
     serializer_class = ProductSerializer
     pagination_class = CustomizedLimitOffsetPagination
 
@@ -50,22 +62,16 @@ class ProductByCategory(generics.GenericAPIView):
     def get(self, request, *args, **kwargs):
         queryset = self.get_queryset()
         page = self.paginate_queryset(queryset)
-        to_be_populated = page if page is not None else queryset
-        serializer = self.get_serializer(to_be_populated, many=True)
-
-        return Response(serializer.data)
-
-
-class SiteConfig(APIView):
-
-    def get(self, request, config_name):
-        sites = Site.objects.filter(config_name=config_name)
-        serialized_sites = SiteSerializer(sites, many=True)
-        return Response(serialized_sites.data)
+        if page is not None:
+            serializer = self.get_serializer(page, many=True)
+            return self.get_paginated_response(serializer.data)
+        products_len = queryset.count()
+        return Response({'items': serializer.data,
+                         'count': products_len,
+                         'pages': 1})
 
 
 class AssetsBulk(generics.GenericAPIView):
-
     serializer_class = AssetSerializer
 
     def get_queryset(self):

@@ -1,7 +1,7 @@
 from django.conf.urls import url
 from rest_framework import renderers
 from .views import AssetViewSet, CatalogViewSet, CategoryViewSet,\
-    ProductViewSet, SiteViewSet, ProductByCategory, SiteConfig, AssetsBulk
+    ProductViewSet, SiteViewSet, ProductByCategory, AssetsBulk
 
 app_name = 'API'
 
@@ -46,13 +46,15 @@ asset_detail = AssetViewSet.as_view({
 })
 
 urlpatterns = ([
-    url(r'^product/(?P<pk>[0-9]+)/$', product_detail, name='product-detail'),
-    url(r'^products/(?P<category_name>[\w\- ]+)/$', ProductByCategory.as_view(),
-        name='products-category'),
+    url(r'^product/(?P<product_id>[\w\- ]+)/$', product_detail,
+        name='product-detail'),
+    url(r'^products/$', product_list, name='product-list'),
+    url(r'^products/(?P<category_name>[\w\- ]+)/$',
+        ProductByCategory.as_view(), name='products-category'),
     url(r'^categories/$', category_list, name='category-list'),
     url(r'^catalogs/$', catalog_list, name='catalog-list'),
-    url(r'^asset/(?P<pk>[0-9]+)/$', asset_detail, name='asset_detail'),
-    url(r'^assets/(?P<config_name>[\w\- ]+)/$', SiteConfig.as_view(),
+    url(r'^asset/(?P<pk>[0-9]+)/$', asset_detail, name='asset-detail'),
+    url(r'^site/(?P<config_name>[\w\- ]+)/$', site_detail,
         name='site-config'),
-    url(r'^assets-bulk/$', AssetsBulk.as_view(), name='asset_bulk'),
+    url(r'^assets-bulk/$', AssetsBulk.as_view(), name='assets-bulk'),
 ])
