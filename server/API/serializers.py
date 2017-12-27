@@ -57,9 +57,14 @@ class CatalogSerializer(serializers.ModelSerializer):
 
 class SiteSerializer(serializers.ModelSerializer):
 
+    items = serializers.SerializerMethodField('get_items_contents')
+
     class Meta:
         model = Site
         fields = '__all__'
+
+    def get_items_contents(self, obj):
+        return [item.content for item in obj.items.all()]
 
 
 @assign_image_url_getter

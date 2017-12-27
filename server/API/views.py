@@ -62,10 +62,13 @@ class ProductByCategory(generics.GenericAPIView):
     def get(self, request, *args, **kwargs):
         queryset = self.get_queryset()
         page = self.paginate_queryset(queryset)
-        to_be_populated = page if page is not None else queryset
-        serializer = self.get_serializer(to_be_populated, many=True)
-
-        return Response(serializer.data)
+        if page is not None:
+            serializer = self.get_serializer(page, many=True)
+            return self.get_paginated_response(serializer.data)
+        products_len = queryset.count()
+        return Response({'items': serializer.data,
+                         'count': products_len,
+                         'pages': 1})
 
 
 class AssetsBulk(generics.GenericAPIView):

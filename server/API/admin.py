@@ -1,5 +1,4 @@
 from django.contrib import admin
-from django.shortcuts import render
 from django.http import HttpResponse
 from django.utils.html import format_html
 from django.template.response import TemplateResponse
@@ -7,13 +6,17 @@ from django.utils.translation import ugettext_lazy as _
 from import_export.admin import ImportExportMixin
 from import_export.resources import ModelResource
 from import_export.forms import ConfirmImportForm
-from .models import Category, Product, Catalog, Asset, Site
-from .forms import ProductsImagesForm, SiteAdminForm
+from .models import Category, Product, Catalog, Asset, Site, Item
+from .forms import ProductsImagesForm, CatalogForm
 import cloudinary
 try:
     from django.utils.encoding import force_text
 except ImportError:
     from django.utils.encoding import force_unicode as force_text
+
+
+class CategoryAdmin(admin.ModelAdmin):
+    search_fields = ['name']
 
 
 class ProductResource(ModelResource):
@@ -42,6 +45,7 @@ class ProductResource(ModelResource):
 class ProductAdmin(ImportExportMixin, admin.ModelAdmin):
 
     list_display = ('name', 'description', 'category', 'delete_product')
+    search_fields = ['name', 'product_id']
     resource_class = ProductResource
 
     def delete_product(self, obj):
@@ -121,16 +125,33 @@ class ProductAdmin(ImportExportMixin, admin.ModelAdmin):
                                 context)
 
 
+class CatalogAdmin(admin.ModelAdmin):
+    form = CatalogForm
+    search_fields = ['name']
+
+
 class SiteAdmin(admin.ModelAdmin):
-    form = SiteAdminForm
+    search_fields = ['config_name']
 
 
-admin.site.register(Category)
+class AssetAdmin(admin.ModelAdmin):
+    search_fields = ['title']
+
+
+class ItemAdmin(admin.ModelAdmin):
+    def get_model_perms(self, request):
+        """
+        Return empty perms dict in order to hide Items from admin index page.
+        Assuming that they are for ManyToManyField to Site use only.
+        """
+        return {}
+
+
+admin.site.register(Category, CategoryAdmin)
 admin.site.register(Product, ProductAdmin)
-admin.site.register(Catalog)
-admin.site.register(Asset)
-admin.site.register(Site)
-#admin.site.register(Site, SiteAdmin)
-#SiteAdmin uses different TextArea field for items propery, but still not good enough
+admin.site.register(Catalog, CatalogAdmin)
+admin.site.register(Asset, AssetAdmin)
+admin.site.register(Item, ItemAdmin)
+admin.site.register(Site, SiteAdmin)
 admin.site.site_header = 'Hermes Administration'
 admin.site.site_title = 'Hermes Administration'
