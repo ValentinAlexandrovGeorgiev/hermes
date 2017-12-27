@@ -2,7 +2,6 @@ import React, { Component } from 'react'
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
 import * as ACTIONS from 'actions'
-import Dropdown from '../Dropdown/Dropdown'
 import './languageselector.scss'
 
 const LANGUAGES = [

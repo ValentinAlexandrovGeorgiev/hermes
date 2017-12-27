@@ -1,12 +1,12 @@
 import {
   GET_PRODUCT,
-  GET_CATEGORY_PRODUCTS
+  GET_CATEGORY_PRODUCTS,
+  SORT_PRODUCTS
 } from 'actions/const'
 
 
 module.exports = function (state = {}, action) {
   let nextState = Object.assign({}, state)
-
   switch (action.type) {
     case GET_PRODUCT: {
       return {
@@ -17,9 +17,15 @@ module.exports = function (state = {}, action) {
     case GET_CATEGORY_PRODUCTS: {
       return {
         ...nextState,
-      	products: action.payload.items,
+        products: action.payload.items,
         count: action.payload.count,
         pages: action.payload.pages        
+      }
+    }
+    case SORT_PRODUCTS: {
+      return {
+        ...nextState,
+        products: action.payload        
       }
     }
     default: {
