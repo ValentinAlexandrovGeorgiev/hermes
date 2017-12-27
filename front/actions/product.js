@@ -20,9 +20,9 @@ export function getProduct (id = '', state) {
   }
 }
 
-export function getCategoryProducts (category = '', count = 0, pagination = false) {
+export function getCategoryProducts (category = '', start = 0, count = 12, pagination = false) {
   return (dispatch) => {
-    return Hermes.Product.getCategoryProducts(category, count).then((json) => {
+    return Hermes.Product.getCategoryProducts(category, start, count).then((json) => {
       if (pagination) {
         dispatch({
           payload: json,

@@ -1,8 +1,8 @@
 import React, { Component } from 'react'
-import { bindActionCreators } from 'redux'
-import * as ACTIONS from 'actions'
 import ProductTile from '../ProductTile/ProductTile'
 import PropTypes from 'prop-types'
+import { bindActionCreators } from 'redux'
+import * as ACTIONS from 'actions'
 import { connect } from 'react-redux'
 import './productlist.scss'
 
@@ -22,7 +22,7 @@ class ProductList extends Component {
     } = this.props
 
     if (category) {
-      actions.getCategoryProducts(category, 12, false)
+      actions.getCategoryProducts(category, 0, 12, false)
     }
   }
 

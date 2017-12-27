@@ -1,4 +1,10 @@
 .breadcrumbs {
   margin-left: 27px;
   font-weight: normal;
+
+  span {
+  	display: inline-block;
+  	margin-left: 5px;
+  	font-size: 35px;
+  }
 }

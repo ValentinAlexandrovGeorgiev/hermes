@@ -51,7 +51,7 @@ class Products extends Component {
             <Sorting />
           </div>
         </div>
-        <Pagination pagination={hasPagination}>
+        <Pagination category={selectedCategory} pagination={hasPagination} pages={pages}>
           <ProductList category={selectedCategory} />
         </Pagination>
         <Footer />
