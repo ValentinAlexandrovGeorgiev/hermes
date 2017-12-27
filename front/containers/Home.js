@@ -46,10 +46,10 @@ class Home extends Component {
         <HomeCarousel />
         <Statistics />
         <div className='contacts__wrapper'>
-          <div className='logo__container col col-md-20'>
-            <img className='hermes-logo' src='/static/images/hermes.png' alt='Hermes Gift' />  
+          <div className='logo__container col col-xs-100 col-md-20'>
+            <img className='hermes-logo' src='/static/images/hermes.svg' alt='Hermes Gift' />  
           </div>
-          <div className='contacts-container col col-md-80'>
+          <div className='contacts-container col col-xs-100 col-md-80'>
             <Asset asset={contactsAsset} />
           </div>
         </div>
