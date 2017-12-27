@@ -2,4 +2,7 @@ from django.apps import AppConfig
 
 
 class ApiConfig(AppConfig):
-    name = 'API'
+    name = 'server.API'
+
+    def ready(self):
+        import server.API.signals
