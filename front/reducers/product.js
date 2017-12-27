@@ -17,7 +17,9 @@ module.exports = function (state = {}, action) {
     case GET_CATEGORY_PRODUCTS: {
       return {
         ...nextState,
-      	products: action.payload
+      	products: action.payload.items,
+        count: action.payload.count,
+        pages: action.payload.pages        
       }
     }
     default: {

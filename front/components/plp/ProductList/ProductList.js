@@ -42,7 +42,7 @@ class ProductList extends Component {
       products
     } = this.props
     const { loading } = this.state
-
+    
     if (products === null) {
       return (
         <div className='loader'>
