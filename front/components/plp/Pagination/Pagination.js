@@ -1,5 +1,5 @@
 import React, {Component} from 'react'
-import { Link } from 'react-router-dom'
+import { Link, withRouter } from 'react-router-dom'
 import { bindActionCreators } from 'redux'
 import * as ACTIONS from 'actions'
 import { connect } from 'react-redux'
@@ -7,30 +7,35 @@ import PropTypes from 'prop-types'
 import './pagination.scss'
 
 class Pagination extends Component {
-  choosePage (trigger, start) {
+  choosePage (trigger, start, page) {
     if (trigger === 'unactive') {
       return
     }
 
     const {
       actions,
-      category
+      category,
+      history
     } = this.props
 
     actions.getCategoryProducts(category, start, 12, false)
+    history.push(`/products/${category}?page=${page}`)
   }
 
   render () {
     const {
       children,
       pagination,
-      pages
+      pages,
+      currentPage
     } = this.props
-    const currentPage = 1
-    const firstUnactive = currentPage > 1 ? '' : 'unactive' 
-    const prevUnactive = currentPage > 1 ? '' : 'unactive' 
-    const lastUnactive = currentPage < pages ? '' : 'unactive' 
-    const nextUnactive = currentPage < pages ? '' : 'unactive' 
+
+    const currPage = parseInt(currentPage)
+
+    const firstUnactive = currPage > 1 ? '' : 'unactive' 
+    const prevUnactive = currPage > 1 ? '' : 'unactive' 
+    const lastUnactive = currPage < pages ? '' : 'unactive' 
+    const nextUnactive = currPage < pages ? '' : 'unactive' 
 
     return (
       <div>
@@ -38,18 +43,18 @@ class Pagination extends Component {
         {
           pagination 
             ? <div className='pagination__wrapper col col-xs-100'>
-                <span onClick={() => this.choosePage(firstUnactive, 0)} className={`pagination__first ${firstUnactive}`}>
+                <span onClick={() => this.choosePage(firstUnactive, 0, 1)} className={`pagination__first ${firstUnactive}`}>
                   <i></i>
                   <i></i>
                 </span>
-                <span onClick={() => this.choosePage(prevUnactive, (currentPage - 2) * 12)} className={`pagination__previous ${prevUnactive}`}>
+                <span onClick={() => this.choosePage(prevUnactive, (currPage - 2) * 12,  currPage - 1)} className={`pagination__previous ${prevUnactive}`}>
                   <i></i>
                 </span>
-                <span className='pagination__current'>1</span>
-                <span onClick={() => this.choosePage(nextUnactive, currentPage * 12)} className={`pagination__next ${nextUnactive}`}>
+                <span className='pagination__current'>{currPage}</span>
+                <span onClick={() => this.choosePage(nextUnactive, currPage * 12, currPage + 1)} className={`pagination__next ${nextUnactive}`}>
                   <i></i>
                 </span>
-                <span onClick={() => this.choosePage(lastUnactive, (pages - 1) * 12)} className={`pagination__last ${lastUnactive}`}>
+                <span onClick={() => this.choosePage(lastUnactive, (pages - 1) * 12, pages)} className={`pagination__last ${lastUnactive}`}>
                   <i></i>
                   <i></i>
                 </span>
@@ -75,4 +80,4 @@ const mapDispatchToProps = (dispatch) => {
   return actionMap
 }
 
-export default connect(null, mapDispatchToProps)(Pagination)
+export default withRouter(connect(null, mapDispatchToProps)(Pagination))

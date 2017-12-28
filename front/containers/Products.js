@@ -23,8 +23,12 @@ class Products extends Component {
       count,
       pages,
       breadcrumbs,
-      match
+      match,
+      location
     } = this.props
+
+    const params = new URLSearchParams(location.search)
+    const page = params.get('page') || 1;
 
     const selectedCategory = match.params.category || null
 
@@ -51,8 +55,8 @@ class Products extends Component {
             <Sorting />
           </div>
         </div>
-        <Pagination category={selectedCategory} pagination={hasPagination} pages={pages}>
-          <ProductList category={selectedCategory} />
+        <Pagination category={selectedCategory} pagination={hasPagination} pages={pages} currentPage={page}>
+          <ProductList category={selectedCategory} currentPage={page} />
         </Pagination>
         <Footer />
       </div>
