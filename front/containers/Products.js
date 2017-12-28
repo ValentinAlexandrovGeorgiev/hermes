@@ -1,4 +1,4 @@
-import React, {Component} from 'react'
+import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
@@ -20,9 +20,15 @@ class Products extends Component {
       categories,
       childCategories,
       products,
+      count,
+      pages,
       breadcrumbs,
-      match
+      match,
+      location
     } = this.props
+
+    const params = new URLSearchParams(location.search)
+    const page = params.get('page') || 1
 
     const selectedCategory = match.params.category || null
 
@@ -34,7 +40,8 @@ class Products extends Component {
       keywords: `${translate('project.keywords')},${selectedCategory}`,
       description: `${translate('project.description')} - ${selectedCategory} - ${translate('meta.products.description')}`
     }
-
+    
+    const hasPagination = pages > 1
     return (
       <div>
         <MetaTags {...meta} />
@@ -42,14 +49,14 @@ class Products extends Component {
         <Categories categories={categories} childCategories={childCategories} selectedCategory={selectedCategory} />
         <div className='col col-xs-100'>
           <div className='col col-xs-100 col-md-70'>
-            <Breadcrumbs breadcrumbs={[selectedCategory]} />
+            <Breadcrumbs breadcrumbs={[selectedCategory]} count={count} />
           </div>
           <div className='col col-xs-100 col-md-30'>
             <Sorting />
           </div>
         </div>
-        <Pagination pagination={true}>
-          <ProductList category={selectedCategory} />
+        <Pagination category={selectedCategory} pagination={hasPagination} pages={pages} currentPage={page}>
+          <ProductList category={selectedCategory} currentPage={page} />
         </Pagination>
         <Footer />
       </div>
@@ -59,12 +66,16 @@ class Products extends Component {
 
 Products.defaultProps = {
   products: [],
-  breadcrumbs: []
+  breadcrumbs: [],
+  count: 0,
+  pages: 0
 }
 
 Products.propTypes = {
   products: PropTypes.array,
-  breadcrumbs: PropTypes.array
+  breadcrumbs: PropTypes.array,
+  count: PropTypes.number,
+  pages: PropTypes.number
 }
 
 const mapStateToProps = (state) => {
@@ -72,6 +83,8 @@ const mapStateToProps = (state) => {
     categories: state.catalog_information.categories,
     childCategories: state.catalog_information.childCategories,
     products: state.product_information.products,
+    pages: state.product_information.pages,
+    count: state.product_information.count,
     breadcrumbs: state.breadcrumbs_information.breadcrumbs
   }
   return props

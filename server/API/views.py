@@ -24,7 +24,7 @@ class ProductViewSet(viewsets.ReadOnlyModelViewSet):
 
     def retrieve(self, request, *args, **kwargs):
         queryset = self.get_queryset()
-        obj = get_object_or_404(queryset, name=self.kwargs['product_id'])
+        obj = get_object_or_404(queryset, product_id=self.kwargs['product_id'])
         serializer = self.get_serializer(obj)
         return Response(serializer.data)
 

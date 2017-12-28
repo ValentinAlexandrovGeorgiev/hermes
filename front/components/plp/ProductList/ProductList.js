@@ -1,8 +1,8 @@
 import React, { Component } from 'react'
-import { bindActionCreators } from 'redux'
-import * as ACTIONS from 'actions'
 import ProductTile from '../ProductTile/ProductTile'
 import PropTypes from 'prop-types'
+import { bindActionCreators } from 'redux'
+import * as ACTIONS from 'actions'
 import { connect } from 'react-redux'
 import './productlist.scss'
 
@@ -18,11 +18,12 @@ class ProductList extends Component {
   componentWillMount () {
     const {
       actions,
+      currentPage,
       category
     } = this.props
-
+    const start = currentPage <= 1 ? 0 : (currentPage - 1) * 12  
     if (category) {
-      actions.getCategoryProducts(category, 12, false)
+      actions.getCategoryProducts(category, start , 12)
     }
   }
 
@@ -33,7 +34,7 @@ class ProductList extends Component {
     } = nextProps
 
     if (category && this.props.category !== nextProps.category) {
-      actions.getCategoryProducts(category, 12, false)
+      actions.getCategoryProducts(category, 0, 12)
     }
   }
 
@@ -42,7 +43,7 @@ class ProductList extends Component {
       products
     } = this.props
     const { loading } = this.state
-
+    
     if (products === null) {
       return (
         <div className='loader'>

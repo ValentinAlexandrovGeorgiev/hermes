@@ -2,16 +2,20 @@
   &__wrapper {
   	display: inline-block;
   	margin: 27px 10px;
-    max-width: 160px;
   }
 
   &__link {
   	img {
-  	  width: 160px;
+      width: 160px;
       height: 142px;
-  	  display: block;
-  	  border-radius: 50%;
-  	  box-shadow: 0px 3px 25px 4px rgba(36, 70, 120, 1);
+      display: block;
+      border-radius: 5px;
+      margin: 0 30px;
+      box-shadow: 0px 3px 25px 4px rgba(36, 70, 120, 1);
+
+      &:hover {
+        box-shadow: 0px 3px 25px 7px rgba(36, 70, 120, 1);
+      }
   	}
 
   	&.selected {

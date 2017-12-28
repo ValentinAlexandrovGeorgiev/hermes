@@ -1,6 +1,8 @@
 import {
   getProduct,
-  getCategoryProducts
+  getCategoryProducts,
+  sort,
+  search
 } from './product'
 
 import {
@@ -27,6 +29,8 @@ const actions = {
   getCategories,
   addToBreadcrumbs,
   getCatalogs,
+  sort,
+  search,
   setLanguage
 }
 

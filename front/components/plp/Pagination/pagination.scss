@@ -5,22 +5,36 @@
   	span {
   	  cursor: pointer;
   	  display: inline-block;
-	  height: 45px;
-	  width: 45px;
-	  line-height: 40px;
-	  border: 1px solid #244678;
-	  color: #244678;
-	  text-align: center;
-	  font-size: 21px;
-	  margin: 5px;
+  	  height: 45px;
+  	  width: 45px;
+  	  line-height: 40px;
+  	  border: 1px solid #244678;
+  	  color: #244678;
+  	  text-align: center;
+  	  font-size: 21px;
+  	  margin: 5px;
 
-	  i {
-	  	border: solid #244678;
-	    border-width: 0 3px 3px 0;
-	    display: inline-block;
-	    padding: 4px;
-	  }
-  	}
+
+      &.pagination__current {
+        background: #244678;
+        color: #EDF0EB;
+      }
+
+      i {
+        border: 1px solid #244678;
+        border-width: 0 3px 3px 0;
+        display: inline-block;
+        padding: 4px;
+      }
+
+      &.unactive {
+        cursor: auto;
+        i {
+          border-color: rgba(36, 70, 120, 0.5);
+        }
+
+      }
+    }
   }
 
   &__next {
@@ -30,6 +44,7 @@
       transform: rotate(-45deg);
   	}
   }
+
   &__previous, &__first {
   	padding-left: 4px;
 

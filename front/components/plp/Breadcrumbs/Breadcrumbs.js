@@ -31,7 +31,8 @@ class Breadcrumbs extends Component {
 
   render () {
     const {
-      breadcrumbs
+      breadcrumbs,
+      count
     } = this.props
 
     if (breadcrumbs.length === 0) {
@@ -41,6 +42,12 @@ class Breadcrumbs extends Component {
     return (
       <h1 className='breadcrumbs'>
         {this.createBreadcrumbs(breadcrumbs)}
+        {count > 0
+          ? <span>
+              ({count})
+            </span>
+          : null
+        }
       </h1>
     )
   }
