@@ -28,6 +28,18 @@ class Product {
       })
     })
   }
+
+  searchProducts (search, start, count) {
+    return new Promise((resolve, reject) => {
+      HTTP.get(HTTP.addParameters(GET_CATEGORY_PRODUCTS, {search, start, count})).then((json) => {
+        if (!json.errorObject) {
+          resolve(json)
+        } else {
+          reject(json)
+        }
+      })
+    })
+  }
 }
 
 export default Product

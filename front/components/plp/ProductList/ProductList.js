@@ -23,7 +23,7 @@ class ProductList extends Component {
     } = this.props
     const start = currentPage <= 1 ? 0 : (currentPage - 1) * 12  
     if (category) {
-      actions.getCategoryProducts(category, start , 12, false)
+      actions.getCategoryProducts(category, start , 12)
     }
   }
 
@@ -34,7 +34,7 @@ class ProductList extends Component {
     } = nextProps
 
     if (category && this.props.category !== nextProps.category) {
-      actions.getCategoryProducts(category, 0, 12, false)
+      actions.getCategoryProducts(category, 0, 12)
     }
   }
 

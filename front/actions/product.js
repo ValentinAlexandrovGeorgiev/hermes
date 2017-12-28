@@ -3,7 +3,6 @@ import _ from 'lodash'
 import {
   GET_PRODUCT,
   GET_CATEGORY_PRODUCTS,
-  GET_CATEGORY_PRODUCTS_WITH_PAGINATION,
   SORT_PRODUCTS
 } from './const'
 
@@ -20,20 +19,13 @@ export function getProduct (id = '', state) {
   }
 }
 
-export function getCategoryProducts (category = '', start = 0, count = 12, pagination = false) {
+export function getCategoryProducts (category = '', start = 0, count = 12) {
   return (dispatch) => {
     return Hermes.Product.getCategoryProducts(category, start, count).then((json) => {
-      if (pagination) {
-        dispatch({
-          payload: json,
-          type: GET_CATEGORY_PRODUCTS_WITH_PAGINATION
-        })
-      } else {
-        dispatch({
-          payload: json,
-          type: GET_CATEGORY_PRODUCTS
-        })
-      }
+      dispatch({
+        payload: json,
+        type: GET_CATEGORY_PRODUCTS
+      })
     }).catch((error) => {
       console.error(error)
     })
@@ -71,9 +63,22 @@ export function sort (sorting) {
           payload: products,
           type: SORT_PRODUCTS
         })
-        break;1
+        break;
       }
     }
+  }
+}
 
+export function search (value = '', start = 0, count = 12) {
+  return (dispatch) => {
+    return Hermes.Product.searchProducts(value, start, count).then((json) => {
+      //@TODO: Delete this object {items } when API is ready for search implementation
+      dispatch({
+        payload: {items: json},
+        type: GET_CATEGORY_PRODUCTS
+      })
+    }).catch((error) => {
+      console.error(error)
+    })
   }
 }

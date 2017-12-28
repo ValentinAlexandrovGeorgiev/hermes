@@ -15,11 +15,17 @@ class Pagination extends Component {
     const {
       actions,
       category,
+      query,
       history
     } = this.props
 
-    actions.getCategoryProducts(category, start, 12, false)
-    history.push(`/products/${category}?page=${page}`)
+    if (query) {
+      actions.search(value)
+      history.push(`/search?q=${value}`)
+    } else {
+      actions.getCategoryProducts(category, start, 12)
+      history.push(`/products/${category}?page=${page}`)
+    }
   }
 
   render () {

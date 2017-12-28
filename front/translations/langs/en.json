@@ -38,5 +38,6 @@
 	"service.description": "Description: ",
 	"error.title": "404 Not found page",
 	"error.description": "Sorry, we can't find the requested page. Please, check the url or contact us! Thank you for your patience.",
-	"close": "Close"
+	"close": "Close",
+	"search.label": "Your search results for \"{0}\""
 }

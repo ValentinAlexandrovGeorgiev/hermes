@@ -38,7 +38,7 @@ export default function MoreCategoryProducts ({ products, category }) {
 function loadCarousel (products) {
   return products.map((p) => {
   	return (
-      <div key={p.client_id} className='carousel-item'>
+      <div key={`${p.product_id}-${p.id}`} className='carousel-item'>
         <ProductTile {...p} />
       </div>
     )

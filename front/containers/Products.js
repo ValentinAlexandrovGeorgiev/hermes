@@ -1,4 +1,4 @@
-import React, {Component} from 'react'
+import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
@@ -28,7 +28,7 @@ class Products extends Component {
     } = this.props
 
     const params = new URLSearchParams(location.search)
-    const page = params.get('page') || 1;
+    const page = params.get('page') || 1
 
     const selectedCategory = match.params.category || null
 
