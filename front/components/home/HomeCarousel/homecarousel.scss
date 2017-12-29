@@ -1,0 +1,23 @@
+.home-carousel {
+
+  &__container {
+    background-color: #FAF7F8;
+  }
+
+  &__wrapper {
+
+    img {
+      width: 100%;
+    }
+  }
+}
+
+@media screen and (min-width: 1220px) {
+
+  .home-carousel {
+
+    &__wrapper {
+      overflow: hidden;
+    }
+  }
+}

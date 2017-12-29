@@ -1,0 +1,38 @@
+.footer {
+
+  &__wrapper {
+    margin-top: 20px;
+    padding: 20px;
+    background: #FAF7F8;
+
+    .col {
+      padding: 0 20px;
+    }
+  }
+
+  &__column {
+    vertical-align: top;
+  }
+
+  &__fb_plugin {
+    text-align: center;
+  }
+
+  &__item {
+    font-size: 21px;
+    line-height: 40px;
+    text-align: center;
+    border-bottom: 2px solid #21518F;
+    margin: 10px 0;
+
+    a {
+      display: block;
+    }
+  }
+
+  &__rights {
+    text-align: right;
+    font-size: 14px;
+    color: #21518F;
+  }
+}

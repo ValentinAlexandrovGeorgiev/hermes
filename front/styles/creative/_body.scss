@@ -1,0 +1,39 @@
+@import url('https://fonts.googleapis.com/css?family=Ubuntu:400,700&subset=cyrillic');
+
+$font: 'Ubuntu', sans-serif;
+
+html, body {
+  width: 100%;
+  overflow-x: hidden;
+  margin: 0;
+}
+
+body {
+  padding-top: 153px;
+}
+
+* {
+  font-family: $font;
+  box-sizing: border-box;
+
+  &:after,
+  &:before {
+    box-sizing: border-box;
+  }
+}
+
+img {
+  width: 100%;
+}
+
+.pdp {
+  margin: 0 10px;
+}
+
+ul {
+  list-style: none;
+}
+
+.hide {
+  display: none;
+}
