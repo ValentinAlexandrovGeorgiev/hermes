@@ -1,7 +1,6 @@
 from django.db.models.signals import post_save, post_delete
 from django.core.files.storage import default_storage
 from django.dispatch import receiver
-import cloudinary
 from .models import Product, Catalog
 
 

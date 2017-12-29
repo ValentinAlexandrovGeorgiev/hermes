@@ -1,5 +1,8 @@
 import React, { Component } from 'react'
 import Dropdown from 'components/generics/Dropdown/Dropdown'
+import { connect } from 'react-redux'
+import { bindActionCreators } from 'redux'
+import * as ACTIONS from 'actions'
 import './sorting.scss'
 
 class Sorting extends Component {
@@ -34,19 +37,37 @@ class Sorting extends Component {
     }
   }
 
-  changeLabel (label) {
+  changeLabel ({value, title}) {
+    const {
+      actions
+    } = this.props
+    
+    actions.sort(value)
+
     this.setState({
-      label: label,
+      label: title,
       open: false
     })
   }
 
   render () {
     const items = [
-      'Сортирай',
-      'Цена',
-      'Име',
-      'Номер'
+      {
+        title: 'Сортирай',
+        value: 'default'
+      },
+      {
+        title: 'Цена (-/+)',
+        value: 'price'
+      },
+      {
+        title: 'Име',
+        value: 'name'
+      },
+      {
+        title: 'Номер',
+        value: 'id'
+      }
     ]
 
     const {
@@ -65,4 +86,10 @@ class Sorting extends Component {
   }
 }
 
-export default Sorting
+const mapDispatchToProps = (dispatch) => {
+  const actions = ACTIONS
+  const actionMap = { actions: bindActionCreators(actions, dispatch) }
+  return actionMap
+}
+
+export default connect(null, mapDispatchToProps)(Sorting)

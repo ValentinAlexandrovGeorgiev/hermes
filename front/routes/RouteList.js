@@ -3,6 +3,7 @@ import { Switch, Route } from 'react-router'
 import Home from 'containers/Home'
 import Forus from 'containers/Forus'
 import Products from 'containers/Products'
+import Search from 'containers/Search'
 import Product from 'containers/Product'
 import Service from 'containers/Service'
 import Services from 'containers/Services'
@@ -16,6 +17,7 @@ class RouteList extends Component {
         <Route key='/' exact path='/' component={Home} />
         <Route key='/products' exact path='/products' component={Products} />
         <Route key='/products/:category' exact path='/products/:category' component={Products} />
+        <Route key='/search' exact path='/search' component={Search} />
         <Route key='/product/:name/:id' path='/product/:name/:id' component={Product} />
         <Route key='/services' exact path='/services' component={Services} />
         <Route key='/service/:name' exact path='/service/:name' component={Service} />

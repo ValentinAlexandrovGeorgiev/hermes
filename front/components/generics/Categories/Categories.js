@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import Category from '../Category/Category'
 import _ from 'lodash'
+import translate from 'translations'
 
 import './categories.scss'
 
@@ -39,10 +40,17 @@ class Categories extends Component {
     if (_.isEmpty(categories)) {
       return null
     }
+    const children = this.renderCategories(categories, childCategories, selectedCategory) 
 
     return (
       <div className='categories__wrapper'>
-        {this.renderCategories(categories, childCategories, selectedCategory)}
+        { children
+          ? <div>
+              <span className='children-label'>{translate('children.label')}</span>
+              {children}
+            </div>
+          : null
+        }
       </div>
     )
   }

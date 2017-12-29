@@ -40,7 +40,7 @@ class NotFound extends Component {
         <div className='error-page col col-xs-100'>
           <h1>{translate('error.title')}</h1>
           <div className='error-description'>
-            <img className='col col-xs-100 col-md-30' src='/static/images/hermes.png' alt='hermesgift' />
+            <img className='col col-xs-100 col-md-30' src='/static/images/hermes.svg' alt='hermesgift' />
             <div className='col col-xs-100 col-md-70'>
               <p>{translate('error.description')}</p>
               <Asset asset={contactsAsset} />

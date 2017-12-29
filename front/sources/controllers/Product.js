@@ -17,9 +17,21 @@ class Product {
     })
   }
 
-  getCategoryProducts (category, count) {
+  getCategoryProducts (category, start, count) {
     return new Promise((resolve, reject) => {
-      HTTP.get(HTTP.addParameters(`${GET_CATEGORY_PRODUCTS}${category}`, {count})).then((json) => {
+      HTTP.get(HTTP.addParameters(`${GET_CATEGORY_PRODUCTS}${category}`, {start, count})).then((json) => {
+        if (!json.errorObject) {
+          resolve(json)
+        } else {
+          reject(json)
+        }
+      })
+    })
+  }
+
+  searchProducts (search, start, count) {
+    return new Promise((resolve, reject) => {
+      HTTP.get(HTTP.addParameters(GET_CATEGORY_PRODUCTS, {search, start, count})).then((json) => {
         if (!json.errorObject) {
           resolve(json)
         } else {

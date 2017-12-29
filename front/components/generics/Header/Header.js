@@ -92,7 +92,7 @@ class Header extends Component {
         </div>
         <div className='header__logo col-xs-100 col-md-100 col-lg-30'>
           <Link to='/'>
-            <img src='/static/images/hermes-logo.png' alt='hermes gift logo' />
+            <img src='/static/images/hermes-logo.svg' alt='hermes gift logo' />
             <p className='header__logo_message'>
               {translate('header.logo')}
             </p>
