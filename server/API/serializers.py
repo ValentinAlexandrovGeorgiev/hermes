@@ -25,7 +25,7 @@ class ProductSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Product
-        fields = '__all__'
+        exclude = ('client_id',)
 
     def convert_price(self, obj):
         conv = CurrencyConverter()

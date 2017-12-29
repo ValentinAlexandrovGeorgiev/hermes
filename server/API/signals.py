@@ -1,16 +1,19 @@
 from django.db.models.signals import post_save, post_delete
 from django.core.files.storage import default_storage
 from django.dispatch import receiver
+import cloudinary
 from .models import Product, Catalog
 
 
 @receiver(post_save, sender=Product)
 def generate_product_id(sender, instance=None, **kwargs):
-    if not instance or hasattr(instance, '_prevent_recursion'):
+    if not instance or instance.product_id is not None\
+            or hasattr(instance, '_prevent_recursion'):
         return
 
-    product_id = '{}-{}'.format(instance.category.category_id,
-                                instance.id)
+    placeholder = '{}-0{}' if len(instance.id) == 1 else '{}-{}'
+    product_id = placeholder.format(instance.category.category_id,
+                                    instance.id)
 
     instance.product_id = product_id
     try:

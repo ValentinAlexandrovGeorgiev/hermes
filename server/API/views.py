@@ -19,12 +19,26 @@ class CategoryViewSet(viewsets.ReadOnlyModelViewSet):
 class ProductViewSet(viewsets.ReadOnlyModelViewSet):
     queryset = Product.objects.filter(online=True)
     serializer_class = ProductSerializer
-    filter_backends = (filters.SearchFilter,)
+    pagination_class = CustomizedLimitOffsetPagination
+    filter_backends = (filters.SearchFilter, filters.OrderingFilter)
     search_fields = ('name', 'product_id')
+    ordering_fields = ('name', 'price', 'product_id')
+
+    def list(self, request, *args, **kwargs):
+        queryset = self.get_queryset()
+        page = self.paginate_queryset(queryset)
+        if page is not None:
+            serializer = self.get_serializer(page, many=True)
+            return self.get_paginated_response(serializer.data)
+        serializer = self.get_serializer(queryset, many=True)
+        products_len = queryset.count()
+        return Response({'items': serializer.data,
+                         'count': products_len,
+                         'pages': 1})
 
     def retrieve(self, request, *args, **kwargs):
         queryset = self.get_queryset()
-        obj = get_object_or_404(queryset, name=self.kwargs['product_id'])
+        obj = get_object_or_404(queryset, product_id=self.kwargs['product_id'])
         serializer = self.get_serializer(obj)
         return Response(serializer.data)
 
