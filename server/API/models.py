@@ -5,8 +5,9 @@ from django.utils.translation import gettext_lazy as _
 from django.contrib.postgres.fields import ArrayField
 from django.utils.deconstruct import deconstructible
 from cloudinary.models import CloudinaryField
-from cloudinary import CloudinaryImage
-from .constants import CURRENCY_CHOICES
+import cloudinary
+from .utils import get_cloudinary_img_or_default
+from .constants import CURRENCY_CHOICES, DEFAULT_CLOUDINARY_IMG
 
 
 @deconstructible
@@ -40,7 +41,7 @@ class Category(models.Model):
     parent_category = models.ForeignKey('Category', blank=True, null=True)
     image_link = CloudinaryField(blank=True, null=True,
                                  validators=[IMAGE_VALIDATOR],
-                                 default='default.jpg')
+                                 default=DEFAULT_CLOUDINARY_IMG)
     online = models.BooleanField(default=True)
 
     def __str__(self):
@@ -58,7 +59,7 @@ class Product(models.Model):
     currency = models.CharField(max_length=5, choices=CURRENCY_CHOICES)
     image_link = CloudinaryField(blank=True, null=True,
                                  validators=[IMAGE_VALIDATOR],
-                                 default='default.jpg')
+                                 default=DEFAULT_CLOUDINARY_IMG)
     online = models.BooleanField(default=True)
     views = models.IntegerField(default=0)
 
@@ -71,12 +72,23 @@ class Catalog(models.Model):
     catalog_id = models.AutoField(primary_key=True)
     image_link = CloudinaryField(blank=True, null=True,
                                  validators=[IMAGE_VALIDATOR],
-                                 default='default.jpg')
+                                 default=DEFAULT_CLOUDINARY_IMG)
     pdf = models.URLField(null=True, blank=True)
     online = models.BooleanField(default=True)
 
     def __str__(self):
         return self.name
+
+    def save(self, *args, **kwargs):
+        try:
+            pdf_path = self.pdf
+            pdf_name = pdf_path.split('/')[-1]
+            pdf_name_stripped = pdf_name.strip('.pdf')
+            thmnl = get_cloudinary_img_or_default(pdf_name_stripped)
+            self.image_link = cloudinary.CloudinaryImage(thmnl)
+        except (AttributeError, cloudinary.api.Error):
+            pass
+        super().save(*args, **kwargs)
 
 
 class Item(models.Model):
@@ -102,7 +114,7 @@ class Asset(models.Model):
     body = models.TextField()
     image_link = CloudinaryField(blank=True, null=True,
                                  validators=[IMAGE_VALIDATOR],
-                                 default='default.jpg')
+                                 default=DEFAULT_CLOUDINARY_IMG)
     online = models.BooleanField(default=True)
 
     def __str__(self):
