@@ -8,6 +8,8 @@ from import_export.resources import ModelResource
 from import_export.forms import ConfirmImportForm
 from .models import Category, Product, Catalog, Asset, Site, Item
 from .forms import ProductsImagesForm, CatalogForm
+from .utils import get_cloudinary_img_or_default
+from .exceptions import ImportExportMissingCategory
 import cloudinary
 try:
     from django.utils.encoding import force_text
@@ -32,13 +34,22 @@ class ProductResource(ModelResource):
     def before_import_row(self, dataset, **kwargs):
         existing_product =\
             Product.objects.filter(product_id=dataset['product_id']).first()
+        category = Category.objects.filter(name=dataset['category']).first()
+
         if existing_product:
             dataset['id'] = existing_product.pk
         else:
             self.id_for_product += 1
             dataset['id'] = self.id_for_product
-        dataset['image_link'] = cloudinary.\
-            CloudinaryImage(dataset['image_link']).url
+
+        try:
+            dataset['category'] = category.category_id
+        except AttributeError:
+            raise ImportExportMissingCategory()
+
+        dataset['image_link'] =\
+            get_cloudinary_img_or_default(dataset['image_name'])
+
         super().before_import_row(dataset, **kwargs)
 
 

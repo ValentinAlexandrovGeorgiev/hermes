@@ -36,3 +36,5 @@ CSRF_COOKIE_SECURE = False
 CORS_ORIGIN_WHITELIST = (
     'localhost:8000',
 )
+
+SITE_URL = 'https://localhost:8081'
