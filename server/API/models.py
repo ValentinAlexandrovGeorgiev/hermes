@@ -88,17 +88,6 @@ class Catalog(models.Model):
     def __str__(self):
         return self.name
 
-    def save(self, *args, **kwargs):
-        try:
-            pdf_path = self.pdf
-            pdf_name = pdf_path.split('/')[-1]
-            pdf_name_stripped = pdf_name.strip('.pdf')
-            thmnl = get_cloudinary_img_or_default(pdf_name_stripped)
-            self.image_link = cloudinary.CloudinaryImage(thmnl)
-        except (AttributeError, cloudinary.api.Error):
-            pass
-        super().save(*args, **kwargs)
-
 
 class Item(models.Model):
     content = models.CharField(max_length=256, null=True, blank=True)
