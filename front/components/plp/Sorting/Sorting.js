@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import Dropdown from 'components/generics/Dropdown/Dropdown'
+import { withRouter } from 'react-router-dom'
 import { connect } from 'react-redux'
 import { translate } from 'translations'
 import { bindActionCreators } from 'redux'
@@ -40,10 +41,19 @@ class Sorting extends Component {
 
   changeLabel ({value, title}) {
     const {
-      actions
+      actions,
+      query,
+      category,
+      history
     } = this.props
-    
-    actions.sort(value)
+
+    if (query || query === '') {
+      actions.search(query, 0, 12, value)
+      history.push(`/search?q=${query}&ordering=${value}`)
+    } else {
+      actions.getCategoryProducts(category, 0, 12, value)
+      history.push(`/products/${category}?ordering=${value}`)
+    }
 
     this.setState({
       label: title,
@@ -93,4 +103,4 @@ const mapDispatchToProps = (dispatch) => {
   return actionMap
 }
 
-export default connect(null, mapDispatchToProps)(Sorting)
+export default withRouter(connect(null, mapDispatchToProps)(Sorting))

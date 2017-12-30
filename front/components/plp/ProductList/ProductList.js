@@ -19,22 +19,24 @@ class ProductList extends Component {
     const {
       actions,
       currentPage,
-      category
+      category,
+      ordering
     } = this.props
     const start = currentPage <= 1 ? 0 : (currentPage - 1) * 12  
     if (category) {
-      actions.getCategoryProducts(category, start , 12)
+      actions.getCategoryProducts(category, start , 12, ordering)
     }
   }
 
   componentWillReceiveProps (nextProps) {
     const {
       actions,
-      category
+      category,
+      ordering
     } = nextProps
 
     if (category && this.props.category !== nextProps.category) {
-      actions.getCategoryProducts(category, 0, 12)
+      actions.getCategoryProducts(category, 0, 12, ordering)
     }
   }
 

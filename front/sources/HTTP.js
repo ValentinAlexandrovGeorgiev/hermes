@@ -72,7 +72,9 @@ class HTTP {
     const dataKeys = Object.keys(data)
     let params = ''
     dataKeys.map((key) => {
-      params += `${key}=${data[key]}&`
+      if (data[key] !== undefined) {
+        params += `${key}=${data[key]}&`
+      }
     })
     if (url.includes('?')) {
       url = `${url}&${params.slice(0, -1)}`

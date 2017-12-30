@@ -19,9 +19,9 @@ export function getProduct (id = '', state) {
   }
 }
 
-export function getCategoryProducts (category = '', start = 0, count = 12) {
+export function getCategoryProducts (category = '', start = 0, count = 12, ordering) {
   return (dispatch) => {
-    return Hermes.Product.getCategoryProducts(category, start, count).then((json) => {
+    return Hermes.Product.getCategoryProducts(category, start, count, ordering).then((json) => {
       dispatch({
         payload: json,
         type: GET_CATEGORY_PRODUCTS
@@ -69,9 +69,9 @@ export function sort (sorting) {
   }
 }
 
-export function search (value = '', start = 0, count = 12) {
+export function search (value = '', start = 0, count = 12, ordering) {
   return (dispatch) => {
-    return Hermes.Product.searchProducts(value, start, count).then((json) => {
+    return Hermes.Product.searchProducts(value, start, count, ordering).then((json) => {
 
       dispatch({
         payload: json,

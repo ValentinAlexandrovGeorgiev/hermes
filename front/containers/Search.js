@@ -23,11 +23,12 @@ class Search extends Component {
 
     const params = new URLSearchParams(location.search)
     const query = params.get('q') || ''
+    const ordering = params.get('ordering') || undefined
     let page = params.get('page') || 1
     page = parseInt(page)
     const start = page <= 1 ? 0 : (page - 1) * 12  
 
-    actions.search(query, start, 12)
+    actions.search(query, start, 12, ordering)
   }
 
   componentWillReceiveProps (nextProps) {
@@ -44,12 +45,14 @@ class Search extends Component {
     let newPage = newParams.get('page') || 1
     let page = params.get('page') || 1
 
+    const ordering = newParams.get('ordering') || undefined
+
     newPage = parseInt(newPage)
     page = parseInt(page)
 
     if (query !== newQuery) {
       const start = newPage <= 1 ? 0 : (newPage - 1) * 12  
-      actions.search(newQuery, start, 12)
+      actions.search(newQuery, start, 12, ordering)
     }
   }
 
@@ -64,6 +67,7 @@ class Search extends Component {
     const params = new URLSearchParams(location.search)
     const query = params.get('q') || ''
     const page = params.get('page') || 1
+    const ordering = params.get('ordering') || undefined
 
     const meta = {
       title: `${translate('project.name')} - ${translate('meta.products')}`,
@@ -83,10 +87,10 @@ class Search extends Component {
             <h1 className='search-label'>{translate('search.label', query)} <span>({count || 0})</span></h1>
           </div>
           <div className='col col-xs-100 col-md-30'>
-            <Sorting />
+            <Sorting query={query} />
           </div>
         </div>
-        <Pagination query={query} pagination={hasPagination} pages={pages} currentPage={page}>
+        <Pagination query={query} pagination={hasPagination} ordering={ordering} pages={pages} currentPage={page}>
           <div className="product_list__wrapper">
             {this.renderProducts()}
           </div>

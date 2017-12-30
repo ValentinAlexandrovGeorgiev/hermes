@@ -17,7 +17,8 @@ class Product {
     })
   }
 
-  getCategoryProducts (category, start, count, ordering) {
+  getCategoryProducts (category, start, count, order) {
+    let ordering = order === 'default' ? undefined : order
     return new Promise((resolve, reject) => {
       HTTP.get(HTTP.addParameters(`${GET_CATEGORY_PRODUCTS}${category}`, {start, count, ordering})).then((json) => {
         if (!json.errorObject) {
@@ -29,7 +30,8 @@ class Product {
     })
   }
 
-  searchProducts (search, start, count, ordering) {
+  searchProducts (search, start, count, order) {
+    let ordering = order === 'default' ? undefined : order
     return new Promise((resolve, reject) => {
       HTTP.get(HTTP.addParameters(GET_CATEGORY_PRODUCTS, {search, start, count, ordering})).then((json) => {
         if (!json.errorObject) {
