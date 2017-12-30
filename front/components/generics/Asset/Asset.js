@@ -17,7 +17,7 @@ class Asset extends Component {
     if (!body) {
       return null
     }
-    
+
     return (
       <div dangerouslySetInnerHTML={{__html: body}} />
     )
@@ -52,4 +52,3 @@ const mapStateToProps = (state) => {
 }
 
 export default connect(mapStateToProps)(Asset)
-

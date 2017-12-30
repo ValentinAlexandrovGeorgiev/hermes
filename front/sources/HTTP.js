@@ -1,8 +1,8 @@
 import fetch from 'isomorphic-fetch'
 
 class HTTP {
-  post(url, body) {
-    let _body = JSON.stringify(body)
+  post (url, body) {
+    const _body = JSON.stringify(body)
 
     return fetch(url, {
       method: 'POST',
@@ -18,8 +18,8 @@ class HTTP {
     })
   }
 
-  put(url, body) {
-    let _body = JSON.stringify(body)
+  put (url, body) {
+    const _body = JSON.stringify(body)
 
     return fetch(url, {
       method: 'PUT',
@@ -35,7 +35,7 @@ class HTTP {
     })
   }
 
-  get(url) {
+  get (url) {
     return fetch(url, {
       method: 'get',
       credentials: "same-origin",
@@ -55,7 +55,7 @@ class HTTP {
     })
   }
 
-  delete(url) {
+  delete (url) {
     return fetch(url, {
       method: 'DELETE',
       headers: {
@@ -69,7 +69,7 @@ class HTTP {
     })
   }
 
-  addParameters(url, data) {
+  addParameters (url, data) {
     const dataKeys = Object.keys(data)
     let params = ''
     dataKeys.map((key) => {
@@ -85,6 +85,5 @@ class HTTP {
     return url
   }
 }
-
 
 export default new HTTP()

@@ -7,15 +7,12 @@ import {
 export function getAsset (ids = []) {
   return (dispatch, nextState) => {
     const arrayIDs = _.isArray(ids) ? ids : [ids]
-    const state = nextState()
 
-    return Hermes.Asset.getByIDs(arrayIDs).then((assets) => {  
+    return Hermes.Asset.getByIDs(arrayIDs).then((assets) => {
       dispatch({
         payload: assets,
         type: GET_ASSETS
       })
-    }).catch((error) => {
-      console.error(error)
     })
   }
 }

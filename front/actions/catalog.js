@@ -21,7 +21,7 @@ export function getCategories () {
           catalog_information.categories[categoryID].hasChildren = category.parent_category !== null
         }
       })
-      
+
       dispatch({
         payload: catalog_information.categories,
         type: GET_CATEGORIES

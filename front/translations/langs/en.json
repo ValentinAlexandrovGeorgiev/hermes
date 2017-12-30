@@ -18,6 +18,8 @@
 	"pdp.id": "ID: ",
 	"pdp.price": "Price: ",
 	"plp.home": "Home",
+	"plp.noproducts.title": "Check our cool products in {0}' children categories:",
+	"plp.noproducts.label": "Sorry, there are no products in this category",
 	"children.label": "Child categories: ",
 	"services.title": "Our services",
 	"catalogs.title": "Catalogs 2017",

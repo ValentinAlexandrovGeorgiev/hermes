@@ -6,7 +6,7 @@ export default function ProductDescription ({ description }) {
   if (!description) {
   	return null
   }
-  
+
   return (
     <div className='pdp__product-description'>
       <span className='description-label'>{translate('pdp.description')}</span>

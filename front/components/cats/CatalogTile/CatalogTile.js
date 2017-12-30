@@ -1,5 +1,4 @@
 import React, {Component} from 'react'
-import { Link } from 'react-router-dom'
 import { langProperty } from 'translations'
 import PropTypes from 'prop-types'
 import './catalogtile.scss'

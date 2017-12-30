@@ -13,7 +13,6 @@ const PAGES = {
   forus: 'forus'
 }
 
-
 class Header extends Component {
   constructor () {
     super()

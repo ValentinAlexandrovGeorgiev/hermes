@@ -40,7 +40,7 @@ class Categories extends Component {
     if (_.isEmpty(categories)) {
       return null
     }
-    const children = this.renderCategories(categories, childCategories, selectedCategory) 
+    const children = this.renderCategories(categories, childCategories, selectedCategory)
 
     return (
       <div className='categories__wrapper'>
@@ -69,4 +69,3 @@ Categories.propTypes = {
 }
 
 export default Categories
-

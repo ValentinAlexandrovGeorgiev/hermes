@@ -1,5 +1,7 @@
 import React, { Component } from 'react'
 import ProductTile from '../ProductTile/ProductTile'
+import { Link } from 'react-router-dom'
+import { translate, langProperty } from 'translations'
 import PropTypes from 'prop-types'
 import { bindActionCreators } from 'redux'
 import * as ACTIONS from 'actions'
@@ -7,14 +9,6 @@ import { connect } from 'react-redux'
 import './productlist.scss'
 
 class ProductList extends Component {
-  constructor () {
-    super()
-
-    this.state = {
-      loading: true
-    }
-  }
-
   componentWillMount () {
     const {
       actions,
@@ -40,11 +34,46 @@ class ProductList extends Component {
     }
   }
 
+  renderChildCategories (category) {
+    const {
+      childCategories,
+      categories,
+      lang
+    } = this.props
+    const keys = Object.keys(categories)
+
+    let selectedCategoryID = null
+    keys.forEach((key) => {
+      if (categories[key].name === category) {
+        selectedCategoryID = key
+      }
+    })
+
+    if (!childCategories[selectedCategoryID]) {
+      return null
+    }
+
+    return childCategories[selectedCategoryID].map((category) => {
+      const name = category[langProperty('name', lang)]
+
+      return (
+        <div key={category.category_id} className='no-products-category col col-xs-100 col-md-50 col-lg-33'>
+          <div>
+            <Link to={`/products/${name}`}>
+              <img src={category.image_link} alt={name} />
+              <p>{name}</p>
+            </Link>
+          </div>
+        </div>
+      )
+    })
+  }
+
   render() {
     const {
-      products
+      products,
+      category
     } = this.props
-    const { loading } = this.state
     
     if (products === null) {
       return (
@@ -55,9 +84,16 @@ class ProductList extends Component {
     }
 
     if (products.length === 0) {
+      const children = this.renderChildCategories(category)
       return (
         <div className='no-products'>
-          Sorry, there are no products
+          <div className='no-products-grid'>
+            { children 
+              ? <span className='no-products-title'>{translate('plp.noproducts.title', category)}</span>
+              : <span className='no-products-title'>{translate('plp.noproducts.label', category)}</span>
+            }
+            { children }
+          </div>
         </div>
       )
     }

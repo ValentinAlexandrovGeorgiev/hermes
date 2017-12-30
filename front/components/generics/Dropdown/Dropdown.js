@@ -14,8 +14,8 @@ class Dropdown extends Component {
       return (
         <div key={`${item.value}-${index}`} className={`dropdown__item ${itemClass}`}>
           {
-            option === 'img' ?
-            <img src={`/static/icons/${item.value}.svg`} alt={item.title} />
+            option === 'img'
+            ? <img src={`/static/icons/${item.value}.svg`} alt={item.title} />
             : <span onClick={() => change(item)}>{item.title}</span>
           }
         </div>

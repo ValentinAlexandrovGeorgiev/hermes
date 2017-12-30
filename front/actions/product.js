@@ -13,8 +13,6 @@ export function getProduct (id = '', state) {
         payload: json,
         type: GET_PRODUCT
       })
-    }).catch((error) => {
-      console.error(error)
     })
   }
 }
@@ -26,46 +24,7 @@ export function getCategoryProducts (category = '', start = 0, count = 12, order
         payload: json,
         type: GET_CATEGORY_PRODUCTS
       })
-    }).catch((error) => {
-      console.error(error)
     })
-  }
-}
-
-export function sort (sorting) {
-  return (dispatch, nextState) => {
-    const products = nextState().product_information.products
-
-    switch(sorting) {
-      case 'name': {
-        dispatch({
-          payload: _.sortBy(products, ['name']),
-          type: SORT_PRODUCTS
-        })
-        break;
-      }
-      case 'price': {
-        dispatch({
-          payload: _.sortBy(products, [(p) => parseFloat(p.price)]),
-          type: SORT_PRODUCTS
-        })
-        break;
-      }
-      case 'id': {
-        dispatch({
-          payload: _.sortBy(products, ['product_id']),
-          type: SORT_PRODUCTS
-        })
-        break;
-      }
-      default: {
-        dispatch({
-          payload: products,
-          type: SORT_PRODUCTS
-        })
-        break;
-      }
-    }
   }
 }
 
@@ -77,8 +36,6 @@ export function search (value = '', start = 0, count = 12, ordering) {
         payload: json,
         type: GET_CATEGORY_PRODUCTS
       })
-    }).catch((error) => {
-      console.error(error)
     })
   }
 }

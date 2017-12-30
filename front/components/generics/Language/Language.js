@@ -20,13 +20,13 @@ class Language extends Component {
 
     this.props.actions.setLanguage(lang)
   }
-  
+
   componentWillReceiveProps (nextProps) {
     if (nextProps.lang !== window.localStorage.getItem('lang')) {
       window.localStorage.setItem('lang', nextProps.lang)
     }
   }
-  
+
   render () {
     const {
       children

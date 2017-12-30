@@ -12,7 +12,7 @@ class MobileMenu extends Component {
 
     const keys = Object.keys(categories)
     return keys.map((key) => {
-      let components = []
+      const components = []
 
       components.push(
         <li className='mobile-menu__category' key={`${key}-${categories[key].name}`}>

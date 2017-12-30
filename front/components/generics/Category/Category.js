@@ -31,7 +31,7 @@ class Category extends Component {
 
     return (
       <div className='category__wrapper'>
-        <Link onClick={(event) => this.selectCategory(event, name)} className={`category__link${selected ? ' selected' : ''}`} to={`/products/${name}`}>
+        <Link onClick={event => this.selectCategory(event, name)} className={`category__link${selected ? ' selected' : ''}`} to={`/products/${name}`}>
           <img src={category.image_link} alt={name} />
           <span>{ name }</span>
         </Link>
