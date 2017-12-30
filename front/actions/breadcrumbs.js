@@ -1,4 +1,4 @@
-import translate from 'translations'
+import { translate } from 'translations'
 import {
   ADD_TO_BREADCRUMBS
 } from './const'

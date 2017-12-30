@@ -1,5 +1,6 @@
 import React, {Component} from 'react'
 import { Link } from 'react-router-dom'
+import { langProperty } from 'translations'
 import PropTypes from 'prop-types'
 import './catalogtile.scss'
 
@@ -7,9 +8,10 @@ class CatalogTile extends Component {
   render () {
     const {
       pdf,
-      image_link,
-      name
+      image_link
     } = this.props.catalog
+
+    const name = this.props.catalog[langProperty('name', this.props.lang)]
 
     return (
       <div className='catalog-tile__wrapper col col-xs-50 col-md-33 col-lg-25'>

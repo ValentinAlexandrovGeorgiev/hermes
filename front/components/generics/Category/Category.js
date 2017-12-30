@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { Link, withRouter } from 'react-router-dom'
 import { bindActionCreators } from 'redux'
+import { langProperty } from 'translations'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import * as ACTIONS from 'actions'
@@ -22,14 +23,17 @@ class Category extends Component {
   render () {
     const {
       category,
-      selected
+      selected,
+      lang
     } = this.props
+
+    const name = this.props.category[langProperty('name', lang)]
 
     return (
       <div className='category__wrapper'>
-        <Link onClick={(event) => this.selectCategory(event, category.name)} className={`category__link${selected ? ' selected' : ''}`} to={`/products/${category.name}`}>
-          <img src={category.image_link} alt={category.name} />
-          <span>{ category.name }</span>
+        <Link onClick={(event) => this.selectCategory(event, name)} className={`category__link${selected ? ' selected' : ''}`} to={`/products/${name}`}>
+          <img src={category.image_link} alt={name} />
+          <span>{ name }</span>
         </Link>
       </div>
     )
@@ -46,10 +50,17 @@ Category.propTypes = {
   selected: PropTypes.bool
 }
 
+const mapStateToProps = (state) => {
+  const props = {
+    lang: state.language.lang
+  }
+  return props
+}
+
 const mapDispatchToProps = (dispatch) => {
   const actions = ACTIONS
   const actionMap = { actions: bindActionCreators(actions, dispatch) }
   return actionMap
 }
 
-export default withRouter(connect(null, mapDispatchToProps)(Category))
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Category))

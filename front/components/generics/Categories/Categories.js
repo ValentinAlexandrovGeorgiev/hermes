@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import Category from '../Category/Category'
 import _ from 'lodash'
-import translate from 'translations'
+import { translate } from 'translations'
 
 import './categories.scss'
 

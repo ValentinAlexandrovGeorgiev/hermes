@@ -1,5 +1,5 @@
 import React from 'react'
-import translate from 'translations'
+import { translate } from 'translations'
 import './productid.scss'
 
 export default function ProductId ({ productId }) {

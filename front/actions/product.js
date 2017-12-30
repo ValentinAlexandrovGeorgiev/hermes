@@ -72,9 +72,9 @@ export function sort (sorting) {
 export function search (value = '', start = 0, count = 12) {
   return (dispatch) => {
     return Hermes.Product.searchProducts(value, start, count).then((json) => {
-      //@TODO: Delete this object {items } when API is ready for search implementation
+
       dispatch({
-        payload: {items: json},
+        payload: json,
         type: GET_CATEGORY_PRODUCTS
       })
     }).catch((error) => {

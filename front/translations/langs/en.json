@@ -13,7 +13,7 @@
 	"statistics.from.europe": "Products from Europe",
 	"statistics.services": "Printing services",
 	"search.placeholder": "Search...",
-	"pdp.more.products": "More products from {0}",
+	"pdp.more.products": "More products",
 	"pdp.description": "Description:",
 	"pdp.id": "ID: ",
 	"pdp.price": "Price: ",
@@ -39,5 +39,11 @@
 	"error.title": "404 Not found page",
 	"error.description": "Sorry, we can't find the requested page. Please, check the url or contact us! Thank you for your patience.",
 	"close": "Close",
-	"search.label": "Your search results for \"{0}\""
+	"search.label": "Your search results for \"{0}\"",
+	"pdp.noproduct": "We are sorry, but we don't have this product. Please check the url.",
+	"home.page.link": "Go to home page",
+	"sort.label": "Sort...",
+	"sort.name": "Name",
+	"sort.price": "Price (-/+)",
+	"sort.id": "ID"
 }

@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import Dropdown from 'components/generics/Dropdown/Dropdown'
 import { connect } from 'react-redux'
+import { translate } from 'translations'
 import { bindActionCreators } from 'redux'
 import * as ACTIONS from 'actions'
 import './sorting.scss'
@@ -11,7 +12,7 @@ class Sorting extends Component {
 
     this.state = {
       open: false,
-      label: 'Сортирай'
+      label: translate('sort.label')
     }
 
     this.openDropdown = this.openDropdown.bind(this)
@@ -53,19 +54,19 @@ class Sorting extends Component {
   render () {
     const items = [
       {
-        title: 'Сортирай',
+        title: translate('sort.label'),
         value: 'default'
       },
       {
-        title: 'Цена (-/+)',
+        title: translate('sort.price'),
         value: 'price'
       },
       {
-        title: 'Име',
+        title: translate('sort.name'),
         value: 'name'
       },
       {
-        title: 'Номер',
+        title: translate('sort.id'),
         value: 'id'
       }
     ]

@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { withRouter } from 'react-router-dom'
-import translate from 'translations'
+import { translate } from 'translations'
 
 import './searchinput.scss'
 

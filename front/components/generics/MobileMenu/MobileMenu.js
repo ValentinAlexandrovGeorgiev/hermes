@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
-import translate from 'translations'
+import { translate } from 'translations'
 import './mobilemenu.scss'
 
 class MobileMenu extends Component {

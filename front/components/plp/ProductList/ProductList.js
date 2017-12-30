@@ -69,13 +69,14 @@ class ProductList extends Component {
 
   renderProducts() {
     const {
-      products
+      products,
+      lang
     } = this.props
 
     return products.map((product, index) => {
       return (
         <div key={`${product.name}_${index}`} className="col col-xs-100 col-md-50 col-lg-33 col-big-25">
-          <ProductTile {...product} />
+          <ProductTile {...product} lang={lang} />
         </div>
       )
     })
@@ -92,7 +93,8 @@ ProductList.propTypes = {
 
 const mapStateToProps = state => {
   const props = {
-    products: state.product_information.products
+    products: state.product_information.products,
+    lang: state.language.lang
   }
   return props
 }

@@ -1,9 +1,10 @@
 import React, {Component} from 'react'
 import { bindActionCreators } from 'redux'
+import { Link } from 'react-router-dom'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import * as ACTIONS from 'actions'
-import translate from 'translations'
+import { translate, langProperty } from 'translations'
 import MetaTags from 'components/generics/MetaTags/MetaTags'
 import Header from 'components/generics/Header/Header'
 import Footer from 'components/generics/Footer/Footer'
@@ -36,12 +37,11 @@ class Product extends Component {
   render () {
     const {
       product,
+      lang,
       products
     } = this.props
 
     const {
-      name,
-      description,
       price,
       currency,
       image_link,
@@ -60,18 +60,22 @@ class Product extends Component {
         <div>
           <MetaTags {...meta} />
           <Header />
-          <h3>Съжаляваме, нямаме такъв продукт. Моля проверете линка, който сте отворили!</h3>
+          <h3 className='no-product-title'>{translate('pdp.noproduct')}</h3>
+          <Link className='no-product-link' to='/'>{translate('home.page.link')}</Link>
           <Footer />
         </div>
       )
     }
 
+    const name = product[langProperty('name', lang)]
+    const description = product[langProperty('description', lang)]
+
     const meta = {
-      title: `${translate('project.name')} - ${product.name}`,
+      title: `${translate('project.name')} - ${name}`,
       location: window.location.href,
       index: true,
-      keywords: `${translate('project.keywords')},${translate('meta.pdp.keywords', `${product.name}`)}`,
-      description: `${translate('project.description')} - ${translate('meta.pdp.description', `${product.name} - ${product.description}`)}`
+      keywords: `${translate('project.keywords')},${translate('meta.pdp.keywords', `${name}`)}`,
+      description: `${translate('project.description')} - ${translate('meta.pdp.description', `${name} - ${description}`)}`
     }
     
     return [
@@ -85,7 +89,7 @@ class Product extends Component {
           <ProductId productId={product_id} />
         </div>
         <ProductDescription description={description} />
-        <MoreCategoryProducts products={products} category={category} />
+        <MoreCategoryProducts id={product_id} products={products} />
       </div>,
       <Footer key='Footer' />
     ]
@@ -122,7 +126,8 @@ Product.propTypes = {
 const mapStateToProps = (state) => {
   const props = {
     product: state.product_information.product,
-    products: state.product_information.products
+    products: state.product_information.products,
+    lang: state.language.lang
   }
   return props
 }
