@@ -1,0 +1,15 @@
+<input type="{{ widget.subwidgets.0.type }}"
+       name="{{ widget.subwidgets.0.name }}"
+       {% if widget.value != None %}
+         value="{{ widget.subwidgets.0.value|stringformat:'s' }}"
+       {% endif %}
+       {% include "API/attrs.html" %} />
+</br>
+<label class="required" for="id_pdf_1">PDF File Upload:</label>
+
+<input type="{{ widget.subwidgets.1.type }}"
+       name="{{ widget.subwidgets.1.name }}"
+       {% if widget.value != None %}
+         value="{{ widget.subwidgets.1.value|stringformat:'s' }}"
+       {% endif %}
+       {% include "API/attrs.html" %} />

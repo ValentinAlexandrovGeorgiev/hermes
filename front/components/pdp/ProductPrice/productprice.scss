@@ -1,0 +1,40 @@
+.pdp__price-wrapper {
+  display: inline-block;
+  width: 50%;
+  vertical-align: top;
+  padding: 20px 40px;
+  background: rgba(0, 0, 0, .1);
+  border-radius: 6px;
+
+  .price-inner-wrapper {
+  	margin: 20px 0;
+  }
+
+  .price-label {
+  	font-size: 23px;
+  }
+
+  .price-value {
+  	font-size: 30px;
+  	margin: 0 6px 0 5px;
+  	font-weight: 700;
+  }
+
+  .price-currency {
+  	font-size: 19px;
+  }
+}
+
+.no-product-title {
+  margin: 50px 30px 0;
+  text-align: center;
+  color: #244678;
+}
+
+.no-product-link {
+  font-size: 24px;
+  display: block;
+  text-align: center;
+  margin-top: 20px;
+  margin-bottom: 100px;
+}
