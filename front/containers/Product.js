@@ -22,23 +22,16 @@ class Product extends Component {
       actions,
       match
     } = this.props
-
+    console.log('componentWillMount !')
     actions.getProduct(match.params.id)
-  }
-
-  componentWillReceiveProps (nextProps) {
-    const { actions } = this.props
-
-    if (nextProps.products.length === 0) {
-      actions.getCategoryProducts(nextProps.product.category, 10)
-    }
   }
 
   render () {
     const {
       product,
       lang,
-      products
+      products,
+      actions
     } = this.props
 
     const {
@@ -48,6 +41,10 @@ class Product extends Component {
       product_id,
       category
     } = product
+
+    if (products.length === 0 && category !== '') {
+      actions.getCategoryProducts(category, 0, 10)
+    }
 
     if (product.detail === 'Not found.') {
       const meta = {
