@@ -1,15 +1,16 @@
 import React, {Component} from 'react'
 import PropTypes from 'prop-types'
-import translate from 'translations'
+import { translate, langProperty } from 'translations'
 import './serviceinfo.scss'
 
 class ServiceInfo extends Component {
   render () {
     const {
-      image_link,
-      body,
-      title
+      image_link
     } = this.props.service
+
+    const body = this.props.service[langProperty('body', this.props.lang)]
+    const title = this.props.service[langProperty('title', this.props.lang)]
 
     return (
       <div className='service__wrapper'>

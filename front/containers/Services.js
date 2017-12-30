@@ -2,7 +2,7 @@ import React, {Component} from 'react'
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
 import * as ACTIONS from 'actions'
-import translate from 'translations'
+import { translate } from 'translations'
 import MetaTags from 'components/generics/MetaTags/MetaTags'
 import Header from 'components/generics/Header/Header'
 import Footer from 'components/generics/Footer/Footer'
@@ -33,7 +33,8 @@ class Services extends Component {
 
   render () {
     const {
-      assets
+      assets,
+      lang
     } = this.props
 
     const meta = {
@@ -50,7 +51,7 @@ class Services extends Component {
         <Header />
         <h1 className='services-title'>{translate('services.title')}</h1>
         { assets ?
-          <ServicesGrid services={this.getServiceAssets(assets)} />
+          <ServicesGrid services={this.getServiceAssets(assets)} lang={lang} />
           : null
         }
         <Footer />
@@ -61,7 +62,8 @@ class Services extends Component {
 
 const mapStateToProps = (state) => {
   const props = {
-    assets: state.asset_information
+    assets: state.asset_information,
+    lang: state.language.lang
   }
   return props
 }

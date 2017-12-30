@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
-import translate from 'translations'
+import { translate } from 'translations'
 import './mobilemenu.scss'
 
 class MobileMenu extends Component {
@@ -12,7 +12,7 @@ class MobileMenu extends Component {
 
     const keys = Object.keys(categories)
     return keys.map((key) => {
-      let components = []
+      const components = []
 
       components.push(
         <li className='mobile-menu__category' key={`${key}-${categories[key].name}`}>

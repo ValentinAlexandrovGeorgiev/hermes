@@ -7,13 +7,14 @@ import './servicesgrid.scss'
 class ServicesGrid extends Component {
   createChildren () {
   	const {
-  	  services
+  	  services,
+      lang
   	} = this.props
 
   	return services.map((service) => {
   	  return (
   	  	<Link to={`/service/${service.query_field}`} key={service.query_field} className='col col-xs-100 col-md-100 col-lg-50'>
-  	  	  <ServiceTile service={service} />
+  	  	  <ServiceTile service={service} lang={lang} />
   	  	</Link>
   	  )
   	})

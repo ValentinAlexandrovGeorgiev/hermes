@@ -2,7 +2,7 @@ import React, {Component} from 'react'
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
 import * as ACTIONS from 'actions'
-import translate from 'translations'
+import { translate } from 'translations'
 import MetaTags from 'components/generics/MetaTags/MetaTags'
 import Header from 'components/generics/Header/Header'
 import Footer from 'components/generics/Footer/Footer'
@@ -24,7 +24,8 @@ class Service extends Component {
   render () {
     const {
       assets,
-      match
+      match,
+      lang
     } = this.props
     
     if (!assets) {
@@ -45,7 +46,7 @@ class Service extends Component {
       <div>
         <MetaTags {...meta} />
         <Header />
-        <ServiceInfo service={asset} /> 
+        <ServiceInfo service={asset} lang={lang} /> 
         <Footer />
       </div>
     )
@@ -54,7 +55,8 @@ class Service extends Component {
 
 const mapStateToProps = (state) => {
   const props = {
-    assets: state.asset_information
+    assets: state.asset_information,
+    lang: state.language.lang
   }
   return props
 }

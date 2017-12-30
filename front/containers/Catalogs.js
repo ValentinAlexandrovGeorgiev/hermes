@@ -1,7 +1,7 @@
 import React, {Component} from 'react'
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
-import translate from 'translations'
+import { translate } from 'translations'
 import * as ACTIONS from 'actions'
 import MetaTags from 'components/generics/MetaTags/MetaTags'
 import Header from 'components/generics/Header/Header'
@@ -20,7 +20,8 @@ class Catalogs extends Component {
 
   render () {
     const {
-      catalogs
+      catalogs,
+      lang
     } = this.props
 
     const meta = {
@@ -36,7 +37,7 @@ class Catalogs extends Component {
         <MetaTags {...meta} />
         <Header />
         <h1 className='catalogs__title'>{translate('catalogs.title')}</h1>
-        <CatalogGrid catalogs={catalogs} />
+        <CatalogGrid catalogs={catalogs} lang={lang} />
         <Footer />
       </div>
     )
@@ -45,7 +46,8 @@ class Catalogs extends Component {
 
 const mapStateToProps = (state) => {
   const props = {
-    catalogs: state.catalog_information.catalogs
+    catalogs: state.catalog_information.catalogs,
+    lang: state.language.lang
   }
   return props
 }

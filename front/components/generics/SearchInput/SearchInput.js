@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { withRouter } from 'react-router-dom'
-import translate from 'translations'
+import { translate } from 'translations'
 
 import './searchinput.scss'
 
@@ -51,11 +51,11 @@ class SearchInput extends Component {
 
     return (
       <div className='search__wrapper'>
-        <form onSubmit={(event) => this.clickSearch(event)}>
+        <form onSubmit={event => this.clickSearch(event)}>
           <label htmlFor='hermes-search'>
-            <input onChange={(event) => this.changeSearch(event)} id='hermes-search' type='text' placeholder={translate('search.placeholder')} value={value} />
+            <input onChange={event => this.changeSearch(event)} id='hermes-search' type='text' placeholder={translate('search.placeholder')} value={value} />
           </label>
-          <input type="submit" value="Submit" className='hide' />
+          <input type='submit' value='submit' className='hide' />
         </form>
         <img onClick={() => this.search()} className='magnifier' src='/static/icons/magnifier.svg' alt='hermes gift search icon' />
       </div>
