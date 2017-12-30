@@ -44,7 +44,7 @@ def pdf_thumbnail_upload_cloudinary(pdf_path, page=0):
     default_storage.delete(pdf_name_stripped)
 
 
-def save_pdf_to_local_storage_and_cloudinary_thumbnail(file):
+def save_pdf_to_local_storage_and_create_thumbnail(file):
     file_name_transformed = file.name.replace(' ', '_')
     if default_storage.exists(file_name_transformed):
         file_name_transformed = 'new_' + file_name_transformed

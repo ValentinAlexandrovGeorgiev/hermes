@@ -21,18 +21,12 @@ class ProductViewSet(viewsets.ReadOnlyModelViewSet):
     serializer_class = ProductSerializer
     pagination_class = CustomizedLimitOffsetPagination
 
-    def get_queryset(self):
-        qs = super().get_queryset()
-        search = self.request.query_params.get('search', None)
-        ordering = self.request.query_params.get('ordering', None)
-        if search:
-            qs = qs.filter(name__icontains=search) | qs.filter(product_id__icontains=search)
-        if ordering and ordering in ('name', 'price', 'product_id'):
-            qs = qs.order_by(ordering)
-        return qs
+    filter_backends = (filters.SearchFilter, filters.OrderingFilter)
+    search_fields = ('name', 'name_en', 'product_id')
+    ordering_fields = ('name', 'name_en', 'price', 'product_id')
 
     def list(self, request, *args, **kwargs):
-        queryset = self.get_queryset()
+        queryset = self.filter_queryset(self.get_queryset())
         page = self.paginate_queryset(queryset)
         if page is not None:
             serializer = self.get_serializer(page, many=True)
@@ -76,23 +70,16 @@ class ProductByCategory(generics.GenericAPIView):
     serializer_class = ProductSerializer
     pagination_class = CustomizedLimitOffsetPagination
 
-    #filter_backends = (filters.SearchFilter, filters.OrderingFilter)
-    #search_fields = ('name', 'product_id')
-    #ordering_fields = ('name', 'price', 'product_id')
+    filter_backends = (filters.SearchFilter, filters.OrderingFilter)
+    search_fields = ('name', 'name_en', 'product_id')
+    ordering_fields = ('name', 'name_en', 'price', 'product_id')
 
     def get_queryset(self):
-        qs = Product.objects.filter(
+        return Product.objects.filter(
             category__name=self.kwargs['category_name'], online=True)
-        search = self.request.query_params.get('search', None)
-        ordering = self.request.query_params.get('ordering', None)
-        if search:
-            qs = qs.filter(name__icontains=search) | qs.filter(product_id__icontains=search)
-        if ordering and ordering in ('name', 'price', 'product_id'):
-            qs = qs.order_by(ordering)
-        return qs
 
     def get(self, request, *args, **kwargs):
-        queryset = self.get_queryset()
+        queryset = self.filter_queryset(self.get_queryset())
         page = self.paginate_queryset(queryset)
         if page is not None:
             serializer = self.get_serializer(page, many=True)
