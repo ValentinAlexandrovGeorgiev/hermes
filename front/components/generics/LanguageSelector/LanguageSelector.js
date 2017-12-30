@@ -25,7 +25,7 @@ class LanguageSelector extends Component {
     const {
       lang
     } = this.state
- 
+
     this.props.actions.setLanguage(lang === LANGUAGES[0] ? LANGUAGES[0] : LANGUAGES[1])
 
     this.setState({

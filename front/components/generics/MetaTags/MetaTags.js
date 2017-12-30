@@ -18,7 +18,7 @@ class MetaTags extends Component {
         <title>{title}</title>
         <link rel='canonical' href={location} />
         <meta name='description' content={description} />
-        <meta name='title' content={title} />   
+        <meta name='title' content={title} />
         <meta name='keywords' zname='keywords' content={keywords} />
         <meta name='robots' content={robots} />
       </Helmet>

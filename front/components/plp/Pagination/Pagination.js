@@ -16,15 +16,20 @@ class Pagination extends Component {
       actions,
       category,
       query,
-      history
+      history,
+      ordering
     } = this.props
 
-    if (query) {
-      actions.search(value)
-      history.push(`/search?q=${value}`)
+    let order = ''
+    if (ordering) {
+      order = `&ordering=${ordering}`  
+    }
+    if (query || query === '') {
+      actions.search(query, start, 12, ordering)
+      history.push(`/search?q=${query}&page=${page}${order}`)
     } else {
-      actions.getCategoryProducts(category, start, 12)
-      history.push(`/products/${category}?page=${page}`)
+      actions.getCategoryProducts(category, start, 12, ordering)
+      history.push(`/products/${category}?page=${page}${order}`)
     }
   }
 

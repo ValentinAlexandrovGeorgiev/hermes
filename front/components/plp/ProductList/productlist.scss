@@ -72,3 +72,49 @@
     transform: rotate(360deg);
   }
 }
+
+.no-products {
+  background: #244678;
+  padding: 15px 0 20px;
+
+  &-title {
+    display: block;
+    font-size: 32px;
+    text-align: center;
+    margin-bottom: 40px;
+    color: #EDF0EB;
+  }
+
+  &-category {
+    padding: 5px 20px 10px;
+    margin-bottom: 12px;
+
+    div {
+      border-radius: 10px;
+      overflow: hidden;
+      background: #EDF0EB;
+    }
+
+    img {
+      height: 362px;
+    }
+
+    p {
+      color: #244678;
+      display: block;
+      text-align: center;
+      font-size: 31px;
+      height: 85px;
+    }
+  }
+}
+
+@media only screen and (max-width: 1100px) {
+  .no-products {
+    &-category {
+      img {
+        height: 272px;
+      }
+    }
+  }
+}

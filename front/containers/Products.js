@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import * as ACTIONS from 'actions'
-import translate from 'translations'
+import { translate } from 'translations'
 import MetaTags from 'components/generics/MetaTags/MetaTags'
 import Header from 'components/generics/Header/Header'
 import Footer from 'components/generics/Footer/Footer'
@@ -29,6 +29,7 @@ class Products extends Component {
 
     const params = new URLSearchParams(location.search)
     const page = params.get('page') || 1
+    const ordering = params.get('ordering') || undefined
 
     const selectedCategory = match.params.category || null
 
@@ -52,11 +53,11 @@ class Products extends Component {
             <Breadcrumbs breadcrumbs={[selectedCategory]} count={count} />
           </div>
           <div className='col col-xs-100 col-md-30'>
-            <Sorting />
+            <Sorting category={selectedCategory} />
           </div>
         </div>
-        <Pagination category={selectedCategory} pagination={hasPagination} pages={pages} currentPage={page}>
-          <ProductList category={selectedCategory} currentPage={page} />
+        <Pagination category={selectedCategory} pagination={hasPagination} ordering={ordering} pages={pages} currentPage={page}>
+          <ProductList category={selectedCategory} categories={categories} childCategories={childCategories} currentPage={page} ordering={ordering} />
         </Pagination>
         <Footer />
       </div>

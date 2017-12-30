@@ -4,7 +4,7 @@ import SearchInput from '../SearchInput/SearchInput'
 import { connect } from 'react-redux'
 import LanguageSelector from '../LanguageSelector/LanguageSelector'
 import MobileMenu from '../MobileMenu/MobileMenu'
-import translate from 'translations'
+import { translate, langProperty } from 'translations'
 import './header.scss'
 
 const PAGES = {
@@ -12,7 +12,6 @@ const PAGES = {
   catalogs: 'catalogs',
   forus: 'forus'
 }
-
 
 class Header extends Component {
   constructor () {
@@ -44,13 +43,16 @@ class Header extends Component {
     if (!categories) {
       return null
     }
-
+    const {
+      lang
+    } = this.props
     const keys = Object.keys(categories)
 
     return keys.map((key) => {
       const category = categories[key]
+      const name = category[langProperty('name', lang)]
       return (
-        <Link key={key} to={`/products/${category.name}`}>{category.name}</Link>
+        <Link key={key} to={`/products/${name}`}>{name}</Link>
       )
     })
   }
@@ -108,11 +110,11 @@ class Header extends Component {
   }
 }
 
-
 const mapStateToProps = (state) => {
   const props = {
     categories: state.catalog_information.categories,
-    childCategories: state.catalog_information.childCategories
+    childCategories: state.catalog_information.childCategories,
+    lang: state.language.lang
   }
   return props
 }

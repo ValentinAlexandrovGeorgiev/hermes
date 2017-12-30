@@ -6,11 +6,12 @@ import './cataloggrid.scss'
 class CatalogGrid extends Component {
   renderChildren () {
   	const {
-  	  catalogs
+  	  catalogs,
+      lang
   	} = this.props
 
   	return catalogs.map((cat) => {
-  	  return <CatalogTile key={cat.catalog_id} catalog={cat} />
+  	  return <CatalogTile key={cat.catalog_id} catalog={cat} lang={lang} />
   	})
   }
 

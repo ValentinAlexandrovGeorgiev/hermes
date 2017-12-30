@@ -1,6 +1,8 @@
 import React, { Component } from 'react'
 import Dropdown from 'components/generics/Dropdown/Dropdown'
+import { withRouter } from 'react-router-dom'
 import { connect } from 'react-redux'
+import { translate } from 'translations'
 import { bindActionCreators } from 'redux'
 import * as ACTIONS from 'actions'
 import './sorting.scss'
@@ -11,7 +13,7 @@ class Sorting extends Component {
 
     this.state = {
       open: false,
-      label: 'Сортирай'
+      label: translate('sort.label')
     }
 
     this.openDropdown = this.openDropdown.bind(this)
@@ -39,10 +41,19 @@ class Sorting extends Component {
 
   changeLabel ({value, title}) {
     const {
-      actions
+      actions,
+      query,
+      category,
+      history
     } = this.props
-    
-    actions.sort(value)
+
+    if (query || query === '') {
+      actions.search(query, 0, 12, value)
+      history.push(`/search?q=${query}&ordering=${value}`)
+    } else {
+      actions.getCategoryProducts(category, 0, 12, value)
+      history.push(`/products/${category}?ordering=${value}`)
+    }
 
     this.setState({
       label: title,
@@ -53,19 +64,19 @@ class Sorting extends Component {
   render () {
     const items = [
       {
-        title: 'Сортирай',
+        title: translate('sort.label'),
         value: 'default'
       },
       {
-        title: 'Цена (-/+)',
+        title: translate('sort.price'),
         value: 'price'
       },
       {
-        title: 'Име',
+        title: translate('sort.name'),
         value: 'name'
       },
       {
-        title: 'Номер',
+        title: translate('sort.id'),
         value: 'id'
       }
     ]
@@ -92,4 +103,4 @@ const mapDispatchToProps = (dispatch) => {
   return actionMap
 }
 
-export default connect(null, mapDispatchToProps)(Sorting)
+export default withRouter(connect(null, mapDispatchToProps)(Sorting))

@@ -1,6 +1,5 @@
 import langs from './langs'
 
-
 const translate = (key, placeholders) => {
   const lang = window.localStorage.getItem('lang')
   let translation = langs[lang][key] || ''
@@ -10,4 +9,15 @@ const translate = (key, placeholders) => {
   return translation
 }
 
-export default translate
+const langProperty = (key, lang) => {
+  if (lang === 'en') {
+  	return `${key}_en`
+  }
+
+  return key
+}
+
+module.exports = {
+  translate,
+  langProperty
+}

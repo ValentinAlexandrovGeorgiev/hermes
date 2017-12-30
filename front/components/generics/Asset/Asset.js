@@ -1,4 +1,6 @@
 import React, { Component } from 'react'
+import { connect } from 'react-redux'
+import { langProperty } from 'translations'
 
 class Asset extends Component {
   renderTitle (title) {
@@ -15,7 +17,7 @@ class Asset extends Component {
     if (!body) {
       return null
     }
-    
+
     return (
       <div dangerouslySetInnerHTML={{__html: body}} />
     )
@@ -23,6 +25,7 @@ class Asset extends Component {
 
   render () {
     const {
+      lang,
       asset
     } = this.props
 
@@ -30,13 +33,22 @@ class Asset extends Component {
       return null
     }
 
+    const body = asset[langProperty('body', lang)]
+    const title = asset[langProperty('title', lang)]
     return (
       <div className={`asset__wrapper ${asset.asset_id}`}>
-        {this.renderTitle(asset.title)}
-        {this.renderBody(asset.body)}
+        {this.renderTitle(title)}
+        {this.renderBody(body)}
       </div>
     )
   }
 }
 
-export default Asset
+const mapStateToProps = (state) => {
+  const props = {
+    lang: state.language.lang
+  }
+  return props
+}
+
+export default connect(mapStateToProps)(Asset)
