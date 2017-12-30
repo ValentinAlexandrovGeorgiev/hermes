@@ -16,10 +16,9 @@ def convert_products_currencies(products):
     return products
 
 
-def save_pdf_to_local_storage(file):
+def save_pdf_to_local_storage(file, catalog_name):
     file_name_transformed = file.name.replace(' ', '_')
-    if default_storage.exists(file_name_transformed):
-        file_name_transformed = 'new_' + file_name_transformed
+    file_name_transformed = catalog_name + '_' + file_name_transformed
     with default_storage.open(file_name_transformed, 'wb+') as dest:
         for chunk in file.chunks():
             dest.write(chunk)

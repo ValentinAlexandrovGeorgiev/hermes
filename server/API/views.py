@@ -1,12 +1,10 @@
 from django.shortcuts import get_object_or_404
-from django.http import Http404
+from django.db.models import Q
 from rest_framework import generics, viewsets, filters
-from rest_framework.views import APIView
 from rest_framework.response import Response
 from .models import Asset, Catalog, Category, Product, Site
 from .serializers import AssetSerializer, CatalogSerializer,\
     CategorySerializer, ProductSerializer, SiteSerializer
-from .utils import convert_products_currencies
 from .paginators import CustomizedLimitOffsetPagination
 from rest_framework.pagination import LimitOffsetPagination
 
@@ -76,7 +74,10 @@ class ProductByCategory(generics.GenericAPIView):
 
     def get_queryset(self):
         return Product.objects.filter(
-            category__name=self.kwargs['category_name'], online=True)
+            Q(category__name=self.kwargs['category_name'],
+              online=True) |
+            Q(category__name_en=self.kwargs['category_name'],
+              online=True))
 
     def get(self, request, *args, **kwargs):
         queryset = self.filter_queryset(self.get_queryset())
