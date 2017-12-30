@@ -41,6 +41,7 @@ class HTTP {
       credentials: "same-origin",
       headers: {
         'Content-Type': 'application/json',
+        'Cache-Control': 'max-age=86400',
         Authorization: 'Basic YWRtaW46YWRtaW4xMjM0NTY3ODk='
       }
     }).then(res => {
