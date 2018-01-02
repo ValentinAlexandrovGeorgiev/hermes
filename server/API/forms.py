@@ -1,6 +1,7 @@
 from django import forms
 from django.conf import settings
 from django.core.validators import URLValidator
+from django.core.exceptions import ValidationError
 from import_export.forms import ImportForm
 from .models import PDF_VALIDATOR
 from .utils import save_pdf_to_local_storage
@@ -26,7 +27,7 @@ class PDFWidget(forms.MultiWidget):
 
     def get_context(self, name, value, attrs):
         context = super().get_context(name, value, attrs)
-        context['widget']['subwidgets'][0]['attrs']['maxlength'] = 50
+        context['widget']['subwidgets'][0]['attrs']['maxlength'] = 2000
         context['widget']['subwidgets'][0]['attrs']['placeholder'] =\
             'Link to external PDF'
         return context
@@ -71,16 +72,25 @@ class PDFField(forms.MultiValueField):
         )
 
     def compress(self, data_list):
-        if data_list[0]:
-            return data_list[0]
-        pdf_path = save_pdf_to_local_storage(data_list[1])
-        return pdf_path
+        return data_list
 
 
 class CatalogForm(forms.ModelForm):
-    pdf = PDFField()
+    pdf = PDFField(label='PDF External Link')
 
-    class Meta:
-        fields = '__all__'
-        labels = {'pdf': 'PDF External link'}
-
+    def clean(self, *args, **kwargs):
+        '''Comparison with existing pdf is of no use atm, because
+           currently the pdf field is read-only after creation but
+           that may change'''
+        external_link, local_storage =\
+            self.cleaned_data.get('pdf', (None, None))
+        current_pdf_url = self.instance.pdf
+        if external_link and external_link != current_pdf_url:
+            if local_storage:
+                raise ValidationError('Choose only one of the two PDF options.')
+            self.cleaned_data['pdf'] = external_link
+        elif local_storage:
+            self.cleaned_data['pdf'] =\
+                save_pdf_to_local_storage(local_storage,
+                                          self.cleaned_data['name'])
+        return super().clean(*args, **kwargs)

@@ -140,6 +140,11 @@ class CatalogAdmin(admin.ModelAdmin):
     form = CatalogForm
     search_fields = ['name']
 
+    def get_readonly_fields(self, request, obj=None):
+        if obj:
+            return self.readonly_fields + ('pdf',)
+        return self.readonly_fields
+
 
 class SiteAdmin(admin.ModelAdmin):
     search_fields = ['config_name']

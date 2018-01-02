@@ -2,11 +2,8 @@ from django.db import models
 from django.core.validators import URLValidator
 from django.core.exceptions import ValidationError
 from django.utils.translation import gettext_lazy as _
-from django.contrib.postgres.fields import ArrayField
 from django.utils.deconstruct import deconstructible
 from cloudinary.models import CloudinaryField
-import cloudinary
-from .utils import get_cloudinary_img_or_default
 from .constants import CURRENCY_CHOICES, DEFAULT_CLOUDINARY_IMG
 
 
@@ -18,7 +15,8 @@ class ValidateFileType:
 
     def __call__(self, val):
         try:
-            if not any(val.name.endswith(file_type) for file_type in self.types):
+            if not any(val.name.endswith(file_type)
+                       for file_type in self.types):
                 raise ValidationError(
                     _('%(value)s is not of valid type'),
                     params={'value': val},
@@ -82,7 +80,7 @@ class Catalog(models.Model):
     image_link = CloudinaryField(blank=True, null=True,
                                  validators=[IMAGE_VALIDATOR],
                                  default=DEFAULT_CLOUDINARY_IMG)
-    pdf = models.URLField(null=True, blank=True)
+    pdf = models.URLField(max_length=2000, null=True, blank=True)
     online = models.BooleanField(default=True)
 
     def __str__(self):

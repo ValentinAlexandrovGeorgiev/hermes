@@ -27,7 +27,7 @@ def delete_obsolete_pdf(sender, instance=None, **kwargs):
     if not instance:
         return
     try:
-        pdf_name = instance.pdf.split('/')[-1]
+        pdf_name = instance.pdf.strip('/').split('/')[-1]
         default_storage.delete(pdf_name)
-    except IOError:
+    except (IOError, AssertionError):
         pass
